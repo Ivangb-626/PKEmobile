@@ -56,3 +56,9 @@ select { background: transparent; color: var(--fg); border:1px solid var(--borde
 .uc-message { margin: 0 0 .75rem; color: var(--fg); }
 .uc-close { padding: .5rem .9rem; border: 1px solid var(--border); border-radius: .5rem; background: var(--primary); color: #fff; cursor: pointer; }
 .uc-close:hover { filter: brightness(1.05); }
+/* Footer auth buttons styling */
+.site-footer .btn { background: #16a34a; border-color: #16a34a; color: #fff; }
+.site-footer .btn:hover { filter: brightness(1.05); }
+/* Logout button styling (wherever it appears) */
+#logoutBtn { background: #dc2626 !important; border-color: #dc2626 !important; color: #fff !important; }
+#logoutBtn:hover { filter: brightness(1.05); }

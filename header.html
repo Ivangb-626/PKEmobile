@@ -26,8 +26,8 @@
             <option value="yue">YUE</option>
           </select>
           <button id="themeToggle" class="icon-btn" aria-pressed="false" title="Tema">🌓</button>
-          <a href="#" id="loginBtn" class="btn" data-i18n="auth.login">Log in</a>
-          <a href="#" id="signupBtn" class="btn primary" data-i18n="auth.signup">Sign up</a>
+          <a href="login.html" id="loginBtn" class="btn" data-i18n="auth.login">Log in</a>
+          <a href="signup.html" id="signupBtn" class="btn primary" data-i18n="auth.signup">Sign up</a>
         </div>
       </div>
       <div id="backdrop" class="backdrop" hidden></div>
@@ -72,7 +72,17 @@
               contact_us: 'Contáctanos',
               faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
             },
-            messages: { under_construction: 'Página web en construcción', close: 'Cerrar' }
+            messages: { under_construction: 'Página web en construcción', close: 'Cerrar', hello: 'Hola', require_login: 'Inicia sesión para acceder a esto' },
+            forms: {
+              login: {
+                heading: 'Iniciar sesión', user: 'Usuario', pass: 'Contraseña', submit: 'Iniciar sesión', goSignup: 'Crear cuenta', back: 'Volver atrás', noaccount: '¿Todavía no tienes cuenta? ',
+                missing: 'Rellena usuario y contraseña', bad: 'Usuario o contraseña incorrectos', ok: 'Sesión iniciada'
+              },
+              signup: {
+                heading: 'Crear cuenta', user: 'Usuario', pass: 'Contraseña', pass2: 'Repite la contraseña', submit: 'Crear cuenta', tologin: 'Ir a Login', back: 'Volver atrás', haveaccount: '¿Ya tienes cuenta? ',
+                missing: 'Rellena usuario y contraseñas', nomatch: 'Las contraseñas no coinciden', exists: 'El usuario ya existe', created: 'Usuario creado y sesión iniciada'
+              }
+            }
           },
           eu: {
             auth: { login: 'Saioa hasi', signup: 'Erregistratu' },
@@ -88,7 +98,17 @@
               contact_us: 'Idatzi gaitzazu',
               faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
             },
-            messages: { under_construction: 'Webgunea eraikitzen ari da', close: 'Itxi' }
+            messages: { under_construction: 'Webgunea eraikitzen ari da', close: 'Itxi', hello: 'Kaixo', require_login: 'Hau atzitzeko saioa hasi' },
+            forms: {
+              login: {
+                heading: 'Saioa hasi', user: 'Erabiltzailea', pass: 'Pasahitza', submit: 'Saioa hasi', goSignup: 'Erregistratu', back: 'Atzera', noaccount: 'Oraindik ez duzu konturik? ',
+                missing: 'Bete erabiltzailea eta pasahitza', bad: 'Erabiltzailea edo pasahitza okerra', ok: 'Saioa hasita'
+              },
+              signup: {
+                heading: 'Erregistratu', user: 'Erabiltzailea', pass: 'Pasahitza', pass2: 'Errepikatu pasahitza', submit: 'Erregistratu', tologin: 'Saioa hastera joan', back: 'Atzera', haveaccount: 'Baduzu jada kontua? ',
+                missing: 'Bete erabiltzailea eta pasahitzak', nomatch: 'Pasahitzak ez datoz bat', exists: 'Erabiltzailea badago lehendik', created: 'Erabiltzailea sortu eta saioa hasita'
+              }
+            }
           },
           en: {
             auth: { login: 'Log in', signup: 'Sign up' },
@@ -104,7 +124,17 @@
               contact_us: 'Contact us',
               faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
             },
-            messages: { under_construction: 'Website under construction', close: 'Close' }
+            messages: { under_construction: 'Website under construction', close: 'Close', hello: 'Hello', require_login: 'Log in to access this' },
+            forms: {
+              login: {
+                heading: 'Log in', user: 'Username', pass: 'Password', submit: 'Log in', goSignup: 'Sign up', back: 'Go back', noaccount: "Don't have an account yet? ",
+                missing: 'Fill username and password', bad: 'Incorrect username or password', ok: 'Logged in'
+              },
+              signup: {
+                heading: 'Sign up', user: 'Username', pass: 'Password', pass2: 'Repeat password', submit: 'Sign up', tologin: 'Go to Login', back: 'Go back', haveaccount: 'Do you already have an account? ',
+                missing: 'Fill username and both passwords', nomatch: 'Passwords do not match', exists: 'User already exists', created: 'User created and logged in'
+              }
+            }
           },
           sw: {
             auth: { login: 'Ingia', signup: 'Jisajili' },
@@ -120,7 +150,17 @@
               contact_us: 'Wasiliana nasi',
               faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
             },
-            messages: { under_construction: 'Tovuti inaendelea kujengwa', close: 'Funga' }
+            messages: { under_construction: 'Tovuti inaendelea kujengwa', close: 'Funga', hello: 'Habari', require_login: 'Ingia ili kufikia hili' },
+            forms: {
+              login: {
+                heading: 'Ingia', user: 'Jina la mtumiaji', pass: 'Nenosiri', submit: 'Ingia', goSignup: 'Jisajili', back: 'Rudi nyuma', noaccount: 'Huna akaunti bado? ',
+                missing: 'Jaza jina na nenosiri', bad: 'Jina au nenosiri si sahihi', ok: 'Umeingia'
+              },
+              signup: {
+                heading: 'Jisajili', user: 'Jina la mtumiaji', pass: 'Nenosiri', pass2: 'Rudia nenosiri', submit: 'Jisajili', tologin: 'Nenda Login', back: 'Rudi nyuma', haveaccount: 'Je, tayari una akaunti? ',
+                missing: 'Jaza jina na nywila zote mbili', nomatch: 'Nywila hazilingani', exists: 'Mtumiaji tayari yupo', created: 'Mtumiaji ameundwa na umeingia'
+              }
+            }
           },
           eo: {
             auth: { login: 'Ensaluti', signup: 'Registriĝi' },
@@ -136,7 +176,17 @@
               contact_us: 'Kontaktu nin',
               faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
             },
-            messages: { under_construction: 'Retejo konstruata', close: 'Fermi' }
+            messages: { under_construction: 'Retejo konstruata', close: 'Fermi', hello: 'Saluton', require_login: 'Ensalutu por aliri tion' },
+            forms: {
+              login: {
+                heading: 'Ensaluti', user: 'Uzantnomo', pass: 'Pasvorto', submit: 'Ensaluti', goSignup: 'Registriĝi', back: 'Reen', noaccount: 'Ĉu ankoraŭ ne havas konton? ',
+                missing: 'Plenigu uzantnomon kaj pasvorton', bad: 'Malĝusta uzantnomo aŭ pasvorto', ok: 'Ensalutita'
+              },
+              signup: {
+                heading: 'Registriĝi', user: 'Uzantnomo', pass: 'Pasvorto', pass2: 'Ripetu pasvorton', submit: 'Registriĝi', tologin: 'Iri al Ensaluti', back: 'Reen', haveaccount: 'Ĉu jam havas konton? ',
+                missing: 'Plenigu uzantnomon kaj ambaŭ pasvortojn', nomatch: 'Pasvortoj ne kongruas', exists: 'Uzanto jam ekzistas', created: 'Uzanto kreita kaj ensalutita'
+              }
+            }
           },
           yue: {
             auth: { login: '登入', signup: '註冊' },
@@ -152,7 +202,17 @@
               contact_us: '聯絡我們',
               faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
             },
-            messages: { under_construction: '網站建設中', close: '關閉' }
+            messages: { under_construction: '網站建設中', close: '關閉', hello: '你好', require_login: '登入以存取此內容' },
+            forms: {
+              login: {
+                heading: '登入', user: '用戶名', pass: '密碼', submit: '登入', goSignup: '註冊', back: '返回', noaccount: '還沒有帳戶？ ',
+                missing: '請輸入用戶名和密碼', bad: '用戶名或密碼不正確', ok: '已登入'
+              },
+              signup: {
+                heading: '註冊', user: '用戶名', pass: '密碼', pass2: '重複密碼', submit: '註冊', tologin: '前往登入', back: '返回', haveaccount: '已經有帳戶了嗎？ ',
+                missing: '請輸入用戶名及兩次密碼', nomatch: '兩次輸入的密碼不一致', exists: '用戶已存在', created: '已建立用戶並登入'
+              }
+            }
           }
         };
 
@@ -198,8 +258,8 @@
 
         function applyLang(lng) {
           var t = dict[lng] || dict['en'];
-          title.textContent = t.title;
-          subtitle.textContent = t.subtitle;
+          if (title) title.textContent = t.title;
+          if (subtitle) subtitle.textContent = t.subtitle;
           loginBtn.textContent = t.auth.login;
           signupBtn.textContent = t.auth.signup;
           var navLinks = nav.querySelectorAll('a');
@@ -237,8 +297,13 @@
           try {
             document.documentElement.setAttribute('data-uc-msg', t.messages.under_construction);
             document.documentElement.setAttribute('data-close-label', t.messages.close);
+            document.documentElement.setAttribute('data-require-login', t.messages.require_login);
+            document.documentElement.setAttribute('data-hello', t.messages.hello);
             var closeBtn = document.getElementById('uc-close');
             if (closeBtn) closeBtn.textContent = t.messages.close;
+            // expose auth forms translations globally and notify listeners
+            window.appTranslations = t.forms;
+            try { window.dispatchEvent(new CustomEvent('lang:changed')); } catch(e) {}
           } catch(e) {}
         }
       })();

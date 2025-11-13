@@ -1,0 +1,148 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="Styles/General.css">
+  </head>
+  <body>
+    <div id="header-root"></div>
+
+    <main class="container py-4">
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+          <div class="card" style="border-color: var(--border); background: var(--bg); color: var(--fg);">
+            <div class="card-body">
+              <h1 class="h4 mb-3">Login</h1>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span id="noAccountText">¿Todavía no tienes cuenta? </span>
+                <a href="signup.html" id="toSignup" class="btn btn-outline-primary ms-2">Crear cuenta</a>
+              </div>
+              <div id="msg" class="alert d-none" role="alert"></div>
+              <form id="loginForm" novalidate>
+                <div class="mb-3">
+                  <label for="username" class="form-label" id="labelUsername">Usuario</label>
+                  <input type="text" class="form-control" id="username" required />
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label" id="labelPassword">Contraseña</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" id="password" required />
+                    <button type="button" id="togglePwd" class="btn btn-outline-secondary" aria-pressed="false" aria-label="Mostrar contraseña">👁️</button>
+                  </div>
+                </div>
+                <div class="d-flex gap-2">
+                  <button type="submit" id="loginBtnPage" class="btn btn-primary">Iniciar sesión</button>
+                  <button type="button" id="backBtn" class="btn btn-secondary">Volver atrás</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer-root"></div>
+
+    <script src="insertheaderfooter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      (function(){
+        var form = document.getElementById('loginForm');
+        var u = document.getElementById('username');
+        var p = document.getElementById('password');
+        var msg = document.getElementById('msg');
+        var LS_KEY = 'auth_users';
+        var CURRENT_KEY = 'auth_current_user';
+
+        function getUsers(){
+          try {
+            var data = JSON.parse(localStorage.getItem(LS_KEY) || '{}');
+            return (data && typeof data === 'object') ? data : {};
+          } catch(e) { return {}; }
+        }
+        function saveUsers(obj){
+          try { localStorage.setItem(LS_KEY, JSON.stringify(obj)); } catch(e) {}
+        }
+        function setCurrentUser(username){
+          try { localStorage.setItem(CURRENT_KEY, username); } catch(e) {}
+        }
+        function show(type, text){
+          msg.className = 'alert alert-' + type;
+          msg.textContent = text;
+          msg.classList.remove('d-none');
+        }
+        function localizeFromHeader(){
+          var tx = (window.appTranslations && window.appTranslations.login) || null;
+          if (!tx) return;
+          document.querySelector('h1.h4').textContent = tx.heading;
+          document.getElementById('labelUsername').textContent = tx.user;
+          document.getElementById('labelPassword').textContent = tx.pass;
+          document.getElementById('loginBtnPage').textContent = tx.submit || tx.login;
+          var toSignup = document.getElementById('toSignup');
+          if (toSignup) toSignup.textContent = tx.goSignup;
+          var noAcc = document.getElementById('noAccountText');
+          if (noAcc) noAcc.textContent = tx.noaccount || noAcc.textContent;
+          var backBtn = document.getElementById('backBtn');
+          if (backBtn) backBtn.textContent = tx.back || 'Go back';
+        }
+        // try immediately and also when language changes
+        localizeFromHeader();
+        window.addEventListener('lang:changed', localizeFromHeader);
+
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          var username = u.value.trim();
+          var pass = p.value;
+          var txm = (window.appTranslations && window.appTranslations.login) || {};
+          if (!username || !pass) { show('warning', txm.missing || 'Fill username and password'); return; }
+          var users = getUsers();
+          if (users[username] && users[username] === pass) {
+            setCurrentUser(username);
+            var tx = (window.appTranslations && window.appTranslations.login) || {};
+            show('success', tx.ok || 'Logged in');
+            try {
+              var last = localStorage.getItem('last_page') || 'hasiera_orria.html';
+              if (/\/(login|signup)\.html$/i.test(new URL(last, location.href).pathname)) last = 'hasiera_orria.html';
+              setTimeout(function(){ location.href = last; }, 400);
+            } catch(e) { location.href = 'hasiera_orria.html'; }
+          } else {
+            var txb = (window.appTranslations && window.appTranslations.login) || {};
+            show('danger', txb.bad || 'Incorrect username or password');
+          }
+        });
+
+        // Toggle password visibility
+        (function setupToggle(){
+          var btn = document.getElementById('togglePwd');
+          var inp = document.getElementById('password');
+          if (!btn || !inp) return;
+          btn.addEventListener('click', function(){
+            var showing = inp.getAttribute('type') === 'text';
+            inp.setAttribute('type', showing ? 'password' : 'text');
+            btn.textContent = showing ? '👁️' : '🙈';
+            btn.setAttribute('aria-pressed', String(!showing));
+          });
+        })();
+
+        // Back button: go to last non-auth page
+        (function handleBack(){
+          var backBtn = document.getElementById('backBtn');
+          if (!backBtn) return;
+          backBtn.addEventListener('click', function(){
+            try {
+              var last = localStorage.getItem('last_page') || 'hasiera_orria.html';
+              var path = new URL(last, location.href).pathname.toLowerCase();
+              if (/(\/login\.html|\/signup\.html)$/.test(path)) last = 'hasiera_orria.html';
+              location.href = last;
+            } catch (e) {
+              location.href = 'hasiera_orria.html';
+            }
+          });
+        })();
+      })();
+    </script>
+  </body>
+</html>
