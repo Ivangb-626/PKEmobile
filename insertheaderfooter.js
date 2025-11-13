@@ -15,6 +15,20 @@
       if (s.src) ns.src = s.src; else ns.textContent = s.textContent;
       document.body.appendChild(ns);
     });
+    // After header is in DOM, intercept Log in / Sign up clicks
+    try {
+      const login = document.getElementById('loginBtn');
+      const signup = document.getElementById('signupBtn');
+      [login, signup].forEach(el => {
+        if (!el) return;
+        el.addEventListener('click', function(e){
+          e.preventDefault();
+          alert('Página web en construcción');
+        });
+      });
+    } catch (e) {
+      console.warn('No se pudieron enlazar los eventos del header:', e);
+    }
   } catch (e) {
     console.error('No se pudo cargar el header:', e);
   }
