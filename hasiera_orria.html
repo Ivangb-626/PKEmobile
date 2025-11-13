@@ -1,8 +1,59 @@
 <html>
-<head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hasiera orria</title>
-</head>
-<body>
-    <h1>Hasiera orria</h1>
-</body>
-</html>
+    <link rel="stylesheet" href="estiloak.css">
+  </head>
+  <body>
+    <div id="header-root"></div>
+
+    <main class="container">
+      <h1 id="title">Hasiera orria</h1>
+      <p class="muted" id="subtitle">Página inicial</p>
+    </main>
+
+    <div id="footer-root"></div>
+
+    <script>
+      (async function insertHeader() {
+        try {
+          const res = await fetch('header.html');
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          const header = doc.querySelector('header.site-header');
+          const target = document.getElementById('header-root');
+          if (header && target) {
+            target.appendChild(header);
+          }
+          const scripts = doc.querySelectorAll('script');
+          scripts.forEach(s => {
+            const ns = document.createElement('script');
+            if (s.src) ns.src = s.src; else ns.textContent = s.textContent;
+            document.body.appendChild(ns);
+          });
+        } catch (e) {
+          console.error('No se pudo cargar el header:', e);
+        }
+      })();
+    </script>
+    <script>
+      (async function insertFooter() {
+        try {
+          const res = await fetch('footer.html');
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const html = await res.text();
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          const footer = doc.querySelector('footer.site-footer');
+          const target = document.getElementById('footer-root');
+          if (footer && target) {
+            target.appendChild(footer);
+          }
+        } catch (e) {
+          console.error('No se pudo cargar el footer:', e);
+        }
+      })();
+    </script>
+  </body>
+ </html>
