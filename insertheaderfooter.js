@@ -23,9 +23,17 @@
         if (!el) return;
         el.addEventListener('click', function(e){
           e.preventDefault();
-          alert('Página web en construcción');
+          showUnderConstruction();
         });
       });
+      // Persist and restore language across pages
+      const langSelect = document.getElementById('langSelect');
+      if (langSelect) {
+        const savedLang = localStorage.getItem('lang') || 'eu';
+        langSelect.value = savedLang;
+        // Trigger change so the header script applies translations
+        langSelect.dispatchEvent(new Event('change'));
+      }
     } catch (e) {
       console.warn('No se pudieron enlazar los eventos del header:', e);
     }
@@ -49,7 +57,7 @@
         links.forEach(a => {
           a.addEventListener('click', function(e){
             e.preventDefault();
-            alert('Página web en construcción');
+            showUnderConstruction();
           });
         });
       } catch (e) {
@@ -60,3 +68,58 @@
     console.error('No se pudo cargar el footer:', e);
   }
 })();
+
+// Reusable, localized Under Construction modal
+(function ensureUcModal(){
+  if (document.getElementById('uc-backdrop')) return;
+  const backdrop = document.createElement('div');
+  backdrop.id = 'uc-backdrop';
+  backdrop.setAttribute('role','presentation');
+  backdrop.style.display = 'none';
+  backdrop.className = 'uc-backdrop';
+
+  const dialog = document.createElement('div');
+  dialog.id = 'uc-dialog';
+  dialog.className = 'uc-dialog';
+  dialog.setAttribute('role','dialog');
+  dialog.setAttribute('aria-modal','true');
+  dialog.setAttribute('aria-labelledby','uc-title');
+
+  const title = document.createElement('h2');
+  title.id = 'uc-title';
+  title.className = 'uc-title';
+  title.textContent = 'ℹ️';
+
+  const msg = document.createElement('p');
+  msg.id = 'uc-message';
+  msg.className = 'uc-message';
+  msg.textContent = document.documentElement.getAttribute('data-uc-msg') || 'Página web en construcción';
+
+  const close = document.createElement('button');
+  close.id = 'uc-close';
+  close.className = 'uc-close';
+  close.type = 'button';
+  close.textContent = 'OK';
+
+  dialog.appendChild(title);
+  dialog.appendChild(msg);
+  dialog.appendChild(close);
+  backdrop.appendChild(dialog);
+  document.body.appendChild(backdrop);
+
+  function hide(){ backdrop.style.display = 'none'; }
+  function onKey(e){ if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hide(); } }
+  backdrop.addEventListener('click', function(e){ if (e.target === backdrop) hide(); });
+  close.addEventListener('click', hide);
+  window.addEventListener('keydown', onKey);
+})();
+
+function showUnderConstruction(){
+  const backdrop = document.getElementById('uc-backdrop');
+  const msg = document.getElementById('uc-message');
+  const close = document.getElementById('uc-close');
+  if (!backdrop || !msg) return alert(document.documentElement.getAttribute('data-uc-msg') || 'Página web en construcción');
+  msg.textContent = document.documentElement.getAttribute('data-uc-msg') || 'Página web en construcción';
+  backdrop.style.display = 'grid';
+  try { close.focus(); } catch(e) {}
+}
