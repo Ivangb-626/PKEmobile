@@ -1,0 +1,131 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hasiera orria</title>
+    <link rel="stylesheet" href="Styles/General.css">
+  </head>
+<body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="left">
+          <button id="menuBtn" class="icon-btn" aria-label="Menu" aria-expanded="false">☰</button>
+          <span class="brand" id="brand">GRAL gida</span>
+        </div>
+        <nav id="nav" class="nav-links" aria-label="Primary">
+          <a href="hasiera_orria.html" data-i18n="nav.home">Hasiera</a>
+        </nav>
+        <div class="actions">
+          <select id="langSelect" aria-label="Idioma">
+            <option value="es">ES</option>
+            <option value="eu">EU</option>
+            <option value="en">EN</option>
+          </select>
+          <button id="themeToggle" class="icon-btn" aria-pressed="false" title="Tema">🌓</button>
+          <a href="#" id="loginBtn" class="btn" data-i18n="auth.login">Log in</a>
+          <a href="#" id="signupBtn" class="btn primary" data-i18n="auth.signup">Sign up</a>
+        </div>
+      </div>
+      <div id="backdrop" class="backdrop" hidden></div>
+      <aside id="sideMenu" class="side-menu" aria-hidden="true">
+        <div class="side-menu-inner">
+          <a href="./gral_adibideak.html" class="btn">GRAL Adibideak</a>
+          <a href="" class="btn">boton2</a>
+          <a href="" class="btn">boton3</a>
+          <a href="" class="btn">boton4</a>
+          <a href="" class="btn">boton5</a>
+        </div>
+      </aside>
+    </header>
+
+    <script>
+      (function() {
+        var body = document.body;
+        var themeToggle = document.getElementById('themeToggle');
+        var menuBtn = document.getElementById('menuBtn');
+        var nav = document.getElementById('nav');
+        var langSelect = document.getElementById('langSelect');
+        var title = document.getElementById('title');
+        var loginBtn = document.getElementById('loginBtn');
+        var signupBtn = document.getElementById('signupBtn');
+        var subtitle = document.getElementById('subtitle');
+        var sideMenu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('backdrop');
+
+        var dict = {
+          es: {
+            title: 'Página inicial',
+            subtitle: 'Página inicial',
+            auth: { login: 'Iniciar sesión', signup: 'Crear cuenta' },
+            nav: { home: 'Inicio', features: 'Características', contact: 'Contacto' },
+            image: { placeholder: 'Imagen / banner pendiente' }
+          },
+          eu: {
+            title: 'Hasiera orria',
+            subtitle: 'Hasiera orria',
+            auth: { login: 'Saioa hasi', signup: 'Erregistratu' },
+            nav: { home: 'Hasiera', features: 'Ezaugarriak', contact: 'Kontaktua' },
+            image: { placeholder: 'Irudi / bannerra zain' }
+          },
+          en: {
+            title: 'Home',
+            subtitle: 'Home page',
+            auth: { login: 'Log in', signup: 'Sign up' },
+            nav: { home: 'Home', features: 'Features', contact: 'Contact' },
+            image: { placeholder: 'Image / banner placeholder' }
+          }
+        };
+
+        try {
+          var savedTheme = localStorage.getItem('theme');
+          if (savedTheme === 'dark') body.classList.add('dark');
+          var savedLang = localStorage.getItem('lang') || 'eu';
+          langSelect.value = savedLang;
+          applyLang(savedLang);
+        } catch (e) {}
+
+        themeToggle.addEventListener('click', function() {
+          var isDark = body.classList.toggle('dark');
+          themeToggle.setAttribute('aria-pressed', String(isDark));
+          try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
+        });
+
+        function openMenu() {
+          sideMenu.classList.add('open');
+          backdrop.hidden = false;
+          menuBtn.setAttribute('aria-expanded', 'true');
+          sideMenu.setAttribute('aria-hidden', 'false');
+        }
+        function closeMenu() {
+          sideMenu.classList.remove('open');
+          backdrop.hidden = true;
+          menuBtn.setAttribute('aria-expanded', 'false');
+          sideMenu.setAttribute('aria-hidden', 'true');
+        }
+        menuBtn.addEventListener('click', function() {
+          if (sideMenu.classList.contains('open')) closeMenu(); else openMenu();
+        });
+        backdrop.addEventListener('click', closeMenu);
+        window.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+
+        langSelect.addEventListener('change', function() {
+          var lng = langSelect.value;
+          applyLang(lng);
+          try { localStorage.setItem('lang', lng); } catch (e) {}
+        });
+
+        function applyLang(lng) {
+          var t = dict[lng] || dict['en'];
+          title.textContent = t.title;
+          subtitle.textContent = t.subtitle;
+          loginBtn.textContent = t.auth.login;
+          signupBtn.textContent = t.auth.signup;
+          var navLinks = nav.querySelectorAll('a');
+          if (navLinks[0]) navLinks[0].textContent = t.nav.home;
+          var ph = document.getElementById('imgPh');
+          if (ph) ph.textContent = t.image.placeholder;
+        }
+      })();
+    </script>
+  </body>
+ </html>
