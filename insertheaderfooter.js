@@ -30,6 +30,17 @@
     const target = document.getElementById('footer-root');
     if (footer && target) {
       target.appendChild(footer);
+      try {
+        const links = target.querySelectorAll('a');
+        links.forEach(a => {
+          a.addEventListener('click', function(e){
+            e.preventDefault();
+            alert('Página web en construcción');
+          });
+        });
+      } catch (e) {
+        console.warn('No se pudieron enlazar los eventos del footer:', e);
+      }
     }
   } catch (e) {
     console.error('No se pudo cargar el footer:', e);
