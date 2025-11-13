@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="eu">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>GRAL adibideak</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+<header>
+    <h1 class="title">GRAL adibideak</h1>
+    <nav><a href="#">Hasiera</a> > <a href="#">GRAL adibideak</a></nav>
+    <br><br>
+</header>
+
+<main>
+    <!-- Contenido traído del primer HTML (sin estilos inline) -->
+    <section class="wrap">
+        <header class="header">
+            <h2 class="title">TFG hautagaiak • UPV/EHU</h2>
+            <p class="subtitle">Aukeratu gradua eta azpian ikusiko dituzu TFG nabarmenduak (3 ale).</p>
+            <p class="subtitle">Gradu gehiago ala GRAL gehiago kontsultatzeko begiratu oinaldeko ADDI baliabidea</p>
+        </header>
+
+        <section class="picker" aria-label="Gradu aukeraketa">
+            <!-- Toggle del menú -->
+            <input id="toggle" class="toggle" type="checkbox" aria-label="Zabaldu zerrenda">
+            <label class="display" id="pickerBtn" for="toggle" role="button" aria-controls="degree-list" aria-expanded="false">
+                <div class="label-main" id="pickerLabel">Aukeratu gradua</div>
+                <div class="hint">Klik egin eta hautatu zure interesa</div>
+                <div class="chev"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
+            </label>
+
+            <!-- Lista superpuesta -->
+            <div id="degree-list" class="list" role="listbox" aria-label="Gradu zerrenda">
+                <div class="group">
+                    <div class="group-title">Informatika</div>
+                    <div class="option" data-degree="ii">Ingeniaritza Informatikoa</div>
+                    <div class="option" data-degree="ia">Adimen Artifiziala</div>
+                    <div class="option" data-degree="igis">Informatika Kudeaketa eta Sistemak</div>
+                </div>
+
+                <div class="group">
+                    <div class="group-title">Ingeniaritza</div>
+                    <div class="option" data-degree="teleco">Telekomunikazio Ingeniaritza</div>
+                    <div class="option" data-degree="iit">Industria Antolakuntza / Teknologiak</div>
+                    <div class="option" data-degree="energia">Energia / Elektrikoa</div>
+                    <div class="option" data-degree="ambient">Ingurumen / Zibila</div>
+                </div>
+
+                <div class="group">
+                    <div class="group-title">Osasun eta Hezkuntza</div>
+                    <div class="option" data-degree="med">Medikuntza</div>
+                    <div class="option" data-degree="mag">Hezkuntza / Magisteritza</div>
+                    <div class="option" data-degree="bioq">Bioteknologia / Biokimika</div>
+                </div>
+            </div>
+
+            <!-- Resultados -->
+            <section class="results" id="results" aria-live="polite"></section>
+        </section>
+    </section>
+</main>
+
+<footer>
+    <br><br>
+    <p>&copy; 2025 — GRAL adibideak</p>
+</footer>
+
+<!-- Script original del primer HTML (sin cambios) -->
+<script>
+    (function(){
+        const toggle   = document.getElementById('toggle');
+        const display  = document.getElementById('pickerBtn');
+        const list     = document.getElementById('degree-list');
+        const picker   = document.querySelector('.picker');
+        const results  = document.getElementById('results');
+        const labelTxt = document.getElementById('pickerLabel');
+
+        const DATA = {
+            ii: [
+                {year:'2023', title:'Suizidio-ideiagintzaren identifikazioa sare sozialetan',
+                    sum:['Reddit mezuen analisia eta transformer sailkatzaileak.',
+                        '%97,9 zehaztasuna; lehen pertsonako hizkera eta luzera ezaugarri.'],
+                    url:'http://hdl.handle.net/10810/63221'},
+                {year:'2022', title:'Minimeteo – Atmega328p estazio meteorologikoa',
+                    sum:['DHT-11, anemometroa, ESP-8266; WiFi bidez bidalketa.',
+                        'Erregistro mailako programazioa; hardware/firmware dokumentatua.'],
+                    url:'http://hdl.handle.net/10810/58086'},
+                {year:'2021', title:'OSALAGUN – ezagutzaren kudeaketa eta kontsulta',
+                    sum:['CMS + sistema adituak gomendio klinikoetarako.',
+                        'Web-zerbitzu bidezko arkitektura eta proba klinikoak.'],
+                    url:'http://hdl.handle.net/10810/53316'}
+            ],
+            ia: [
+                {year:'2024', title:'PEFT teknikak T5-n',
+                    sum:['Prefix-Tuning, Adapters eta LoRA; konparaketa.',
+                        'LoRAk errendimendua mantenduz baliabideak aurrezten ditu.'],
+                    url:'http://hdl.handle.net/10810/74101'},
+                {year:'2020', title:'Zerbitzu web analitika (Fac. Informatika)',
+                    sum:['API/zerbitzuen diseinua eta datu-analitika.',
+                        'Monitorizazio eta kontsulta mekanismoak.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/48784/Ricardo_Herradura_memoria.pdf'},
+                {year:'2017', title:'SDN segurizazioa politiketan oinarrituta',
+                    sum:['SDN sareetan segurtasun-politiken aplikazioa.',
+                        'Prototipo eta ebaluazio praktikoa.'],
+                    url:'https://addi.ehu.es/handle/10810/23094'}
+            ],
+            igis: [
+                {year:'2023', title:'RAMSÉS: funtzionalitate berriak eta ekoizpena',
+                    sum:['Automata/Turing + Docker/Proxmox deployment.',
+                        'LSI zerbitzarian martxan; web bidez irisgarria.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/60513/TFG_Valle.pdf?isAllowed=y&sequence=1'},
+                {year:'2021', title:'IkastenBot III (IGIS)',
+                    sum:['Chatbot arkitekturaren bilakaera eta ebaluazioa.',
+                        'Hezkuntza testuingururako elkarreragina.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/53452/IkastenBot_III.pdf?sequence=1'},
+                {year:'2021', title:'Sare-inbentario eta monitorizazio sistema',
+                    sum:['Aktiboen jarraipena eta alertak.',
+                        'Monitorizazio-panelak eta datu-bilketa.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/53432/TFG_ADDI_Eder_Lopez.pdf'}
+            ],
+            teleco: [
+                {year:'2018', title:'Esposizio elektromagnetikoaren neurketa',
+                    sum:['EM esposizioa hiri-ingurunean; neurketa eta analisia.',
+                        'Araudi/erreferentzien konparaketa.'],
+                    url:'https://addi.ehu.es/bitstream/10810/29200/1/TFG_LopezPerez.pdf'},
+                {year:'2024', title:'Telekomunikazio teknologiako TFG (2024-1)',
+                    sum:['Proiektu aplikatua; xehetasunak memorian.',
+                        'Diseinu eta balioztapen faseak.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/72679/TFG%20Pe%C3%B1David.pdf?isAllowed=y&sequence=4'},
+                {year:'2024', title:'Telekomunikazio TFG (2024-2)',
+                    sum:['Ikerketa/aplikazio telekomunikazioetan.',
+                        'Emaitzak eta ondorioak.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/72628/TFG%20RuanesBorja.pdf?isAllowed=y&sequence=2'}
+            ],
+            iit: [
+                {year:'2019', title:'Sagardoaren trazabilitatea: IS diseinua',
+                    sum:['Prozesu digitalen trazabilitatea kate osoan.',
+                        'Industria antolakuntzako ikuspegia.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/37054/TFG_AinhoaZubiarrainArin.pdf?isAllowed=y&sequence=1'},
+                {year:'2018', title:'Topografia 3D espeleologiarako',
+                    sum:['Estazio 3D; hardware/software integrazioa.',
+                        'Erabilera eremu berezietan.'],
+                    url:'https://addi.ehu.es/bitstream/10810/29239/1/TFG_RodrigoEzequielPortalea.pdf'},
+                {year:'2018', title:'Industria TFG adibidea',
+                    sum:['Prozesuen hobekuntza eta KPIak.',
+                        'Dokumentuan xehetasunak.'],
+                    url:'https://addi.ehu.es/handle/10810/13139'}
+            ],
+            energia: [
+                {year:'2025', title:'HIL/MIL/RTDS sistema elektrikoetan',
+                    sum:['Testbed hibridoa; DFIG/VSC eta kontrolak.',
+                        'Simulazio/errealitate integratua.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/72717/TFG%20SusinJon.pdf?isAllowed=y&sequence=2'},
+                {year:'2021', title:'Sare inbentario/monitorizazio aplikatua',
+                    sum:['Monitorizazio azpiegitura; alertak eta panelak.',
+                        'Mantentze-lanen optimizazioa.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/53432/TFG_ADDI_Eder_Lopez.pdf'},
+                {year:'2025', title:'Analisi/esperimentazioa (energia)',
+                    sum:['Prototipo eta emaitzen balorazioa.',
+                        'Eskala txiki/ertain.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/72630/TFG%20CidonchaGorka.pdf?isAllowed=y&sequence=2'}
+            ],
+            med: [
+                {year:'2021', title:'Ansiedad, depresión y estigma',
+                    sum:['1. vs 6. mailako ikasleen azterketa.',
+                        'Estigmaren neurketa eta ondorioak.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/54634/TFG_Bosko_MacGragh.pdf?sequence=1'},
+                {year:'2014', title:'Preferencias terapéuticas: berrikuspena',
+                    sum:['Berrikuspen sistematikoa; metodologia eta emaitzak.',
+                        'Orientazio klinikorako ekarpena.'],
+                    url:'https://addi.ehu.es/bitstream/10810/13024/1/TRABAJO.pdf'},
+                {year:'2021', title:'Pazienteen hitza medikuntzan',
+                    sum:['Pazienteen ahotsaren rola arretan.',
+                        'Proposamen praktikoak.'],
+                    url:'https://addi.ehu.es/handle/10810/54686?show=full'}
+            ],
+            mag: [
+                {year:'2020', title:'Behaketa bazkalorduan (6-8 hilabete)',
+                    sum:['Haurren portaeren behaketa-diseinua.',
+                        'Analisi metodologikoa.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/41367/GRAL_EnareMuniategiEtxabe.pdf'},
+                {year:'2022', title:'Hileko zikloaren irakaskuntza',
+                    sum:['Curriculum-azterketa eta proposamen didaktikoa.',
+                        'Ikaskuntza integral baterako.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/58937/TFG_GonzalezLlama_Amaia.pdf?sequence=4'},
+                {year:'2016', title:'Hezkuntza esku-hartzean elkarrizketak',
+                    sum:['Elkarrizketa-diseinuak eta praktika hezitzaileak.',
+                        'Ebazpenen kalitatea hobetzea.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/17659/5/TFG_AintzanePerez-Eranskinak.pdf'}
+            ],
+            ambient: [
+                {year:'2021', title:'Hiri-drainatze jasangarria (Leioa)',
+                    sum:['LID neurriak campus testuinguruan.',
+                        'Uren kalitatea eta uholde-kudeaketa.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/53436/0_Memoria_GrAL-a.pdf?sequence=1'},
+                {year:'2019', title:'Digitalizazioa prozesu industrialetan',
+                    sum:['Ingurumen-trazabilitatea eta IS diseinua.',
+                        'Sagardo katearen kasua.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/37054/TFG_AinhoaZubiarrainArin.pdf?isAllowed=y&sequence=1'},
+                {year:'2018', title:'QRS detekzioa baldintza zailak',
+                    sum:['Seinale biomedikoen analisia.',
+                        'Baldintza-ingurunearen eragina.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/29484/GrAL_DeLuisLidia.pdf?isAllowed=y&sequence=3'}
+            ],
+            bioq: [
+                {year:'2014', title:'Animalia zelulen ikerketa',
+                    sum:['Bioteknologia/zelula biologiako esperimentazioa.',
+                        'Protokolo eta emaitzak.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/15311/GAL.%20Jone%20Iba%C3%B1ez%20Perez.pdf?sequence=1'},
+                {year:'2020', title:'Biokimika ikerketa-memoria',
+                    sum:['Biomarkatzaile/omika prozedurak.',
+                        'Balioztapen estatistikoa.'],
+                    url:'https://addi.ehu.es/'},
+                {year:'2019', title:'Genetika aplikatua: kasu-azterketa',
+                    sum:['Omika-datuen analisia eta balioztatzea.',
+                        'Ezarpen praktikoa.'],
+                    url:'https://addi.ehu.es/'}
+            ]
+        };
+
+        function renderDegree(code, labelText){
+            const items = DATA[code] || [];
+            labelTxt.textContent = labelText || 'Aukeratu gradua';
+            let html = '<div class="grid">';
+            items.forEach(it=>{
+                html += `
+            <div class="cell">
+              <article class="folio">
+                <div class="kicker">${it.year}</div>
+                <h3 class="ttl">${it.title}</h3>
+                <div class="sum">
+                  ${(it.sum||[]).map(p=>`<p>${p}</p>`).join('')}
+                </div>
+                <div class="actions">
+                  <a class="btn" href="${it.url}" target="_blank" rel="noopener">Ikusi ADDI</a>
+                </div>
+              </article>
+            </div>`;
+            });
+            html += '</div>';
+            results.innerHTML = html;
+        }
+
+        function placeList(){
+            if(!toggle.checked) return;
+            try{
+                const r = display.getBoundingClientRect(), gap = 8;
+                list.style.left  = (r.left + window.scrollX) + 'px';
+                list.style.top   = (r.bottom + window.scrollY + gap) + 'px';
+                list.style.width = r.width + 'px';
+                const bottom = window.innerHeight - (r.bottom + gap);
+                list.style.maxHeight = Math.max(200, Math.min(bottom - 16, window.innerHeight * 0.8)) + 'px';
+                list.style.transform = 'scaleY(1)';
+            }catch(_){}
+        }
+
+        display.addEventListener('click', ()=>requestAnimationFrame(placeList));
+        ['scroll','resize','orientationchange'].forEach(evt=>{
+            window.addEventListener(evt, placeList, {passive:true});
+        });
+
+        list.querySelectorAll('.option').forEach(opt=>{
+            opt.addEventListener('click', ()=>{
+                const code = opt.getAttribute('data-degree');
+                const label = opt.textContent.trim();
+                renderDegree(code, label);
+                toggle.checked = false;
+                list.style.transform = '';
+            }, {capture:true});
+        });
+
+        document.addEventListener('click', (e)=>{
+            if(!picker.contains(e.target)) { toggle.checked = false; list.style.transform = ''; }
+        });
+        document.addEventListener('keydown', (e)=>{
+            if(e.key === 'Escape'){ toggle.checked = false; list.style.transform = ''; }
+        });
+    })();
+</script>
+</body>
+</html>
