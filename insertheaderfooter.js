@@ -91,10 +91,12 @@
       try {
         const links = target.querySelectorAll('a');
         links.forEach(a => {
-          a.addEventListener('click', function(e){
-            e.preventDefault();
-            showUnderConstruction();
-          });
+            if (a.classList.contains('link-primary')) {
+                a.addEventListener('click', function(e){
+                    e.preventDefault();
+                    showUnderConstruction();
+                });
+            }
         });
       } catch (e) {
         console.warn('No se pudieron enlazar los eventos del footer:', e);

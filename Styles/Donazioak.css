@@ -1,0 +1,86 @@
+.container {
+    background: white;
+    padding: 30px;
+    max-width: 450px;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #2a4b8d;
+    margin-bottom: 20px;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.option-btn {
+    flex: 1 1 calc(50% - 10px);
+    padding: 12px;
+    background: #e7ecf8;
+    color: #2a4b8d;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.25s ease;
+}
+
+.option-btn:hover {
+    background: #dde5f7;
+}
+
+.option-btn.selected {
+    background: #2a4b8d;
+    color: white;
+    border-color: #1b3360;
+    transform: scale(1.03);
+}
+
+.hidden {
+    display: none;
+}
+
+#customAmount {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 2px solid #b8c3dd;
+    font-size: 16px;
+}
+
+.confirm {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    background: #1b3360;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.confirm:hover {
+    background: #132342;
+    transform: scale(1.02);
+}
+
+.donazioa-info-box {
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background: rgba(0,0,0,0.03);
+}
+
+body.dark .donazioa-info-box {
+    background: rgba(255,255,255,0.05);
+}
