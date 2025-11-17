@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <title>Ordainketa</title>
+    <link rel="stylesheet" href="./Styles/ordaindu.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Ordainketa datuak</h1>
+
+    <p>Aukeratu ordainketa modua:</p>
+
+    <div class="options" id="paymentOptions">
+        <button class="option-btn" data-pay="card">Txartela</button>
+        <button class="option-btn" data-pay="paypal">PayPal</button>
+        <button class="option-btn" data-pay="crypto">Kriptomonetak</button>
+    </div>
+
+    <div id="cardForm" class="payment-form hidden">
+        <label>Izen-abizenak:</label>
+        <input type="text" placeholder="Adib: Jon Garcia">
+
+        <label>Txartel zenbakia:</label>
+        <input type="text" placeholder="1234 5678 9123 4567">
+
+        <div class="inline">
+            <div>
+                <label>Iraungitze data:</label>
+                <input type="text" placeholder="MM/YY">
+            </div>
+            <div>
+                <label>CVV:</label>
+                <input type="text" placeholder="123">
+            </div>
+        </div>
+    </div>
+
+    <div id="paypalForm" class="payment-form hidden">
+        <label>PayPal emaila:</label>
+        <input type="email" placeholder="zureemaila@example.com">
+    </div>
+
+    <div id="cryptoForm" class="payment-form hidden">
+        <p>Aukeratu kriptomoneta:</p>
+        <select>
+            <option>Bitcoin (BTC)</option>
+            <option>Ethereum (ETH)</option>
+            <option>USDT</option>
+        </select>
+
+        <label>Zure wallet helbidea:</label>
+        <input type="text" placeholder="0x... edo bc1...">
+    </div>
+
+    <button id="finishBtn" class="confirm">Ordainketa osatu</button>
+</div>
+
+<script>
+    const payButtons = document.querySelectorAll("#paymentOptions .option-btn");
+
+    const forms = {
+        card: document.getElementById("cardForm"),
+        paypal: document.getElementById("paypalForm"),
+        crypto: document.getElementById("cryptoForm")
+    };
+
+    payButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            payButtons.forEach(b => b.classList.remove("selected"));
+            btn.classList.add("selected");
+
+            Object.values(forms).forEach(f => f.classList.add("hidden"));
+            forms[btn.dataset.pay].classList.remove("hidden");
+        });
+    });
+
+    document.getElementById("finishBtn").addEventListener("click", () => {
+        alert("Ordainketa prozesatu da! Eskerrik asko zure ekarpenagatik.");
+        window.location.href = "hasiera_orria.html";
+    });
+</script>
+
+</body>
+</html>
