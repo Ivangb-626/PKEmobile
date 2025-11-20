@@ -4,120 +4,237 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GRAL — Testa (10 galdera, euskaraz)</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="Styles/General.css">
+  <link rel="stylesheet" href="Styles/Galdetegia.css">
 </head>
 <body>
   <div id="header-root"></div>
 
-  <main class="quiz-wrap" role="main">
-    <h1>GRAL — Test arina (10 galdera)</h1>
-    <p class="lead">Irakurri galderak eta aukeratu a/b/c erantzun zuzena. Ondoren sakatu "Zuzendu".</p>
+  <main class="container py-4" role="main">
+    <h1 class="text-center mb-4">GRAL — Test arina (10 galdera)</h1>
+    <p class="lead text-center mb-4">Irakurri galderak eta aukeratu a/b/c erantzun zuzena. Ondoren sakatu "Zuzendu".</p>
 
-    <form id="quizForm" autocomplete="off" aria-describedby="resultBox">
+    <form id="quizForm" autocomplete="off" aria-describedby="resultBox" class="row g-4">
       <!-- Galdera 1 -->
-      <fieldset data-answer="a">
-        <legend>1. GRALera matrikulatzeko, zein baldintza nagusia bete behar du ikasleak?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q1" value="a"> a) Ikasketa-planeko kreditu gehienak gaindituta izan behar ditu.</label>
-          <label class="option"><input type="radio" name="q1" value="b"> b) Edozein unetan matrikulatu daiteke, inolako baldintzarik gabe.</label>
-          <label class="option"><input type="radio" name="q1" value="c"> c) Beti kanpoko erakunde batekin lankidetza-hitzarmena izan behar du.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="a">
+          <legend class="h5">1. GRALera matrikulatzeko, zein baldintza nagusia bete behar du ikasleak?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q1" id="q1a" value="a">
+              <label class="form-check-label option" for="q1a">a) Ikasketa-planeko kreditu gehienak gaindituta izan behar ditu.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q1" id="q1b" value="b">
+              <label class="form-check-label option" for="q1b">b) Edozein unetan matrikulatu daiteke, inolako baldintzarik gabe.</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q1" id="q1c" value="c">
+              <label class="form-check-label option" for="q1c">c) Beti kanpoko erakunde batekin lankidetza-hitzarmena izan behar du.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <!-- Galdera 2 -->
-      <fieldset data-answer="b">
-        <legend>2. Nor izango da normalean Gradu Amaierako Lanaren zuzendaria?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q2" value="a"> a) Ikaslea berak bere burua.</label>
-          <label class="option"><input type="radio" name="q2" value="b"> b) Ikastegiko irakasle bat (zuzenburu moduan).</label>
-          <label class="option"><input type="radio" name="q2" value="c"> c) Beti kanpoko erakundeko ordezkaria.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="b">
+          <legend class="h5">2. Nor izango da normalean Gradu Amaierako Lanaren zuzendaria?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q2" id="q2a" value="a">
+              <label class="form-check-label option" for="q2a">a) Ikaslea berak bere burua.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q2" id="q2b" value="b">
+              <label class="form-check-label option" for="q2b">b) Ikastegiko irakasle bat (zuzenburu moduan).</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q2" id="q2c" value="c">
+              <label class="form-check-label option" for="q2c">c) Beti kanpoko erakundeko ordezkaria.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <!-- Galdera 3 -->
-      <fieldset data-answer="a">
-        <legend>3. Zein egitura akademiko elementu izan behar ditu memoriak?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q3" value="a"> a) Izenburua, helburuak, metodologia, emaitzak, ondorioak eta bibliografia.</label>
-          <label class="option"><input type="radio" name="q3" value="b"> b) Soilik laburpena eta ondorioak.</label>
-          <label class="option"><input type="radio" name="q3" value="c"> c) Soilik emaitzak eta datu-taulak.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="a">
+          <legend class="h5">3. Zein egitura akademiko elementu izan behar ditu memoriak?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q3" id="q3a" value="a">
+              <label class="form-check-label option" for="q3a">a) Izenburua, helburuak, metodologia, emaitzak, ondorioak eta bibliografia.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q3" id="q3b" value="b">
+              <label class="form-check-label option" for="q3b">b) Soilik laburpena eta ondorioak.</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q3" id="q3c" value="c">
+              <label class="form-check-label option" for="q3c">c) Soilik emaitzak eta datu-taulak.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <!-- Galdera 4 -->
-      <fieldset data-answer="b">
-        <legend>4. Nor da, oro har, Gradu Amaierako Lanaren jabetza intelektualeko eskubideen titulartasuna?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q4" value="a"> a) Unibertsitatea automatikoki.</label>
-          <label class="option"><input type="radio" name="q4" value="b"> b) Lana egin duen ikaslea.</label>
-          <label class="option"><input type="radio" name="q4" value="c"> c) Zuzendaria.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="b">
+          <legend class="h5">4. Nor da, oro har, Gradu Amaierako Lanaren jabetza intelektualeko eskubideen titulartasuna?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q4" id="q4a" value="a">
+              <label class="form-check-label option" for="q4a">a) Unibertsitatea automatikoki.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q4" id="q4b" value="b">
+              <label class="form-check-label option" for="q4b">b) Lana egin duen ikaslea.</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q4" id="q4c" value="c">
+              <label class="form-check-label option" for="q4c">c) Zuzendaria.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <!-- Galdera 5 -->
-      <fieldset data-answer="a">
-        <legend>5. GRAL unibertsitatetik kanpoko erakundearekin egin daiteke baldintzarik gabe?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q5" value="a"> a) Bai, baldin eta lankidetza-hitzarmena sinatzen bada.</label>
-          <label class="option"><input type="radio" name="q5" value="b"> b) Ez, ezin da kanpoko erakundeekin egin inolaz ere.</label>
-          <label class="option"><input type="radio" name="q5" value="c"> c) Bai, baina beti hitzarmenik gabe.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="a">
+          <legend class="h5">5. GRAL unibertsitatetik kanpoko erakundearekin egin daiteke baldintzarik gabe?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q5" id="q5a" value="a">
+              <label class="form-check-label option" for="q5a">a) Bai, baldin eta lankidetza-hitzarmena sinatzen bada.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q5" id="q5b" value="b">
+              <label class="form-check-label option" for="q5b">b) Ez, ezin da kanpoko erakundeekin egin inolaz ere.</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q5" id="q5c" value="c">
+              <label class="form-check-label option" for="q5c">c) Bai, baina beti hitzarmenik gabe.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <!-- Galdera 6 -->
-      <fieldset data-answer="b">
-        <legend>6. Gizakiekin, animaliekin edo datu sentikorrarekin lan egiten bada, zer egin behar da?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q6" value="a"> a) Ezer berezirik ez; normalean ez da jarraibiderik behar.</label>
-          <label class="option"><input type="radio" name="q6" value="b"> b) Tutoreak gidatu behar du eta UPV/EHUko Etika Batzordearen jarraibideak bete behar dira; dokumentuak aurkeztu daitezke.</label>
-          <label class="option"><input type="radio" name="q6" value="c"> c) Bakarrik zuzendaritza baimena nahikoa da.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="b">
+          <legend class="h5">6. Gizakiekin, animaliekin edo datu sentikorrarekin lan egiten bada, zer egin behar da?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q6" id="q6a" value="a">
+              <label class="form-check-label option" for="q6a">a) Ezer berezirik ez; normalean ez da jarraibiderik behar.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q6" id="q6b" value="b">
+              <label class="form-check-label option" for="q6b">b) Tutoreak gidatu behar du eta UPV/EHUko Etika Batzordearen jarraibideak bete behar dira; dokumentuak aurkeztu daitezke.</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q6" id="q6c" value="c">
+              <label class="form-check-label option" for="q6c">c) Bakarrik zuzendaritza baimena nahikoa da.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <!-- Galdera 7 -->
-      <fieldset data-answer="a">
-        <legend>7. Zein eskalan ematen da GRALaren nota normalean?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q7" value="a"> a) 0-tik 10-era.</label>
-          <label class="option"><input type="radio" name="q7" value="b"> b) 0-tik 100-era.</label>
-          <label class="option"><input type="radio" name="q7" value="c"> c) 1-tik 5-era.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="a">
+          <legend class="h5">7. Zein eskalan ematen da GRALaren nota normalean?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q7" id="q7a" value="a">
+              <label class="form-check-label option" for="q7a">a) 0-tik 10-era.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q7" id="q7b" value="b">
+              <label class="form-check-label option" for="q7b">b) 0-tik 100-era.</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q7" id="q7c" value="c">
+              <label class="form-check-label option" for="q7c">c) 1-tik 5-era.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <!-- Galdera 8 -->
-      <fieldset data-answer="b">
-        <legend>8. Noiz behar da nota espedientean jasota agertzea?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q8" value="a"> a) Azaroaren 30 baino lehen.</label>
-          <label class="option"><input type="radio" name="q8" value="b"> b) Urriaren 31 baino lehen.</label>
-          <label class="option"><input type="radio" name="q8" value="c"> c) Abenduko azken egunean.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="b">
+          <legend class="h5">8. Noiz behar da nota espedientean jasota agertzea?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q8" id="q8a" value="a">
+              <label class="form-check-label option" for="q8a">a) Azaroaren 30 baino lehen.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q8" id="q8b" value="b">
+              <label class="form-check-label option" for="q8b">b) Urriaren 31 baino lehen.</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q8" id="q8c" value="c">
+              <label class="form-check-label option" for="q8c">c) Abenduko azken egunean.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <!-- Galdera 9 -->
-      <fieldset data-answer="b">
-        <legend>9. GRAL egiteko, gehienez zenbat kreditu falta izan daitezke hautazkoen artean?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q9" value="a"> a) Ez dute inolako krediturik falta izan behar.</label>
-          <label class="option"><input type="radio" name="q9" value="b"> b) Gehienez 18 kreditu falta izan daitezke.</label>
-          <label class="option"><input type="radio" name="q9" value="c"> c) Gehienez 30 kreditu falta daitezke.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="b">
+          <legend class="h5">9. GRAL egiteko, gehienez zenbat kreditu falta izan daitezke hautazkoen artean?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q9" id="q9a" value="a">
+              <label class="form-check-label option" for="q9a">a) Ez dute inolako krediturik falta izan behar.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q9" id="q9b" value="b">
+              <label class="form-check-label option" for="q9b">b) Gehienez 18 kreditu falta izan daitezke.</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q9" id="q9c" value="c">
+              <label class="form-check-label option" for="q9c">c) Gehienez 30 kreditu falta daitezke.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
       <!-- Galdera 10 -->
-      <fieldset data-answer="a">
-        <legend>10. Non egin behar da lehenik GRALaren matrikula?</legend>
-        <div class="options">
-          <label class="option"><input type="radio" name="q10" value="a"> a) GAUR plataforman lehenik matrikulatu behar da.</label>
-          <label class="option"><input type="radio" name="q10" value="b"> b) Unibertsitate liburutegian eskuz eman behar da izena.</label>
-          <label class="option"><input type="radio" name="q10" value="c"> c) Kanpoko erakundearen bidez zuzenean.</label>
-        </div>
-      </fieldset>
+      <div class="col-12 col-md-6 col-lg-4">
+        <fieldset class="h-100 p-3 border rounded" data-answer="a">
+          <legend class="h5">10. Non egin behar da lehenik GRALaren matrikula?</legend>
+          <div class="options">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q10" id="q10a" value="a">
+              <label class="form-check-label option" for="q10a">a) GAUR plataforman lehenik matrikulatu behar da.</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="q10" id="q10b" value="b">
+              <label class="form-check-label option" for="q10b">b) Unibertsitate liburutegian eskuz eman behar da izena.</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="q10" id="q10c" value="c">
+              <label class="form-check-label option" for="q10c">c) Kanpoko erakundearen bidez zuzenean.</label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
 
-      <div class="controls">
-        <button type="submit" class="btn">Zuzendu</button>
-        <button type="button" id="resetBtn" class="btn secondary">Berrezarri</button>
-        <div id="resultBox" class="result" aria-live="polite" style="display:none;"></div>
+      <div class="col-12 mt-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div>
+            <button type="submit" class="btn btn-primary">Zuzendu</button>
+            <button type="button" id="resetBtn" class="btn btn-outline-secondary ms-2">Berrezarri</button>
+          </div>
+          <div id="resultBox" class="result fw-bold" aria-live="polite" style="display:none;"></div>
+        </div>
       </div>
     </form>
   </main>
