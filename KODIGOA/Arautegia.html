@@ -3,60 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GRALaren Gida - Araudiaren kontsulta</title>
-    <link rel="stylesheet" href="../Styles/General.css">
-    <link rel="stylesheet" href="../Styles/links.css">
+    <title data-i18n="pageTitle">GRALaren Gida - Araudiaren kontsulta</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Styles/General.css">
 </head>
 <body>
     <div id="header-root"></div>
 
-    <div class="content" class="container my-4">
+    <div class="content container my-4">
         <div class="card">
-            <h2>Araudiaren kontsulta</h2>
-            <p><strong>GrAL</strong> ikasleek graduko ikaskuntzan lortutako ezagutzak eta trebetasunak erakusteko egiten duten azken lana da, derrigorrezkoa EHUko gradu guzti</p>
-            <h2>Baldintzak eta matrikula</h2>
-            <p>GrAL matrikulatzeko, ikasleak ikasketa planelko kreditu guztiak gaindituta eduki behar ditu, GRALari dagozkionak izan ezik, eta ikastegiak ezarritakio baldintzak bete.</p>
-            <h2>Zuzendaria eta tutoretza</h2>
-            <p>Lan bakoitzak irakasle bat zuzendari bezala izango du, ikasleari orientazioa emango diona eta lanaren jarraipena egingo duena.</p>
-            <h2>Lanaren edukia eta formatua</h2>
-            <p>Memoriak egitura akademiko argia izan behar du (izenburua, helburuak, metodologia, emaitzak, ondorioak, bibliografia), eta ikastegiak adierazitako formatuari jarraitu behar dio.</p>
-            <h2>Jabetza Intelektuala</h2>
-            <p>Gradu Amaierako Lana jabetza intelektualaren legeak babesten du. Eskubide horien titularra, oro har, lana egin duen ikaslea da eta ez dira plagioak onartzen.</p>
-            <h2>Kanpoko erakundeekin lankidetzan</h2>
-            <p>GRALa unibertsitatetik kanpoko erakunde batekin egin daiteke, betiere lankidetza-hitzarmena sinatuta.</p>
-            <p>Hitzarmenak arautegiari jarraituz egingo dira; ereduak erabil daitezke eta ikastegiak sinatuko ditu.</p>
-            <p>Kanpoko erakundeetan eginez gero, konfidentzialtasun-mugak eta datuen anonimizazioa aurrez zehaztu eta bermatu behar dira.</p>
-            <h2>Ondorio etikoak dituzten GRALak</h2>
-            <p>Gizakiekin, animaliekin edo datu/laginekin lan egiten duten GRALetan, tutoreak ikaslea gidatuko du ondorio etikoak baloratzen eta UPV/EHUko Etika Batzordearen jarraibideak betetzen.</p>
-            <p>Kasu horietan, ikasleak beharrezko dokumentuak aurkeztu beharko ditu eta tutoreak arreta bereziz gainbegiratuko du; Etika Zerbitzuak prozedurak etengabe hobetzen jarraituko du.</p>
-            <p>Beste jarduera akademikoetatik datozen datuak erabiltzen direnean, anonimotasuna bermatu behar da eta iturria zehaztu, nahiz eta dokumentu gehigarririk ez aurkeztu; epaimahaiak ere ebaluatuko du jarraibide etikoak bete diren.</p>
-            <h2>Deialdiak eta defentsa</h2>
-            <p>Urte akademikoan deialdi batzuk daude, ikasleak memoria aurkeztu eta defentsa publikoa egin behar du, epe eta baldintza zehatzetan. Aurrerako zeaztuko dugu zeintzuk diren epeak.</p>
-            <h2>Ebaluazioa</h2>
-            <p>Epaimahaiak kalifikazioa erabakiko du Gidaliburuaren irizpideetan oinarrituta: lanaren kalitatea, originaltasuna eta ikasleak defentsan erakutsitako gaitasuna kontuan hartuta. 0-10 eskalan, beharrezkoa bada txosten arrazoitua helaraziko zaio ikasleari eta zuzendariari.</p>
-            <p>9,0 edo gehiagoko nota duten ikasleek «ohorezko matrikula» jaso dezakete, gehienez ere defentsan kalifikaziorik onena lortu dutenen %5ak.</p>
-            <h2>Kalifikazioa</h2>
-            <p>Berrikuspenak lehen instantzian epaimahaiak egingo ditu, bigarrenean Erreklamazio Batzordeak, eta azkenik unibertsitateko organo administratiboari aurkez daiteke; nota urriaren 31 baino lehen jasota agertu behar da espedientean.</p>
-            <h2>Beste kasu berezi batzuk</h2>
-            <p>Araudiak aurreikusten ditu egoera bereziak (ezgaitasunak, hizkuntza desberdinetan aurkeztea, salbuespen-prozedurak).</p>
+            <h2 data-i18n="h_main_title">Araudiaren kontsulta</h2>
+            <p data-i18n="p_intro"><strong>GrAL</strong> ikasleek graduko ikaskuntzan lortutako ezagutzak eta trebetasunak erakusteko egiten duten azken lana da, derrigorrezkoa EHUko gradu guzti</p>
+
+            <h2 data-i18n="h_baldintzak">Baldintzak eta matrikula</h2>
+            <p data-i18n="p_baldintzak">GrAL matrikulatzeko, ikasleak ikasketa planelko kreditu guztiak gaindituta eduki behar ditu, GRALari dagozkionak izan ezik, eta ikastegiak ezarritakio baldintzak bete.</p>
+
+            <h2 data-i18n="h_zuzendaria">Zuzendaria eta tutoretza</h2>
+            <p data-i18n="p_zuzendaria">Lan bakoitzak irakasle bat zuzendari bezala izango du, ikasleari orientazioa emango diona eta lanaren jarraipena egingo duena.</p>
+
+            <h2 data-i18n="h_formatua">Lanaren edukia eta formatua</h2>
+            <p data-i18n="p_formatua">Memoriak egitura akademiko argia izan behar du (izenburua, helburuak, metodologia, emaitzak, ondorioak, bibliografia), eta ikastegiak adierazitako formatuari jarraitu behar dio.</p>
+
+            <h2 data-i18n="h_jabetza">Jabetza Intelektuala</h2>
+            <p data-i18n="p_jabetza">Gradu Amaierako Lana jabetza intelektualaren legeak babesten du. Eskubide horien titularra, oro har, lana egin duen ikaslea da eta ez dira plagioak onartzen.</p>
+
+            <h2 data-i18n="h_kanpoko">Kanpoko erakundeekin lankidetzan</h2>
+            <p data-i18n="p_kanpoko1">GRALa unibertsitatetik kanpoko erakunde batekin egin daiteke, betiere lankidetza-hitzarmena sinatuta.</p>
+            <p data-i18n="p_kanpoko2">Hitzarmenak arautegiari jarraituz egingo dira; ereduak erabil daitezke eta ikastegiak sinatuko ditu.</p>
+            <p data-i18n="p_kanpoko3">Kanpoko erakundeetan eginez gero, konfidentzialtasun-mugak eta datuen anonimizazioa aurrez zehaztu eta bermatu behar dira.</p>
+
+            <h2 data-i18n="h_etikoak">Ondorio etikoak dituzten GRALak</h2>
+            <p data-i18n="p_etikoak1">Gizakiekin, animaliekin edo datu/laginekin lan egiten duten GRALetan, tutoreak ikaslea gidatuko du ondorio etikoak baloratzen eta UPV/EHUko Etika Batzordearen jarraibideak betetzen.</p>
+            <p data-i18n="p_etikoak2">Kasu horietan, ikasleak beharrezko dokumentuak aurkeztu beharko ditu eta tutoreak arreta bereziz gainbegiratuko du; Etika Zerbitzuak prozedurak etengabe hobetzen jarraituko du.</p>
+            <p data-i18n="p_etikoak3">Beste jarduera akademikoetatik datozen datuak erabiltzen direnean, anonimotasuna bermatu behar da eta iturria zehaztu, nahiz eta dokumentu gehigarririk ez aurkeztu; epaimahaiak ere ebaluatuko du jarraibide etikoak bete diren.</p>
+
+            <h2 data-i18n="h_deialdiak">Deialdiak eta defentsa</h2>
+            <p data-i18n="p_deialdiak">Urte akademikoan deialdi batzuk daude, ikasleak memoria aurkeztu eta defentsa publikoa egin behar du, epe eta baldintza zehatzetan. Aurrerako zeaztuko dugu zeintzuk diren epeak.</p>
+
+            <h2 data-i18n="h_ebaluazioa">Ebaluazioa</h2>
+            <p data-i18n="p_ebaluazioa1">Epaimahaiak kalifikazioa erabakiko du Gidaliburuaren irizpideetan oinarrituta: lanaren kalitatea, originaltasuna eta ikasleak defentsan erakutsitako gaitasuna kontuan hartuta. 0-10 eskalan, beharrezkoa bada txosten arrazoitua helaraziko zaio ikasleari eta zuzendariari.</p>
+            <p data-i18n="p_ebaluazioa2">9,0 edo gehiagoko nota duten ikasleek «ohorezko matrikula» jaso dezakete, gehienez ere defentsan kalifikaziorik onena lortu dutenen %5ak.</p>
+
+            <h2 data-i18n="h_kalifikazioa">Kalifikazioa</h2>
+            <p data-i18n="p_kalifikazioa">Berrikuspenak lehen instantzian epaimahaiak egingo ditu, bigarrenean Erreklamazio Batzordeak, eta azkenik unibertsitateko organo administratiboari aurkez daiteke; nota urriaren 31 baino lehen jasota agertu behar da espedientean.</p>
+
+            <h2 data-i18n="h_best">Beste kasu berezi batzuk</h2>
+            <p data-i18n="p_best">Araudiak aurreikusten ditu egoera bereziak (ezgaitasunak, hizkuntza desberdinetan aurkeztea, salbuespen-prozedurak).</p>
+
             <div class="oharra-box">
-                <p><strong>Oharra:</strong> Informazio hau laburpena da. Araudi ofizial osoa kontsultatzeko:</p>
-                
-                <a  href="https://egela.ehu.eus/pluginfile.php/11345248/mod_resource/content/1/Normativa_UPVEHU_eus.pdf" target="_blank">
-                    EHUko GrAL araudia
-                </a>
-                
-                <a href="https://egela.ehu.eus/pluginfile.php/11345249/mod_resource/content/2/Normativa_TFG_eus.pdf" target="_blank">
-                    Informatika fakultateko GrAL araudia
-                </a>
+                <p><strong data-i18n="oharra_title">Oharra:</strong> <span data-i18n="oharra_text">Informazio hau laburpena da. Araudi ofizial osoa kontsultatzeko:</span></p>
+
+                <a href="https://egela.ehu.eus/pluginfile.php/11345248/mod_resource/content/1/Normativa_UPVEHU_eus.pdf" target="_blank" data-i18n="link1_text">EHUko GrAL araudia</a>
+                <br>
+                <a href="https://egela.ehu.eus/pluginfile.php/11345249/mod_resource/content/2/Normativa_TFG_eus.pdf" target="_blank" data-i18n="link2_text">Informatika fakultateko GrAL araudia</a>
             </div>
         </div>
     </div>
     <div id="footer-root"></div>
     <script src="insertheaderfooter.js"></script>
+
+    <!-- Dictionary and language application script -->
+    <script>
+        (function(){
+            const dict = {
+                eu: {
+                    pageTitle: "GRALaren Gida - Araudiaren kontsulta",
+                    h_main_title: "Araudiaren kontsulta",
+                    p_intro: "<strong>GrAL</strong> ikasleek graduko ikaskuntzan lortutako ezagutzak eta trebetasunak erakusteko egiten duten azken lana da, derrigorrezkoa EHUko gradu guzti",
+                    h_baldintzak: "Baldintzak eta matrikula",
+                    p_baldintzak: "GrAL matrikulatzeko, ikasleak ikasketa planelko kreditu guztiak gaindituta eduki behar ditu, GRALari dagozkionak izan ezik, eta ikastegiak ezarritakio baldintzak bete.",
+                    h_zuzendaria: "Zuzendaria eta tutoretza",
+                    p_zuzendaria: "Lan bakoitzak irakasle bat zuzendari bezala izango du, ikasleari orientazioa emango diona eta lanaren jarraipena egingo duena.",
+                    h_formatua: "Lanaren edukia eta formatua",
+                    p_formatua: "Memoriak egitura akademiko argia izan behar du (izenburua, helburuak, metodologia, emaitzak, ondorioak, bibliografia), eta ikastegiak adierazitako formatuari jarraitu behar dio.",
+                    h_jabetza: "Jabetza Intelektuala",
+                    p_jabetza: "Gradu Amaierako Lana jabetza intelektualaren legeak babesten du. Eskubide horien titularra, oro har, lana egin duen ikaslea da eta ez dira plagioak onartzen.",
+                    h_kanpoko: "Kanpoko erakundeekin lankidetzan",
+                    p_kanpoko1: "GRALa unibertsitatetik kanpoko erakunde batekin egin daiteke, betiere lankidetza-hitzarmena sinatuta.",
+                    p_kanpoko2: "Hitzarmenak arautegiari jarraituz egingo dira; ereduak erabil daitezke eta ikastegiak sinatuko ditu.",
+                    p_kanpoko3: "Kanpoko erakundeetan eginez gero, konfidentzialtasun-mugak eta datuen anonimizazioa aurrez zehaztu eta bermatu behar dira.",
+                    h_etikoak: "Ondorio etikoak dituzten GRALak",
+                    p_etikoak1: "Gizakiekin, animaliekin edo datu/laginekin lan egiten duten GRALetan, tutoreak ikaslea gidatuko du ondorio etikoak baloratzen eta UPV/EHUko Etika Batzordearen jarraibideak betetzen.",
+                    p_etikoak2: "Kasu horietan, ikasleak beharrezko dokumentuak aurkeztu beharko ditu eta tutoreak arreta bereziz gainbegiratuko du; Etika Zerbitzuak prozedurak etengabe hobetzen jarraituko du.",
+                    p_etikoak3: "Beste jarduera akademikoetatik datozen datuak erabiltzen direnean, anonimotasuna bermatu behar da eta iturria zehaztu, nahiz eta dokumentu gehigarririk ez aurkeztu; epaimahaiak ere ebaluatuko du jarraibide etikoak bete diren.",
+                    h_deialdiak: "Deialdiak eta defentsa",
+                    p_deialdiak: "Urte akademikoan deialdi batzuk daude, ikasleak memoria aurkeztu eta defentsa publikoa egin behar du, epe eta baldintza zehatzetan. Aurrerako zeaztuko dugu zeintzuk diren epeak.",
+                    h_ebaluazioa: "Ebaluazioa",
+                    p_ebaluazioa1: "Epaimahaiak kalifikazioa erabakiko du Gidaliburuaren irizpideetan oinarrituta: lanaren kalitatea, originaltasuna eta ikasleak defentsan erakutsitako gaitasuna kontuan hartuta. 0-10 eskalan, beharrezkoa bada txosten arrazoitua helaraziko zaio ikasleari eta zuzendariari.",
+                    p_ebaluazioa2: "9,0 edo gehiagoko nota duten ikasleek «ohorezko matrikula» jaso dezakete, gehienez ere defentsan kalifikaziorik onena lortu dutenen %5ak.",
+                    h_kalifikazioa: "Kalifikazioa",
+                    p_kalifikazioa: "Berrikuspenak lehen instantzian epaimahaiak egingo ditu, bigarrenean Erreklamazio Batzordeak, eta azkenik unibertsitateko organo administratiboari aurkez daiteke; nota urriaren 31 baino lehen jasota agertu behar da espedientean.",
+                    h_best: "Beste kasu berezi batzuk",
+                    p_best: "Araudiak aurreikusten ditu egoera bereziak (ezgaitasunak, hizkuntza desberdinetan aurkeztea, salbuespen-prozedurak).",
+                    oharra_title: "Oharra:",
+                    oharra_text: "Informazio hau laburpena da. Araudi ofizial osoa kontsultatzeko:",
+                    link1_text: "EHUko GrAL araudia",
+                    link2_text: "Informatika fakultateko GrAL araudia"
+                },
+                es: {
+                    pageTitle: "Guía GRAL - Consulta de la normativa",
+                    h_main_title: "Consulta de la normativa",
+                    p_intro: "<strong>GrAL</strong> es el trabajo final en el que el estudiante demuestra conocimientos y competencias adquiridos en el grado; es obligatorio en todos los grados de la EHU.",
+                    h_baldintzak: "Condiciones y matrícula",
+                    p_baldintzak: "Para matricularse en el GrAL, el estudiante debe haber superado los créditos del plan de estudios, salvo los correspondientes al GrAL, y cumplir las condiciones que establezca el centro.",
+                    h_zuzendaria: "Director y tutoría",
+                    p_zuzendaria: "Cada trabajo tendrá un profesor director que orientará al estudiante y hará el seguimiento del trabajo.",
+                    h_formatua: "Contenido y formato del trabajo",
+                    p_formatua: "La memoria debe tener una estructura académica clara (título, objetivos, metodología, resultados, conclusiones, bibliografía) y seguir el formato indicado por el centro.",
+                    h_jabetza: "Propiedad Intelectual",
+                    p_jabetza: "El Trabajo Fin de Grado está protegido por la normativa de propiedad intelectual. El titular suele ser el estudiante autor y no se admite el plagio.",
+                    h_kanpoko: "Colaboración con entidades externas",
+                    p_kanpoko1: "El GrAL puede realizarse con una entidad externa, siempre que exista un convenio de colaboración.",
+                    p_kanpoko2: "Los convenios se ajustarán a la normativa; se podrán usar modelos y serán firmados por el centro.",
+                    p_kanpoko3: "Si se realiza en entidades externas, se deben pactar y garantizar límites de confidencialidad y anonimización de datos.",
+                    h_etikoak: "GRALs con implicaciones éticas",
+                    p_etikoak1: "En trabajos con personas, animales o muestras/datos, el tutor guiará al estudiante en la valoración de implicaciones éticas y el cumplimiento de las directrices de la Comisión de Ética de la UPV/EHU.",
+                    p_etikoak2: "En esos casos el estudiante presentará la documentación necesaria y el tutor supervisará; el Servicio de Ética seguirá mejorando procedimientos.",
+                    p_etikoak3: "Cuando se usan datos de otras actividades, hay que garantizar el anonimato y citar la fuente, aunque no se adjunte documentación; el tribunal evaluará el cumplimiento ético.",
+                    h_deialdiak: "Convocatorias y defensa",
+                    p_deialdiak: "A lo largo del curso hay convocatorias para presentar la memoria y hacer la defensa pública, en plazos y condiciones concretas. Se informará de las fechas.",
+                    h_ebaluazioa: "Evaluación",
+                    p_ebaluazioa1: "El tribunal decidirá la calificación según los criterios del manual: calidad, originalidad y capacidad mostrada en la defensa. En la escala 0-10, si procede se facilitará un informe motivado al estudiante y al director.",
+                    p_ebaluazioa2: "Los estudiantes con nota >=9,0 pueden recibir matrícula de honor, hasta el 5% de los mejores en la defensa.",
+                    h_kalifikazioa: "Calificación",
+                    p_kalifikazioa: "Las revisiones las realizará el tribunal en primera instancia, la Comisión de Reclamaciones en segunda, y finalmente puede ir al órgano administrativo de la universidad; la nota debe constar en el expediente antes del 31 de octubre.",
+                    h_best: "Otros casos especiales",
+                    p_best: "La normativa contempla situaciones especiales (discapacidades, presentación en diferentes lenguas, procedimientos de excepción).",
+                    oharra_title: "Nota:",
+                    oharra_text: "Esta información es un resumen. Para consultar la normativa oficial completa:",
+                    link1_text: "Normativa GrAL EHU",
+                    link2_text: "Normativa GrAL Facultad de Informática"
+                },
+                en: {
+                    pageTitle: "GRAL Guide - Regulations overview",
+                    h_main_title: "Regulations overview",
+                    p_intro: "<strong>GrAL</strong> is the final degree project where students demonstrate knowledge and skills acquired during the degree; it's mandatory in EHU degrees.",
+                    h_baldintzak: "Requirements and enrollment",
+                    p_baldintzak: "To enroll in GrAL, students must have passed the study-plan credits, except those corresponding to GrAL, and meet the conditions set by the school.",
+                    h_zuzendaria: "Supervisor and tutoring",
+                    p_zuzendaria: "Each project will have a supervising professor who will guide the student and follow up the work.",
+                    h_formatua: "Content and format",
+                    p_formatua: "The report must have a clear academic structure (title, objectives, methodology, results, conclusions, bibliography) and follow the format indicated by the school.",
+                    h_jabetza: "Intellectual Property",
+                    p_jabetza: "The Final Degree Project is protected by intellectual property laws. The rights holder is usually the student author and plagiarism is not accepted.",
+                    h_kanpoko: "Collaboration with external entities",
+                    p_kanpoko1: "The GrAL can be done with an external entity provided a collaboration agreement is signed.",
+                    p_kanpoko2: "Agreements will follow the regulations; templates may be used and signed by the school.",
+                    p_kanpoko3: "When done at external entities, confidentiality limits and data anonymization must be agreed and ensured.",
+                    h_etikoak: "Projects with ethical implications",
+                    p_etikoak1: "For projects with humans, animals or samples/data, the supervisor will guide the student on ethical implications and compliance with UPV/EHU Ethics Committee guidelines.",
+                    p_etikoak2: "In these cases the student must submit required documents and the supervisor will closely supervise; the Ethics Service will continue improving procedures.",
+                    p_etikoak3: "When using data from other activities, anonymity must be guaranteed and the source cited; the panel will evaluate ethical compliance.",
+                    h_deialdiak: "Calls and defense",
+                    p_deialdiak: "There are calls during the academic year to submit the report and make a public defense, within specific deadlines and conditions. Dates will be announced.",
+                    h_ebaluazioa: "Evaluation",
+                    p_ebaluazioa1: "The panel will decide the grade based on handbook criteria: quality, originality and defense skills. On a 0-10 scale, if needed a reasoned report will be provided to student and supervisor.",
+                    p_ebaluazioa2: "Students with >=9.0 may receive honors (up to 5% of top defended works).",
+                    h_kalifikazioa: "Grading",
+                    p_kalifikazioa: "Reviews are done by the panel first, the Claims Committee second, and may be submitted to the university administrative body; the grade must appear in the record before October 31.",
+                    h_best: "Other special cases",
+                    p_best: "Regulations cover special situations (disabilities, submission in different languages, exemption procedures).",
+                    oharra_title: "Note:",
+                    oharra_text: "This information is a summary. To consult the full official regulations:",
+                    link1_text: "EHU GrAL regulations",
+                    link2_text: "Faculty of Informatics GrAL regulations"
+                }
+            };
+
+            function getLang(){
+                return localStorage.getItem('lang') || 'eu';
+            }
+
+            function applyTranslations(){
+                const lang = getLang();
+                const map = dict[lang] || dict.eu;
+
+                // document title
+                const titleEl = document.querySelector('title[data-i18n], title');
+                if(titleEl){
+                    const key = titleEl.getAttribute('data-i18n');
+                    if(key && map[key]) titleEl.textContent = map[key];
+                    else if(map.pageTitle) titleEl.textContent = map.pageTitle;
+                }
+
+                // elements with data-i18n (skip title which is handled)
+                document.querySelectorAll('body [data-i18n]').forEach(el=>{
+                    const key = el.getAttribute('data-i18n');
+                    if(!key) return;
+                    if(map[key] !== undefined) el.innerHTML = map[key];
+                });
+            }
+
+            // Expose function for header to call
+            window.applyArautegiaTranslations = applyTranslations;
+
+            // React to storage changes (other tabs/windows)
+            window.addEventListener('storage', function(e){
+                if(e.key === 'lang') applyTranslations();
+            });
+
+            // Custom event listener (header can dispatch window.dispatchEvent(new Event('langChanged')))
+            window.addEventListener('langChanged', applyTranslations);
+
+            // Polling fallback for same-tab changes
+            let lastLang = getLang();
+            const pollInterval = setInterval(function(){
+                const current = getLang();
+                if(current !== lastLang){
+                    lastLang = current;
+                    applyTranslations();
+                }
+            }, 300);
+
+            // Apply on load
+            document.addEventListener('DOMContentLoaded', function(){
+                applyTranslations();
+            });
+
+            // Cleanup helper (optional)
+            window.__cleanupArautegiaLangPoll = function(){
+                clearInterval(pollInterval);
+                window.removeEventListener('langChanged', applyTranslations);
+                window.removeEventListener('storage', applyTranslations);
+            };
+        })();
+    </script>
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -231,15 +231,28 @@
           }
           a.setAttribute('href', newHref);
         });
-        const links = target.querySelectorAll('a');
-        links.forEach(a => {
-            if (a.classList.contains('link-primary')) {
-                a.addEventListener('click', function(e){
-                    e.preventDefault();
-                    showUnderConstruction();
-                });
-            }
-        });
+          const links = target.querySelectorAll('a');
+          links.forEach(a => {
+              a.addEventListener('click', function(e){
+                  const isLogged = !!localStorage.getItem('auth_current_user');
+                  const allowWhenLogged = ['link2', 'link9'];
+
+                  if (allowWhenLogged.includes(a.id)) {
+                      if (!isLogged) {
+                          e.preventDefault();
+                          showUnderConstruction();
+                      } else {
+                          try {
+                              if ((a.getAttribute('href') || '').startsWith('http')) a.setAttribute('target', '_blank');
+                          } catch (_) {}
+                      }
+                  } else {
+                      e.preventDefault();
+                      showUnderConstruction();
+                  }
+              });
+          });
+
       } catch (e) {
         console.warn('No se pudieron enlazar los eventos del footer:', e);
       }
