@@ -22,16 +22,16 @@
             // We are inside /KODIGOA/, links like '../index.html' are fine; ensure 'index.html' points to parent
             if (/^index\.html$/i.test(newHref)) newHref = '../index.html';
           } else {
-            // We are at site root; make relative html files point into KODIGOA
+            // We are at site root; make relative html files point into KODIGOA,
+            // except the home link (index.html) which must stay at root.
             if (/^\.\.?\//.test(newHref)) {
               // '../index.html' should become 'index.html'
               if (/^\.\.\/index\.html$/i.test(newHref)) newHref = 'index.html';
               else if (/^\.\.\//.test(newHref)) newHref = newHref.replace(/^\.\.\//, '');
             }
-            // Do NOT prefix index.html; it must stay at root
-            if (/^[^\/][^:?#]*\.html$/i.test(newHref) && !/^index\.html$/i.test(newHref)) {
-              // no slash path -> prefix KODIGOA/
-              newHref = 'KODIGOA/' + newHref;
+            if (/^[^\/][^:?#]*\.html$/i.test(newHref)) {
+              // no slash path -> if it's index.html keep root; otherwise prefix KODIGOA/
+              if (!/^index\.html$/i.test(newHref)) newHref = 'KODIGOA/' + newHref;
             }
           }
           a.setAttribute('href', newHref);
@@ -132,8 +132,9 @@
           } else {
             if (/^\.\.\/index\.html$/i.test(newHref)) newHref = 'index.html';
             else if (/^\.\.\//.test(newHref)) newHref = newHref.replace(/^\.\.\//, '');
-            // Do NOT prefix index.html from root
-            if (/^[^\/][^:?#]*\.html$/i.test(newHref) && !/^index\.html$/i.test(newHref)) newHref = 'KODIGOA/' + newHref;
+            if (/^[^\/][^:?#]*\.html$/i.test(newHref)) {
+              if (!/^index\.html$/i.test(newHref)) newHref = 'KODIGOA/' + newHref;
+            }
           }
           a.setAttribute('href', newHref);
         });
