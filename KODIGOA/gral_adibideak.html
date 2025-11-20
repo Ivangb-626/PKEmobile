@@ -4,60 +4,60 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title data-i18n="title">GRAL adibideak</title>
-    <link rel="stylesheet" href="./Styles/gral_adibideak.css">
-    <link rel="stylesheet" href="./Styles/General.css">
-    <script src="./scripts/i18n.js"></script>
+    <link rel="stylesheet" href="../Styles/gral_adibideak.css">
+    <link rel="stylesheet" href="../Styles/General.css">
+    <script src="../scripts/i18n.js"></script>
 </head>
 <body>
 
-    <div id="header-root"></div>
-    <!-- Contenido traído del primer HTML (sin estilos inline) -->
-    <section class="wrap">
-        <header class="header">
-            <h2 class="title" data-i18n="title">TFG hautagaiak • UPV/EHU</h2>
-            <p class="subtitle" data-i18n="subtitle1">Aukeratu gradua eta azpian ikusiko dituzu TFG nabarmenduak (3 ale).</p>
-            <p class="subtitle" data-i18n="subtitle2">Gradu gehiago ala GRAL gehiago kontsultatzeko begiratu oinaldeko ADDI baliabidea</p>
-        </header>
+<div id="header-root"></div>
+<!-- Contenido traído del primer HTML (sin estilos inline) -->
+<section class="wrap">
+    <header class="header">
+        <h2 class="title" data-i18n="title">TFG hautagaiak • UPV/EHU</h2>
+        <p class="subtitle" data-i18n="subtitle1">Aukeratu gradua eta azpian ikusiko dituzu TFG nabarmenduak (3 ale).</p>
+        <p class="subtitle" data-i18n="subtitle2">Gradu gehiago ala GRAL gehiago kontsultatzeko begiratu oinaldeko ADDI baliabidea</p>
+    </header>
 
-        <section class="picker" aria-label="Gradu aukeraketa">
-            <!-- Toggle del menú -->
-            <input id="toggle" class="toggle" type="checkbox" aria-label="Zabaldu zerrenda">
-            <label class="display" id="pickerBtn" for="toggle" role="button" aria-controls="degree-list" aria-expanded="false">
-                <div class="label-main" id="pickerLabel" data-i18n="degree_picker">Aukeratu gradua</div>
-                <div class="hint" data-i18n="degree_hint">Klik egin eta hautatu zure interesa</div>
-                <div class="chev"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
-            </label>
+    <section class="picker" aria-label="Gradu aukeraketa">
+        <!-- Toggle del menú -->
+        <input id="toggle" class="toggle" type="checkbox" aria-label="Zabaldu zerrenda">
+        <label class="display" id="pickerBtn" for="toggle" role="button" aria-controls="degree-list" aria-expanded="false">
+            <div class="label-main" id="pickerLabel" data-i18n="degree_picker">Aukeratu gradua</div>
+            <div class="hint" data-i18n="degree_hint">Klik egin eta hautatu zure interesa</div>
+            <div class="chev"><svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg></div>
+        </label>
 
-            <!-- Lista superpuesta -->
-            <div id="degree-list" class="list" role="listbox" aria-label="Gradu zerrenda">
-                <div class="group">
-                    <div class="group-title" data-i18n="group_informatics">Informatika</div>
-                    <div class="option" data-degree="ii" data-i18n="degree_informatics">Ingeniaritza Informatikoa</div>
-                    <div class="option" data-degree="ia" data-i18n="degree_teleco">Telekomunikazio Ingeniaritza</div>
-                    <div class="option" data-degree="igis" data-i18n="degree_biomedical">Ingeniaritza Biomedikoa</div>
-                </div>
-
-                <div class="group">
-                    <div class="group-title" data-i18n="group_engineering">Ingeniaritza</div>
-                    <div class="option" data-degree="teleco" data-i18n="degree_teleco">Telekomunikazio Ingeniaritza</div>
-                    <div class="option" data-degree="iit" data-i18n="degree_industrial">Ingeniaritza Industriala</div>
-                    <div class="option" data-degree="energia" data-i18n="degree_physics">Fisika</div>
-                    <div class="option" data-degree="ambient" data-i18n="degree_chemistry">Kimika</div>
-                </div>
-
-                <div class="group">
-                    <div class="group-title" data-i18n="group_health_education">Osasun eta Hezkuntza</div>
-                    <div class="option" data-degree="med" data-i18n="degree_medicine">Medikuntza</div>
-                    <div class="option" data-degree="mag" data-i18n="degree_education">Hezkuntza Zientziak</div>
-                    <div class="option" data-degree="bioq" data-i18n="degree_biology">Biologia</div>
-                    <div class="option" data-degree="math" data-i18n="degree_mathematics">Matematikak</div>
-                </div>
+        <!-- Lista superpuesta -->
+        <div id="degree-list" class="list" role="listbox" aria-label="Gradu zerrenda">
+            <div class="group">
+                <div class="group-title" data-i18n="group_informatics">Informatika</div>
+                <div class="option" data-degree="ii" data-i18n="degree_informatics">Ingeniaritza Informatikoa</div>
+                <div class="option" data-degree="ia" data-i18n="degree_teleco">Telekomunikazio Ingeniaritza</div>
+                <div class="option" data-degree="igis" data-i18n="degree_biomedical">Ingeniaritza Biomedikoa</div>
             </div>
 
-            <!-- Resultados -->
-            <section class="results" id="results" aria-live="polite"></section>
-        </section>
+            <div class="group">
+                <div class="group-title" data-i18n="group_engineering">Ingeniaritza</div>
+                <div class="option" data-degree="teleco" data-i18n="degree_teleco">Telekomunikazio Ingeniaritza</div>
+                <div class="option" data-degree="iit" data-i18n="degree_industrial">Ingeniaritza Industriala</div>
+                <div class="option" data-degree="energia" data-i18n="degree_physics">Fisika</div>
+                <div class="option" data-degree="ambient" data-i18n="degree_chemistry">Kimika</div>
+            </div>
+
+            <div class="group">
+                <div class="group-title" data-i18n="group_health_education">Osasun eta Hezkuntza</div>
+                <div class="option" data-degree="med" data-i18n="degree_medicine">Medikuntza</div>
+                <div class="option" data-degree="mag" data-i18n="degree_education">Hezkuntza Zientziak</div>
+                <div class="option" data-degree="bioq" data-i18n="degree_biology">Biologia</div>
+                <div class="option" data-degree="math" data-i18n="degree_mathematics">Matematikak</div>
+            </div>
+        </div>
+
+        <!-- Resultados -->
+        <section class="results" id="results" aria-live="polite"></section>
     </section>
+</section>
 
 
 
