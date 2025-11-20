@@ -255,6 +255,12 @@
           try { localStorage.setItem('lang', lng); } catch (e) {}
         });
 
+          langSelect.addEventListener('DOMContentLoaded', function() {
+              var lng = langSelect.value;
+              applyLang(lng);
+              try { localStorage.setItem('lang', lng); } catch (e) {}
+          });
+
         function applyLang(lng) {
           var t = dict[lng] || dict['en'];
           if (title) title.textContent = t.title;
