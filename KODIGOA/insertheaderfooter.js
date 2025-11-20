@@ -1,6 +1,8 @@
 (async function insertHeader() {
   try {
-    const res = await fetch('header.html');
+    const scriptUrl = (document.currentScript && document.currentScript.src) ? new URL(document.currentScript.src, location.href) : new URL(location.href);
+    const baseDir = new URL('.', scriptUrl);
+    const res = await fetch(new URL('header.html', baseDir));
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -8,6 +10,33 @@
     const target = document.getElementById('header-root');
     if (header && target) {
       target.appendChild(header);
+      try {
+        const inK = /\/kodigoa\//i.test(location.pathname);
+        const anchors = target.querySelectorAll('a[href]');
+        anchors.forEach(a => {
+          const href = a.getAttribute('href');
+          if (!href || href.startsWith('http') || href.startsWith('#')) return;
+          // Clean './'
+          let newHref = href.replace(/^\.\//, '');
+          if (inK) {
+            // We are inside /KODIGOA/, links like '../index.html' are fine; ensure 'index.html' points to parent
+            if (/^index\.html$/i.test(newHref)) newHref = '../index.html';
+          } else {
+            // We are at site root; make relative html files point into KODIGOA
+            if (/^\.\.?\//.test(newHref)) {
+              // '../index.html' should become 'index.html'
+              if (/^\.\.\/index\.html$/i.test(newHref)) newHref = 'index.html';
+              else if (/^\.\.\//.test(newHref)) newHref = newHref.replace(/^\.\.\//, '');
+            }
+            // Do NOT prefix index.html; it must stay at root
+            if (/^[^\/][^:?#]*\.html$/i.test(newHref) && !/^index\.html$/i.test(newHref)) {
+              // no slash path -> prefix KODIGOA/
+              newHref = 'KODIGOA/' + newHref;
+            }
+          }
+          a.setAttribute('href', newHref);
+        });
+      } catch(_e) {}
     }
     const scripts = doc.querySelectorAll('script');
     scripts.forEach(s => {
@@ -80,7 +109,9 @@
 
 (async function insertFooter() {
   try {
-    const res = await fetch('footer.html');
+    const scriptUrl = (document.currentScript && document.currentScript.src) ? new URL(document.currentScript.src, location.href) : new URL(location.href);
+    const baseDir = new URL('.', scriptUrl);
+    const res = await fetch(new URL('footer.html', baseDir));
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -89,6 +120,23 @@
     if (footer && target) {
       target.appendChild(footer);
       try {
+        // Normalize footer links similar to header
+        const inK = /\/kodigoa\//i.test(location.pathname);
+        const anchors = target.querySelectorAll('a[href]');
+        anchors.forEach(a => {
+          const href = a.getAttribute('href');
+          if (!href || href.startsWith('http') || href.startsWith('#')) return;
+          let newHref = href.replace(/^\.\//, '');
+          if (inK) {
+            if (/^index\.html$/i.test(newHref)) newHref = '../index.html';
+          } else {
+            if (/^\.\.\/index\.html$/i.test(newHref)) newHref = 'index.html';
+            else if (/^\.\.\//.test(newHref)) newHref = newHref.replace(/^\.\.\//, '');
+            // Do NOT prefix index.html from root
+            if (/^[^\/][^:?#]*\.html$/i.test(newHref) && !/^index\.html$/i.test(newHref)) newHref = 'KODIGOA/' + newHref;
+          }
+          a.setAttribute('href', newHref);
+        });
         const links = target.querySelectorAll('a');
         links.forEach(a => {
             if (a.classList.contains('link-primary')) {
