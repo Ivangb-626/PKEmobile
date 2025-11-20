@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../Styles/General.css">
+    <link rel="stylesheet" href="../Styles/Donazioak.css">
+    <title>Donazioak</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="header-root"></div>
+
+    <main class="donazioak" class="container my-4">
+        <h1>Donazioak</h1>
+
+        <p>
+            Zure laguntza oso garrantzitsua da! Donazioekin, gure plataformaren garapena,
+            hobekuntzak eta etorkizuneko zerbitzuak finantzatzeko aukera dugu.
+        </p>
+
+        <p>
+            Egin nahi duzun ekarpena aukeratu, eta eskerrik asko gure proiektuari laguntzeagatik!
+        </p>
+
+        <div class="options" id="amountOptions">
+            <button class="btn btn-primary option-btn">5€ Donatu</button>
+            <button class="btn btn-primary option-btn">10€ Donatu</button>
+            <button class="btn btn-primary option-btn">20€ Donatu</button>
+            <button class="btn btn-primary option-btn" data-value="custom">Beste Kantitatea</button>
+        </div>
+
+        <div id="customAmountContainer" class="hidden">
+            <input min=0 type="number" id="customAmount" placeholder="Idatzi zenbatekoa (€)">
+        </div>
+
+        <hr>
+
+        <button id="confirmBtn" class="btn btn-primary confirm">Berretsi eta jarraitu</button>
+
+
+        <script>
+            const amountButtons = document.querySelectorAll("#amountOptions .option-btn");
+            const customAmountContainer = document.getElementById("customAmountContainer");
+
+            amountButtons.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    amountButtons.forEach(b => b.classList.remove("selected"));
+                    btn.classList.add("selected");
+
+                    if (btn.dataset.value === "custom") {
+                        customAmountContainer.classList.remove("hidden");
+                    } else {
+                        customAmountContainer.classList.add("hidden");
+                    }
+                });
+            });
+
+
+            document.getElementById("confirmBtn").addEventListener("click", () => {
+                window.location.href = "ordaindu.html";
+            });
+        </script>
+
+        <div class="donazioa-info-box">
+            <h3>Informazio gehigarria</h3>
+            <p>Donazio guztiak plataformaren hobekuntzarako bideratuko dira.</p>
+            <p>Zalantzarik baduzu, jarri gurekin harremanetan.</p>
+        </div>
+    </main>
+
+    <div id="footer-root"></div>
+
+    <script src="insertheaderfooter.js"></script>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

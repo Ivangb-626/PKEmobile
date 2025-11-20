@@ -1,0 +1,331 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hasiera orria</title>
+    <link rel="stylesheet" href="../Styles/General.css">
+  </head>
+<body>
+    <header class="site-header">
+      <div class="header-inner container d-flex align-items-center justify-content-between gap-3 py-2">
+        <div class="left d-flex align-items-center gap-2">
+          <button id="menuBtn" class="icon-btn" aria-label="Menu" aria-expanded="false">☰</button>
+        </div>
+        <nav id="nav" class="nav-links d-flex align-items-center gap-3" aria-label="Primary">
+          <a href="../index.html" data-i18n="nav.home">Hasiera</a>
+        </nav>
+        <div class="actions d-flex align-items-center gap-2">
+          <select id="langSelect" aria-label="Idioma">
+            <option value="es">ES</option>
+            <option value="eu">EU</option>
+            <option value="en">EN</option>
+            <option value="sw">SW</option>
+            <option value="eo">EO</option>
+            <option value="yue">YUE</option>
+          </select>
+          <button id="themeToggle" class="icon-btn" aria-pressed="false" title="Tema">🌓</button>
+          <a href="login.html" id="loginBtn" class="btn" data-i18n="auth.login">Log in</a>
+          <a href="signup.html" id="signupBtn" class="btn primary" data-i18n="auth.signup">Sign up</a>
+        </div>
+      </div>
+      <div id="backdrop" class="backdrop" hidden></div>
+      <aside id="sideMenu" class="side-menu" aria-hidden="true">
+        <div class="side-menu-inner d-flex flex-column gap-2 p-3">
+          <a href="gral_adibideak.html" class="btn" data-i18n="menu.gral_examples">GRAL Adibideak</a>
+          <a href="./arautegia.html" class="btn" data-i18n="menu.rules">Arautegia</a>
+          <a href="./egutegia.html" class="btn" data-i18n="menu.calendar">Egutegia</a>
+          <a href="./izen_ematea.html" class="btn" data-i18n="menu.signup">Izena ematea</a>
+          <a href="nola_garatu_grala.html" class="btn" data-i18n="menu.how_to_develop">Nola garatu GRALa</a>
+          <a href="galdetegia.html" class="btn" data-i18n="menu.quiz">Galdetegia</a>
+        </div>
+      </aside>
+    </header>
+
+    <script>
+      (function() {
+        var body = document.body;
+        var themeToggle = document.getElementById('themeToggle');
+        var menuBtn = document.getElementById('menuBtn');
+        var nav = document.getElementById('nav');
+        var langSelect = document.getElementById('langSelect');
+        var title = document.getElementById('title');
+        var loginBtn = document.getElementById('loginBtn');
+        var signupBtn = document.getElementById('signupBtn');
+        var subtitle = document.getElementById('subtitle');
+        var sideMenu = document.getElementById('sideMenu');
+        var backdrop = document.getElementById('backdrop');
+
+        var dict = {
+          es: {
+            auth: { login: 'Entrar', signup: 'Registro' },
+            nav: { home: 'Inicio' },
+            image: { placeholder: 'Imagen / banner pendiente' },
+            footer: {
+              blog: 'Blog',
+              donations: 'Donaciones',
+              forum: 'Foro',
+              external_links: 'Enlaces externos',
+              available_app_store: 'Disponible en App Store',
+              available_google_play: 'Disponible en Google Play',
+              about_us: 'Sobre nosotros',
+              contact_us: 'Contáctanos',
+              faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
+            },
+            messages: { under_construction: 'Página web en construcción', close: 'Cerrar', hello: 'Hola', require_login: 'Inicia sesión para acceder a esto' },
+            forms: {
+              login: {
+                heading: 'Iniciar sesión', user: 'Usuario', pass: 'Contraseña', submit: 'Iniciar sesión', goSignup: 'Crear cuenta', back: 'Volver atrás', noaccount: '¿Todavía no tienes cuenta? ',
+                missing: 'Rellena usuario y contraseña', bad: 'Usuario o contraseña incorrectos', ok: 'Sesión iniciada'
+              },
+              signup: {
+                heading: 'Crear cuenta', user: 'Usuario', pass: 'Contraseña', pass2: 'Repite la contraseña', submit: 'Crear cuenta', tologin: 'Ir a Login', back: 'Volver atrás', haveaccount: '¿Ya tienes cuenta? ',
+                missing: 'Rellena usuario y contraseñas', nomatch: 'Las contraseñas no coinciden', exists: 'El usuario ya existe', created: 'Usuario creado y sesión iniciada'
+              }
+            }
+          },
+          eu: {
+            auth: { login: 'Saioa hasi', signup: 'Erregistratu' },
+            nav: { home: 'Hasiera' },
+            footer: {
+              blog: 'Blog-a',
+              donations: 'Diru-donazioak',
+              forum: 'Foroa',
+              external_links: 'Kanpo estekak',
+              available_app_store: 'App Store-n eskuragarri',
+              available_google_play: 'Google Play-n eskuragarri',
+              about_us: 'Nor gara',
+              contact_us: 'Idatzi gaitzazu',
+              faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
+            },
+            messages: { under_construction: 'Webgunea eraikitzen ari da', close: 'Itxi', hello: 'Kaixo', require_login: 'Hau atzitzeko saioa hasi' },
+            forms: {
+              login: {
+                heading: 'Saioa hasi', user: 'Erabiltzailea', pass: 'Pasahitza', submit: 'Saioa hasi', goSignup: 'Erregistratu', back: 'Atzera', noaccount: 'Oraindik ez duzu konturik? ',
+                missing: 'Bete erabiltzailea eta pasahitza', bad: 'Erabiltzailea edo pasahitza okerra', ok: 'Saioa hasita'
+              },
+              signup: {
+                heading: 'Erregistratu', user: 'Erabiltzailea', pass: 'Pasahitza', pass2: 'Errepikatu pasahitza', submit: 'Erregistratu', tologin: 'Saioa hastera joan', back: 'Atzera', haveaccount: 'Baduzu jada kontua? ',
+                missing: 'Bete erabiltzailea eta pasahitzak', nomatch: 'Pasahitzak ez datoz bat', exists: 'Erabiltzailea badago lehendik', created: 'Erabiltzailea sortu eta saioa hasita'
+              }
+            }
+          },
+          en: {
+            auth: { login: 'Log in', signup: 'Sign up' },
+            nav: { home: 'Home' },
+            footer: {
+              blog: 'Blog',
+              donations: 'Donations',
+              forum: 'Forum',
+              external_links: 'External links',
+              available_app_store: 'Available on App Store',
+              available_google_play: 'Available on Google Play',
+              about_us: 'About us',
+              contact_us: 'Contact us',
+              faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
+            },
+            messages: { under_construction: 'Website under construction', close: 'Close', hello: 'Hello', require_login: 'Log in to access this' },
+            forms: {
+              login: {
+                heading: 'Log in', user: 'Username', pass: 'Password', submit: 'Log in', goSignup: 'Sign up', back: 'Go back', noaccount: "Don't have an account yet? ",
+                missing: 'Fill username and password', bad: 'Incorrect username or password', ok: 'Logged in'
+              },
+              signup: {
+                heading: 'Sign up', user: 'Username', pass: 'Password', pass2: 'Repeat password', submit: 'Sign up', tologin: 'Go to Login', back: 'Go back', haveaccount: 'Do you already have an account? ',
+                missing: 'Fill username and both passwords', nomatch: 'Passwords do not match', exists: 'User already exists', created: 'User created and logged in'
+              }
+            }
+          },
+          sw: {
+            auth: { login: 'Ingia', signup: 'Jisajili' },
+            nav: { home: 'Nyumbani' },
+            footer: {
+              blog: 'Blogu',
+              donations: 'Michango',
+              forum: 'Jukwaa',
+              external_links: 'Viungo vya nje',
+              available_app_store: 'Inapatikana kwenye App Store',
+              available_google_play: 'Inapatikana kwenye Google Play',
+              about_us: 'Kuhusu sisi',
+              contact_us: 'Wasiliana nasi',
+              faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
+            },
+            messages: { under_construction: 'Tovuti inaendelea kujengwa', close: 'Funga', hello: 'Habari', require_login: 'Ingia ili kufikia hili' },
+            forms: {
+              login: {
+                heading: 'Ingia', user: 'Jina la mtumiaji', pass: 'Nenosiri', submit: 'Ingia', goSignup: 'Jisajili', back: 'Rudi nyuma', noaccount: 'Huna akaunti bado? ',
+                missing: 'Jaza jina na nenosiri', bad: 'Jina au nenosiri si sahihi', ok: 'Umeingia'
+              },
+              signup: {
+                heading: 'Jisajili', user: 'Jina la mtumiaji', pass: 'Nenosiri', pass2: 'Rudia nenosiri', submit: 'Jisajili', tologin: 'Nenda Login', back: 'Rudi nyuma', haveaccount: 'Je, tayari una akaunti? ',
+                missing: 'Jaza jina na nywila zote mbili', nomatch: 'Nywila hazilingani', exists: 'Mtumiaji tayari yupo', created: 'Mtumiaji ameundwa na umeingia'
+              }
+            }
+          },
+          eo: {
+            auth: { login: 'Ensaluti', signup: 'Registriĝi' },
+            nav: { home: 'Hejmo' },
+            footer: {
+              blog: 'Blogo',
+              donations: 'Donacoj',
+              forum: 'Forumo',
+              external_links: 'Eksteraj ligiloj',
+              available_app_store: 'Disponebla en App Store',
+              available_google_play: 'Disponebla en Google Play',
+              about_us: 'Pri ni',
+              contact_us: 'Kontaktu nin',
+              faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
+            },
+            messages: { under_construction: 'Retejo konstruata', close: 'Fermi', hello: 'Saluton', require_login: 'Ensalutu por aliri tion' },
+            forms: {
+              login: {
+                heading: 'Ensaluti', user: 'Uzantnomo', pass: 'Pasvorto', submit: 'Ensaluti', goSignup: 'Registriĝi', back: 'Reen', noaccount: 'Ĉu ankoraŭ ne havas konton? ',
+                missing: 'Plenigu uzantnomon kaj pasvorton', bad: 'Malĝusta uzantnomo aŭ pasvorto', ok: 'Ensalutita'
+              },
+              signup: {
+                heading: 'Registriĝi', user: 'Uzantnomo', pass: 'Pasvorto', pass2: 'Ripetu pasvorton', submit: 'Registriĝi', tologin: 'Iri al Ensaluti', back: 'Reen', haveaccount: 'Ĉu jam havas konton? ',
+                missing: 'Plenigu uzantnomon kaj ambaŭ pasvortojn', nomatch: 'Pasvortoj ne kongruas', exists: 'Uzanto jam ekzistas', created: 'Uzanto kreita kaj ensalutita'
+              }
+            }
+          },
+          yue: {
+            auth: { login: '登入', signup: '註冊' },
+            nav: { home: '主頁' },
+            footer: {
+              blog: '博客',
+              donations: '捐款',
+              forum: '論壇',
+              external_links: '外部連結',
+              available_app_store: '可於 App Store 下載',
+              available_google_play: '可於 Google Play 下載',
+              about_us: '關於我們',
+              contact_us: '聯絡我們',
+              faqs: 'FAQs', x: 'X', yt: 'YT', instagram: 'Instagram'
+            },
+            messages: { under_construction: '網站建設中', close: '關閉', hello: '你好', require_login: '登入以存取此內容' },
+            forms: {
+              login: {
+                heading: '登入', user: '用戶名', pass: '密碼', submit: '登入', goSignup: '註冊', back: '返回', noaccount: '還沒有帳戶？ ',
+                missing: '請輸入用戶名和密碼', bad: '用戶名或密碼不正確', ok: '已登入'
+              },
+              signup: {
+                heading: '註冊', user: '用戶名', pass: '密碼', pass2: '重複密碼', submit: '註冊', tologin: '前往登入', back: '返回', haveaccount: '已經有帳戶了嗎？ ',
+                missing: '請輸入用戶名及兩次密碼', nomatch: '兩次輸入的密碼不一致', exists: '用戶已存在', created: '已建立用戶並登入'
+              }
+            }
+          }
+        };
+
+        try {
+          var savedTheme = localStorage.getItem('theme');
+          if (savedTheme === 'dark') body.classList.add('dark');
+          var savedLang = localStorage.getItem('lang') || 'eu';
+          langSelect.value = savedLang;
+          applyLang(savedLang);
+          themeToggle.textContent = body.classList.contains('dark') ? '🌞' : '🌓';
+        } catch (e) {}
+
+        themeToggle.addEventListener('click', function() {
+          var isDark = body.classList.toggle('dark');
+          themeToggle.setAttribute('aria-pressed', String(isDark));
+          themeToggle.textContent = isDark ? '🌞' : '🌓';
+          try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
+        });
+
+        function openMenu() {
+          sideMenu.classList.add('open');
+          backdrop.hidden = false;
+          menuBtn.setAttribute('aria-expanded', 'true');
+          sideMenu.setAttribute('aria-hidden', 'false');
+        }
+        function closeMenu() {
+          sideMenu.classList.remove('open');
+          backdrop.hidden = true;
+          menuBtn.setAttribute('aria-expanded', 'false');
+          sideMenu.setAttribute('aria-hidden', 'true');
+        }
+        menuBtn.addEventListener('click', function() {
+          if (sideMenu.classList.contains('open')) closeMenu(); else openMenu();
+        });
+        backdrop.addEventListener('click', closeMenu);
+        window.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
+
+        langSelect.addEventListener('change', function() {
+          var lng = langSelect.value;
+          applyLang(lng);
+          try { localStorage.setItem('lang', lng); } catch (e) {}
+        });
+
+          langSelect.addEventListener('DOMContentLoaded', function() {
+              var lng = langSelect.value;
+              applyLang(lng);
+              try { localStorage.setItem('lang', lng); } catch (e) {}
+          });
+
+        function applyLang(lng) {
+          var t = dict[lng] || dict['en'];
+          if (title) title.textContent = t.title;
+          if (subtitle) subtitle.textContent = t.subtitle;
+          loginBtn.textContent = t.auth.login;
+          signupBtn.textContent = t.auth.signup;
+          var navLinks = nav.querySelectorAll('a');
+          if (navLinks[0]) navLinks[0].textContent = t.nav.home;
+          var ph = document.getElementById('imgPh');
+          if (ph) ph.textContent = t.image.placeholder;
+          // Footer translations if footer is present
+          try {
+            var f1 = document.getElementById('link1');
+            var f2 = document.getElementById('link2');
+            var f3 = document.getElementById('link3');
+            var f4 = document.getElementById('link4');
+            var f5 = document.getElementById('link5');
+            var f6 = document.getElementById('link6');
+            var f7 = document.getElementById('link7');
+            var f8 = document.getElementById('link8');
+            var f9 = document.getElementById('link9');
+            var f10 = document.getElementById('link10');
+            var appstore = document.getElementById('appstore');
+            var playstore = document.getElementById('playstore');
+            if (f1) f1.textContent = t.footer.blog;
+            if (f2) f2.textContent = t.footer.donations;
+            if (f3) f3.textContent = t.footer.forum;
+            if (f4) f4.textContent = t.footer.external_links;
+            if (f5) f5.textContent = t.footer.faqs;
+            if (f6) f6.textContent = t.footer.about_us;
+            if (f7) f7.textContent = t.footer.contact_us;
+            if (f8) f8.textContent = t.footer.x;
+            if (f9) f9.textContent = t.footer.yt;
+            if (f10) f10.textContent = t.footer.instagram;
+            if (appstore) appstore.textContent = t.footer.available_app_store;
+            if (playstore) playstore.textContent = t.footer.available_google_play;
+          } catch(e) {}
+          // Translate all elements with data-i18n attributes
+          document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const keys = key.split('.');
+            let value = t;
+            for (const k of keys) {
+              value = value?.[k];
+              if (value === undefined) break;
+            }
+            if (value !== undefined) {
+              el.textContent = value;
+            }
+          });
+          
+          // expose under_construction message for external scripts
+          try {
+            document.documentElement.setAttribute('data-uc-msg', t.messages.under_construction);
+            document.documentElement.setAttribute('data-close-label', t.messages.close);
+            document.documentElement.setAttribute('data-require-login', t.messages.require_login);
+            document.documentElement.setAttribute('data-hello', t.messages.hello);
+            var closeBtn = document.getElementById('uc-close');
+            if (closeBtn) closeBtn.textContent = t.messages.close;
+            // expose auth forms translations globally and notify listeners
+            window.appTranslations = t.forms;
+            try { window.dispatchEvent(new CustomEvent('lang:changed')); } catch(e) {}
+          } catch(e) {}
+        }
+      })();
+    </script>
+  </body>
+ </html>
