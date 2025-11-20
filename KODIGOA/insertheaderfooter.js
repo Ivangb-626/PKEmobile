@@ -1,3 +1,37 @@
+(function ensureBootstrap(){
+  try {
+    const BOOTSTRAP_CSS = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css';
+    const BOOTSTRAP_JS  = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
+    const head = document.head || document.getElementsByTagName('head')[0];
+    if (!head) return;
+
+    // Ensure CSS once and insert BEFORE General.css so our styles keep precedence
+    const hasBsCss = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
+      .some(l => (l.href || '').includes('/bootstrap@5'));
+    if (!hasBsCss) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = BOOTSTRAP_CSS;
+      // place before General.css if present
+      const general = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
+        .find(l => /\/Styles\/General\.css$/i.test(l.getAttribute('href') || '') || /General\.css$/i.test(l.getAttribute('href') || ''));
+      if (general && general.parentNode) {
+        general.parentNode.insertBefore(link, general);
+      } else {
+        head.appendChild(link);
+      }
+    }
+
+    // Ensure JS bundle once (for components; harmless if unused)
+    const hasBsJs = Array.from(document.querySelectorAll('script[src]'))
+      .some(s => (s.src || '').includes('/bootstrap@5'));
+    if (!hasBsJs) {
+      const s = document.createElement('script');
+      s.src = BOOTSTRAP_JS;
+      document.body.appendChild(s);
+    }
+  } catch(_e) {}
+})();
 (async function insertHeader() {
   try {
     const scriptUrl = (document.currentScript && document.currentScript.src) ? new URL(document.currentScript.src, location.href) : new URL(location.href);
@@ -36,6 +70,65 @@
           }
           a.setAttribute('href', newHref);
         });
+
+        // Mobile toolbar: move Home, Theme, Language under header on small screens
+        (function setupMobileBar(){
+          try {
+            const headerEl = target.querySelector('header.site-header');
+            const navEl = target.querySelector('#nav');
+            const actionsEl = target.querySelector('.actions');
+            const homeLink = navEl ? navEl.querySelector('a') : null;
+            const langSel = target.querySelector('#langSelect');
+            const themeBtn = target.querySelector('#themeToggle');
+            if (!headerEl || !homeLink || !langSel || !themeBtn) return;
+
+            let mobileBar = headerEl.querySelector('.mobile-bar');
+            if (!mobileBar) {
+              mobileBar = document.createElement('div');
+              mobileBar.className = 'mobile-bar d-flex d-md-none align-items-center border-top pt-2 pb-2 px-3';
+              const leftGrp = document.createElement('div');
+              leftGrp.className = 'd-flex align-items-center gap-2 mobile-left';
+              const rightGrp = document.createElement('div');
+              rightGrp.className = 'd-flex align-items-center gap-2 ms-auto mobile-right';
+              mobileBar.appendChild(leftGrp);
+              mobileBar.appendChild(rightGrp);
+              headerEl.appendChild(mobileBar);
+            }
+
+            // Keep original positions to restore later
+            const original = new Map();
+            [homeLink, langSel, themeBtn].forEach(el => {
+              original.set(el, { parent: el.parentNode, next: el.nextSibling });
+            });
+
+            function moveToMobile(){
+              const left = mobileBar.querySelector('.mobile-left');
+              const right = mobileBar.querySelector('.mobile-right');
+              if (left && !left.contains(homeLink)) left.appendChild(homeLink);
+              if (right && !right.contains(langSel)) right.appendChild(langSel);
+              if (right && !right.contains(themeBtn)) right.appendChild(themeBtn);
+            }
+
+            function restore(){
+              [homeLink, themeBtn, langSel].forEach(el => {
+                const pos = original.get(el);
+                if (!pos || !pos.parent) return;
+                if (pos.next && pos.next.parentNode === pos.parent) pos.parent.insertBefore(el, pos.next);
+                else pos.parent.appendChild(el);
+              });
+            }
+
+            function onResize(){
+              const isSmall = window.matchMedia('(max-width: 767.98px)').matches; // Bootstrap md breakpoint
+              if (isSmall) moveToMobile(); else restore();
+            }
+
+            // Initial and listeners
+            onResize();
+            window.addEventListener('resize', onResize, { passive: true });
+            window.addEventListener('orientationchange', onResize, { passive: true });
+          } catch(_) {}
+        })();
       } catch(_e) {}
     }
     const scripts = doc.querySelectorAll('script');

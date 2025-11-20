@@ -24,7 +24,7 @@ body.dark select option { background: #0a0a0a; color: var(--fg); }
 /* Mobile menu */
 #menuBtn { display:inline-block; font-size:1.1rem; }
 @media (max-width: 768px) {
-    .nav-links { display:none; position: absolute; top: 56px; left:0; right:0; background: var(--bg); border-bottom:1px solid var(--border); padding: .5rem 1rem; flex-direction: column; align-items: flex-start; }
+    .nav-links { display:none; position: absolute; top: 100%; left:0; right:0; background: var(--bg); border-top: none; padding: .5rem 1rem; flex-direction: column; align-items: flex-start; }
     .nav-links.open { display:flex; }
 }
 /* Layout */
@@ -64,3 +64,14 @@ body.dark select option { background: #0a0a0a; color: var(--fg); }
 /* Logout button styling (wherever it appears) */
 #logoutBtn { background: #dc2626 !important; border-color: #dc2626 !important; color: #fff !important; }
 #logoutBtn:hover { filter: brightness(1.05); }
+/* Hasiera (Home) button styling */
+header.site-header a[data-i18n="nav.home"] {
+    display: inline-block;
+    padding: .45rem .75rem;
+    border: 1px solid var(--primary);
+    border-radius: .5rem;
+    background: var(--primary);
+    color: #fff;
+    text-decoration: none;
+}
+header.site-header a[data-i18n="nav.home"]:hover { filter: brightness(1.06); }

@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../Styles/General.css">
     <link rel="stylesheet" href="../Styles/Donazioak.css">
     <title>Donazioak</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="header-root"></div>
 
-    <main class="donazioak">
+    <main class="donazioak" class="container my-4">
         <h1>Donazioak</h1>
 
         <p>
@@ -22,10 +26,10 @@
         </p>
 
         <div class="options" id="amountOptions">
-            <button class="option-btn">5€ Donatu</button>
-            <button class="option-btn">10€ Donatu</button>
-            <button class="option-btn">20€ Donatu</button>
-            <button class="option-btn" data-value="custom">Beste Kantitatea</button>
+            <button class="btn btn-primary option-btn">5€ Donatu</button>
+            <button class="btn btn-primary option-btn">10€ Donatu</button>
+            <button class="btn btn-primary option-btn">20€ Donatu</button>
+            <button class="btn btn-primary option-btn" data-value="custom">Beste Kantitatea</button>
         </div>
 
         <div id="customAmountContainer" class="hidden">
@@ -34,7 +38,7 @@
 
         <hr>
 
-        <button id="confirmBtn" class="confirm">Berretsi eta jarraitu</button>
+        <button id="confirmBtn" class="btn btn-primary confirm">Berretsi eta jarraitu</button>
 
 
         <script>
@@ -70,5 +74,8 @@
     <div id="footer-root"></div>
 
     <script src="insertheaderfooter.js"></script>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
