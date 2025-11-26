@@ -40,6 +40,124 @@
     <div id="footer-root"></div>
     <script src="insertheaderfooter.js"></script>
 
+    <!-- ADDED: Dictionary and language application script -->
+    <script>
+    (function(){
+        const dict = {
+            eu: {
+                pageTitle: "Egutegia",
+                h1: "Egutegia",
+                h3: "Kontuz",
+                p_intro: "Nahiz eta 2025-26 urteko deialdiaren egutegi ofiziala argitaratuta ez egon, hemen txertatzen dugu lehen urteko egutegia gida bezala, deialdiak gehitzea edo aldatzea ez denez aurreikusten, 2025-26 urteko egutegia antzekoa izango dela suposa dezakegu.",
+                card2_h2: "GrALaren defentsen egutegia 2024-2025",
+                link1_text: "Defentsen Egutegia",
+                link2_text: "Aurtengo uztaileko GrAL-en ordutegiak"
+            },
+            es: {
+                pageTitle: "Calendario",
+                h1: "Calendario",
+                h3: "Atención",
+                p_intro: "Aunque el calendario oficial para la convocatoria 2025-26 no esté publicado, aquí incluimos el calendario del primer año como guía; suponemos que el calendario 2025-26 será similar.",
+                card2_h2: "Calendario de defensas GRAL 2024-2025",
+                link1_text: "Calendario de defensas",
+                link2_text: "Horarios de GrAL de este julio"
+            },
+            en: {
+                pageTitle: "Calendar",
+                h1: "Calendar",
+                h3: "Warning",
+                p_intro: "Although the official calendar for the 2025-26 call is not published, we insert here the first-year calendar as a guide; we assume the 2025-26 calendar will be similar.",
+                card2_h2: "GrAL defenses calendar 2024-2025",
+                link1_text: "Defenses calendar",
+                link2_text: "This year's July GrAL timetables"
+            },
+            sw: {
+                pageTitle: "Kalandari",
+                h1: "Kalandari",
+                h3: "Tahadhari",
+                p_intro: "Ingawa kalenda rasmi ya mwito wa 2025-26 haijachapishwa, tunaweka hapa kalenda ya mwaka wa kwanza kama mwongozo; tunakisia kuwa kalenda ya 2025-26 itafanana.",
+                card2_h2: "Kalendar ya ulinzi wa GrAL 2024-2025",
+                link1_text: "Kalendar ya ulinzi",
+                link2_text: "Ratiba za GrAL za Julai ya mwaka huu"
+            },
+            eo: {
+                pageTitle: "Kalendaro",
+                h1: "Kalendaro",
+                h3: "Atento",
+                p_intro: "Kvankam la oficiala kalendaro por la 2025-26 vokado ne estas publikigita, ni enmetas ĉi tie la unujara kalendaron kiel gvidilo; ni supozas ke la 2025-26 kalendaro similas.",
+                card2_h2: "GrAL-defendoj kalendaro 2024-2025",
+                link1_text: "Defendoj Kalendaro",
+                link2_text: "Ĉi-jara julia GrAL-horaro"
+            },
+            yue: {
+                pageTitle: "日曆",
+                h1: "日曆",
+                h3: "注意",
+                p_intro: "雖然尚未公布 2025-26 年度的正式日曆，我們在此插入首年作為指引；可假設 2025-26 年度的日曆將會相似。",
+                card2_h2: "2024-2025 年 GRAL 答辯日曆",
+                link1_text: "答辯日曆",
+                link2_text: "本年七月 GrAL 時間表"
+            }
+        };
+
+        function getLang(){ return localStorage.getItem('lang') || 'eu'; }
+
+        function applyTranslations(){
+            const lang = getLang();
+            const map = dict[lang] || dict.eu;
+            // title
+            if(map.pageTitle) document.title = map.pageTitle;
+            // first card: h1, h3, first p inside first card
+            const cards = document.querySelectorAll('.content .card');
+            if(cards[0]){
+                const h1 = cards[0].querySelector('h1');
+                const h3 = cards[0].querySelector('h3');
+                const p = cards[0].querySelector('p');
+                if(h1) h1.textContent = map.h1 || h1.textContent;
+                if(h3) h3.textContent = map.h3 || h3.textContent;
+                if(p) p.textContent = map.p_intro || p.textContent;
+            }
+            // second card h2
+            if(cards[1]){
+                const h2 = cards[1].querySelector('h2');
+                if(h2) h2.textContent = map.card2_h2 || h2.textContent;
+                // images alt
+                const imgs = cards[1].querySelectorAll('img');
+                if(imgs[0] && map.card2_h2) imgs[0].alt = map.card2_h2;
+            }
+            // third card links
+            if(cards[2]){
+                const anchors = cards[2].querySelectorAll('a');
+                if(anchors[0]) anchors[0].textContent = map.link1_text || anchors[0].textContent;
+                if(anchors[1]) anchors[1].textContent = map.link2_text || anchors[1].textContent;
+            }
+        }
+
+        // expose
+        window.applyEgutegiaTranslations = applyTranslations;
+
+        // listeners
+        window.addEventListener('storage', function(e){ if(e.key === 'lang') applyTranslations(); });
+        window.addEventListener('langChanged', applyTranslations);
+        window.addEventListener('lang:changed', applyTranslations);
+
+        let lastLang = getLang();
+        const pollInterval = setInterval(function(){
+            const current = getLang();
+            if(current !== lastLang){ lastLang = current; applyTranslations(); }
+        }, 300);
+
+        document.addEventListener('DOMContentLoaded', applyTranslations);
+
+        window.__cleanupEgutegiaLang = function(){
+            clearInterval(pollInterval);
+            window.removeEventListener('langChanged', applyTranslations);
+            window.removeEventListener('lang:changed', applyTranslations);
+            window.removeEventListener('storage', applyTranslations);
+        };
+    })();
+    </script>
+
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

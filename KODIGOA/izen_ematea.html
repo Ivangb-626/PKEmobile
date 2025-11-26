@@ -25,6 +25,96 @@
     <div id="footer-root"></div>
     <script src="insertheaderfooter.js"></script>
 
+    <!-- ADDED: Dictionary and language application script -->
+    <script>
+    (function(){
+        const dict = {
+            eu: {
+                pageTitle: "Izena ematea",
+                h1: "IZEN EMATEA",
+                p_intro: "GRALa egiten hasteko garrantzitsua da aurrebaldintzak betetzea. Gainera, hainbat gauza kontuan hartu behar dira matrikulazio prozesuan.",
+                h2_1: "Aurrebaldintzak",
+                p_section1: "GRALa egiten hasteko garrantzitsua da aurrebaldintzak betetzea. Gainera, hainbat gauza kontuan hartu behar dira matrikulazio prozesuan.",
+                h2_2: "Matrikulazioa",
+                p_section2: "GRALa egiteko, lehenik GAUR plataforman matrikula egin behar da. Ondoren, fakultateko sailek eskaintzen dituzten gaien zerrenda irekiko da eta ikasleak gai bat aukeratu ahal izango du edo bere proposamena aurkeztu. Aukeratutako gaiarekin batera zuzendaria esleituko zaio. GRALaren hizkuntza ere matrikula garaian aukeratzen da (euskaraz, gaztelaniaz edo ingelesez). Lanaren matrikula egiteko epeak ikasturteko egutegian zehazten dira. Garrantzitsua da GRALa matrikulatzea."
+            },
+            es: {
+                pageTitle: "Inscripción",
+                h1: "INSCRIPCIÓN",
+                p_intro: "Es importante cumplir los requisitos previos para empezar el GrAL. Además, hay varios aspectos a considerar en el proceso de matrícula.",
+                h2_1: "Requisitos previos",
+                p_section1: "Es importante cumplir los requisitos previos para empezar el GrAL. Además, hay varios aspectos a considerar en el proceso de matrícula.",
+                h2_2: "Matrícula",
+                p_section2: "Para hacer el GrAL es necesario matricularse primero en la plataforma GAUR. Después se abrirá la lista de temas que ofrece el centro y el estudiante podrá elegir uno o proponer su propio tema. Al tema elegido se le asignará un director. El idioma del trabajo también se elige en la matrícula. Las fechas de matrícula aparecen en el calendario."
+            },
+            en: {
+                pageTitle: "Sign up",
+                h1: "SIGN UP",
+                p_intro: "It's important to meet the prerequisites before starting the GrAL. Also, several points must be considered during the enrollment process.",
+                h2_1: "Prerequisites",
+                p_section1: "It's important to meet the prerequisites before starting the GrAL. Also, several points must be considered during the enrollment process.",
+                h2_2: "Enrollment",
+                p_section2: "To do the GrAL you must first enroll via the GAUR platform. Then the list of topics offered by the faculty will open and the student can choose one or propose their own. A supervisor is assigned to the chosen topic. The language is chosen at enrollment. Deadlines are set in the academic calendar."
+            },
+            sw: {
+                pageTitle: "Usajili",
+                h1: "USAJILI",
+                p_intro: "Ni muhimu kukidhi masharti ya awali kabla ya kuanza GrAL. Pia, kuna mambo kadhaa ya kuzingatia katika mchakato wa usajili.",
+                h2_1: "Masharti ya awali",
+                p_section1: "Ni muhimu kukidhi masharti ya awali kabla ya kuanza GrAL. Pia, kuna mambo kadhaa ya kuzingatia katika mchakato wa usajili.",
+                h2_2: "Usajili",
+                p_section2: "Ili kufanya GrAL lazima kwanza ujiandikishe kupitia GAUR. Kisha orodha ya mada itafunguliwa na mwanafunzi anaweza kuchagua au kupendekeza mada yake. Mwenzaji atapangwa kwenye mada iliyochaguliwa. Lugha ya kazi inachaguliwa wakati wa usajili."
+            },
+            eo: {
+                pageTitle: "Aliĝilo",
+                h1: "ALIĜILO",
+                p_intro: "Gravas plenumi la antaŭkondiĉojn antaŭ ol komenci la GrAL. Ankaŭ estas pluraj punktoj por konsideri dum la enskribo-procezo.",
+                h2_1: "Antaŭkondiĉoj",
+                p_section1: "Gravas plenumi la antaŭkondiĉojn antaŭ ol komenci la GrAL. Ankaŭ estas pluraj punktoj por konsideri dum la enskribo-procezo.",
+                h2_2: "Eskribo",
+                p_section2: "Por fari la GrAL vi devas unue aliĝi per la platformo GAUR. Poste malfermiĝos la listo de temoj kaj la studento povas elekti aŭ proponi sian propran. Direktoro estos asignita. La lingvo de la laboro elektatas dum la enskribo."
+            },
+            yue: {
+                pageTitle: "報名",
+                h1: "報名",
+                p_intro: "開始 GrAL 前需符合先決條件。此外，在註冊過程中有多項事項需留意。",
+                h2_1: "先決條件",
+                p_section1: "開始 GrAL 前需符合先決條件。此外，在註冊過程中有多項事項需留意。",
+                h2_2: "註冊",
+                p_section2: "要進行 GrAL，首先必須在 GAUR 平台上進行註冊。然後會開放課題列表，學生可以選擇或提交自己的課題。所選課題會分配指導老師。工作語言於註冊時選擇。"
+            }
+        };
+
+        function getLang(){ return localStorage.getItem('lang') || 'eu'; }
+
+        function applyTranslations(){
+            const lang = getLang();
+            const map = dict[lang] || dict.eu;
+            if(map.pageTitle) document.title = map.pageTitle;
+            const container = document.querySelector('.content');
+            if(!container) return;
+            const h1 = container.querySelector('h1');
+            if(h1) h1.textContent = map.h1 || h1.textContent;
+            const ps = container.querySelectorAll('p');
+            if(ps[0]) ps[0].textContent = map.p_intro || ps[0].textContent;
+            const h2s = container.querySelectorAll('h2');
+            if(h2s[0]) h2s[0].textContent = map.h2_1 || h2s[0].textContent;
+            if(ps[1]) ps[1].textContent = map.p_section1 || ps[1].textContent;
+            if(h2s[1]) h2s[1].textContent = map.h2_2 || h2s[1].textContent;
+            if(ps[2]) ps[2].textContent = map.p_section2 || ps[2].textContent;
+        }
+
+        window.applyIzenEmateaTranslations = applyTranslations;
+        window.addEventListener('storage', function(e){ if(e.key === 'lang') applyTranslations(); });
+        window.addEventListener('langChanged', applyTranslations);
+        window.addEventListener('lang:changed', applyTranslations);
+        let lastLang = getLang();
+        const pollInterval = setInterval(function(){ const current = getLang(); if(current !== lastLang){ lastLang = current; applyTranslations(); } }, 300);
+        document.addEventListener('DOMContentLoaded', applyTranslations);
+        window.__cleanupIzenEmateaLang = function(){ clearInterval(pollInterval); window.removeEventListener('langChanged', applyTranslations); window.removeEventListener('lang:changed', applyTranslations); window.removeEventListener('storage', applyTranslations); };
+    })();
+    </script>
+
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

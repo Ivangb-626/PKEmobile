@@ -24,6 +24,82 @@
     <div id="footer-root"></div>
     <script src="insertheaderfooter.js"></script>
 
+    <!-- ADDED: Dictionary and language application script -->
+    <script>
+    (function(){
+        const dict = {
+            eu: {
+                pageTitle: "Nola garatu GRALa",
+                h1: "NOLA GARATU GRALA",
+                p_intro: "Behin GRALaren gaia hautatu eta zuzendaria esleituta, GRALa garatzen hasteko unea iristen da. Horretarako, zuzendariarekin izango dituzun bilera ezberdinez gain, aurreko ikasturteetako GRALetara sartzeko aukera ere izango duzu.",
+                link_prev_text: "AURREKO URTEKO GRAL-AK",
+                p_more: "Horrela, zure lanaren kalitatea hobetzeko baliabide eta erreferentzia baliotsuak eskura izango dituzu. Gainera, prozesu honetan zure konpromisoa, antolakuntza eta dedikazioa funtsezkoak izango dira."
+            },
+            es: {
+                pageTitle: "Cómo desarrollar el GRAL",
+                h1: "CÓMO DESARROLLAR EL GRAL",
+                p_intro: "Una vez elegido el tema y asignado el director, llega el momento de empezar a desarrollar el GrAL. Además de las reuniones con el director, podrás consultar GRALs de años anteriores.",
+                link_prev_text: "GRALS DE AÑOS ANTERIORES",
+                p_more: "Así tendrás recursos y referencias valiosas para mejorar la calidad de tu trabajo. Tu compromiso, organización y dedicación serán clave."
+            },
+            en: {
+                pageTitle: "How to develop GRAL",
+                h1: "HOW TO DEVELOP GRAL",
+                p_intro: "Once the topic is chosen and supervisor assigned, it's time to start developing the GrAL. Besides meetings with your supervisor, you can access previous years' GrALs.",
+                link_prev_text: "PREVIOUS YEARS' GRALs",
+                p_more: "This gives you resources and references to improve the quality of your work. Commitment, organization and dedication are essential."
+            },
+            sw: {
+                pageTitle: "Jinsi ya kuendeleza GRAL",
+                h1: "JINSI YA KUENDELEZA GRAL",
+                p_intro: "Mara baada ya mada kupangwa na msimamizi kuteuliwa, wakati wa kuanza kuendeleza GrAL umefika. Mbali na mikutano na msimamizi, utaweza kuona GrAL za miaka iliyopita.",
+                link_prev_text: "GRAL ZA MIAKA ILIYOPITIA",
+                p_more: "Hii inatoa rasilimali na marejeleo ya kuboresha ubora wa kazi yako. Kujitolea, kupanga na bidii ni muhimu."
+            },
+            eo: {
+                pageTitle: "Kiel disvolvi GRAL-on",
+                h1: "KIEL DISVOLVI GRAL-ON",
+                p_intro: "Post elektado de temo kaj asigno de gvidanto, estas tempo komenci disvolvi la GrAL. Krome al vi haveblas antaŭaj GRAL-oj por konsulti.",
+                link_prev_text: "ANTAUJ JAROJ GRAL-oj",
+                p_more: "Tio provizas rimedojn kaj referencojn por plibonigi la kvaliton de via laboro. Sindevontigo, organizado kaj dediĉo estas ŝlosilaj."
+            },
+            yue: {
+                pageTitle: "如何開展 GRAL",
+                h1: "如何開展 GRAL",
+                p_intro: "一旦選定題目並分配指導老師，就可開始開展 GrAL。除了與指導老師的會議外，你亦可參考往年 GrAL。",
+                link_prev_text: "往年 GRAL 範例",
+                p_more: "這會提供資源和參考以改善作品質素。投入、組織與專注非常重要。"
+            }
+        };
+
+        function getLang(){ return localStorage.getItem('lang') || 'eu'; }
+
+        function applyTranslations(){
+            const lang = getLang();
+            const map = dict[lang] || dict.eu;
+            if(map.pageTitle) document.title = map.pageTitle;
+            const container = document.querySelector('.content');
+            if(!container) return;
+            const h1 = container.querySelector('h1');
+            if(h1) h1.textContent = map.h1 || h1.textContent;
+            const ps = container.querySelectorAll('p');
+            if(ps[0]) ps[0].textContent = map.p_intro || ps[0].textContent;
+            const link = container.querySelector('a[href="gral_adibideak.html"]');
+            if(link) link.textContent = map.link_prev_text || link.textContent;
+            if(ps[1]) ps[1].textContent = map.p_more || ps[1].textContent;
+        }
+
+        window.applyNolaGaratuTranslations = applyTranslations;
+        window.addEventListener('storage', function(e){ if(e.key === 'lang') applyTranslations(); });
+        window.addEventListener('langChanged', applyTranslations);
+        window.addEventListener('lang:changed', applyTranslations);
+        let lastLang = getLang();
+        const pollInterval = setInterval(function(){ const current = getLang(); if(current !== lastLang){ lastLang = current; applyTranslations(); } }, 300);
+        document.addEventListener('DOMContentLoaded', applyTranslations);
+        window.__cleanupNolaGaratuLang = function(){ clearInterval(pollInterval); window.removeEventListener('langChanged', applyTranslations); window.removeEventListener('lang:changed', applyTranslations); window.removeEventListener('storage', applyTranslations); };
+    })();
+    </script>
+
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
