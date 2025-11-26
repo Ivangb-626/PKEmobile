@@ -83,7 +83,16 @@ const translations = {
         'q10': 'Non egin behar da lehenik GRALaren matrikula?',
         'q10a': 'GAUR plataforman lehenik matrikulatu behar da.',
         'q10b': 'Unibertsitate liburutegian eskuz eman behar da izena.',
-        'q10c': 'Kanpoko erakundearen bidez zuzenean.'
+        'q10c': 'Kanpoko erakundearen bidez zuzenean.',
+        'about_us_title': 'Guri buruz — GRAL Gida',
+        'about_us_heading': 'Guri buruz',
+        'about_goal_title': '🎯 Helburua',
+        'about_goal_text': 'Orrialde honen helburua GrALei buruzko informazioa eskaintzea da, EHUko iturrietatik jasotakoa, baina iturri horiek ordezkatzeko inongo intentziorik gabe, eskola ariketa moduan eraikitzen delarik.',
+        'about_warning_title': '⚠️ Kontuz',
+        'about_warning_text': 'Gradu bukaerako lanarekin lotutako alderdi gehienak webgune honetan aurki ditzakezu. Nahiz eta hemen aurkitzen den informazioa kalitatezkoa izan, ez da informazio ofiziala. Informazio ofizial eta eguneratua jasotzeko, edo UPV/EHU-rekin kontaktuan jartzeko, %s bisitatu behar da.',
+        'about_warning_link_text': 'UPV/EHU-ren GrAL webgune ofiziala',
+        'about_authors_title': '👥 Egileak',
+        'about_authors_text': 'Iv\u00e1n Gonz\u00e1lez, Alex Cenera, Be\u00f1at Arruti, Eneko Santos.'
     },
     'es': {
         'gral_acronym': 'TFG',
@@ -169,7 +178,16 @@ const translations = {
         'q10': '¿Dónde debe realizarse primero la matrícula del TFG?',
         'q10a': 'Primero debe matricularse en la plataforma GAUR.',
         'q10b': 'Debe inscribirse manualmente en la biblioteca universitaria.',
-        'q10c': 'Directamente a través de una entidad externa.'
+        'q10c': 'Directamente a través de una entidad externa.',
+        'about_us_title': 'Sobre nosotros — Guía TFG',
+        'about_us_heading': 'Sobre nosotros',
+        'about_goal_title': '🎯 Objetivo',
+        'about_goal_text': 'El objetivo de esta página es ofrecer información sobre los TFG, obtenida de fuentes de la UPV/EHU, pero sin ninguna intención de reemplazar dichas fuentes, ya que se construye como un ejercicio escolar.',
+        'about_warning_title': '⚠️ Importante',
+        'about_warning_text': 'Puedes encontrar la mayoría de los aspectos relacionados con el Trabajo de Fin de Grado en este sitio web. Aunque la información que se encuentra aquí es de calidad, no es información oficial. Para obtener información oficial y actualizada, o para contactar con la UPV/EHU, debes visitar el %s.',
+        'about_warning_link_text': 'sitio web oficial de TFG de la UPV/EHU',
+        'about_authors_title': '👥 Autores',
+        'about_authors_text': 'Iv\u00e1n Gonz\u00e1lez, Alex Cenera, Be\u00f1at Arruti, Eneko Santos.'
     },
     'en': {
         'gral_acronym': 'FYP',
@@ -255,7 +273,16 @@ const translations = {
         'degree_biology': 'Biology',
         'degree_chemistry': 'Chemistry',
         'degree_physics': 'Physics',
-        'degree_mathematics': 'Mathematics'
+        'degree_mathematics': 'Mathematics',
+        'about_us_title': 'About Us — FYP Guide',
+        'about_us_heading': 'About Us',
+        'about_goal_title': '🎯 Objective',
+        'about_goal_text': 'The purpose of this page is to provide information about FYPs, obtained from UPV/EHU sources, but with no intention of replacing these sources, as it is built as a school exercise.',
+        'about_warning_title': '⚠️ Important',
+        'about_warning_text': 'You can find most aspects related to the Final Year Project on this website. Although the information found here is of quality, it is not official information. To obtain official and updated information, or to contact UPV/EHU, you should visit the %s.',
+        'about_warning_link_text': 'official FYP website of UPV/EHU',
+        'about_authors_title': '👥 Authors',
+        'about_authors_text': 'Iv\u00e1n Gonz\u00e1lez, Alex Cenera, Be\u00f1at Arruti, Eneko Santos.'
     },
     'sw': {
         'gral_acronym': 'MW',
@@ -341,7 +368,16 @@ const translations = {
         'q10': 'Wapi usajili wa MW unapaswa kufanywa kwanza?',
         'q10a': 'Inahitaji kujisajili kwanza kwenye jukwaa la GAUR.',
         'q10b': 'Inahitaji kujisajili kwa mkono kwenye maktaba ya chuo kikuu.',
-        'q10c': 'Moja kwa moja kupitia taasisi nje.'
+        'q10c': 'Moja kwa moja kupitia taasisi nje.',
+        'about_us_title': 'Kuhusu sisi — MW Mwongozo',
+        'about_us_heading': 'Kuhusu sisi',
+        'about_goal_title': '🎯 Lengo',
+        'about_goal_text': 'Lengo la ukurasa huu ni kutoa habari kuhusu <strong>MW</strong>, zinazopatikana kutoka vyanzo vya UPV/EHU, lakini <strong>bila nia ya kubadilisha vyanzo hivyo</strong>, kwani inajengwa kama mazoezi ya shule.',
+        'about_warning_title': '⚠️ Tahadhari',
+        'about_warning_text': 'Unaweza kupata vipengele vingi vya Mradi wa Mwisho wa Shahada katika tovuti hii. Ingawa habari iliyopatikana hapa ni ya ubora, <strong>si habari rasmi</strong>. Ili kupata habari rasmi na ya sasa, au kuwasiliana na UPV/EHU, unapaswa kutembelea %s.',
+        'about_warning_link_text': 'Tovuti rasmi ya MW ya UPV/EHU',
+        'about_authors_title': '👥 Waandishi',
+        'about_authors_text': 'Iv\u00e1n Gonz\u00e1lez, Alex Cenera, Be\u00f1at Arruti, Eneko Santos.'
     },
     'eo': {
         'gral_acronym': 'FD',
@@ -427,7 +463,16 @@ const translations = {
         'q10': 'Kie la registrado de la FD devas esti farita unue?',
         'q10a': 'Unue vi devas enskribiĝi en la platformo GAUR.',
         'q10b': 'Vi devas enskribiĝi mane en la universitata biblioteko.',
-        'q10c': 'Rekte tra ekstera institucio.'
+        'q10c': 'Rekte tra ekstera institucio.',
+        'about_us_title': 'Pri ni — GRAL Gvido',
+        'about_us_heading': 'Pri ni',
+        'about_goal_title': '🎯 Celo',
+        'about_goal_text': 'La celo de tiu ĉi paĝo estas provizi informojn pri GRAL, akiritajn de fontoj de UPV/EHU, sed sen ia intenco anstataŭi tiujn fontojn, ĉar ĝi estas konstruita kiel lerneja ekzerco.',
+        'about_warning_title': '⚠️ Atentu',
+        'about_warning_text': 'Vi povas trovi plejmultajn aspektojn rilatajn al la Finstuda Laboro en tiu retejo. Kvankam la informoj trovitaj ĉi tie estas kvalitaj, ili ne estas oficialaj informoj. Por ricevi oficialajn kaj ĝisdatigitajn informojn aŭ kontakti UPV/EHU, vi devas viziti la %s.',
+        'about_warning_link_text': 'oficialan GRAL-retejon de UPV/EHU',
+        'about_authors_title': '👥 Aŭtoroj',
+        'about_authors_text': 'Iv\u00e1n Gonz\u00e1lez, Alex Cenera, Be\u00f1at Arruti, Eneko Santos.'
     },
     'yue': {
         'gral_acronym': 'BYLW',
@@ -513,7 +558,16 @@ const translations = {
         'q10': '毕业设计的注册应该在哪里进行？',
         'q10a': '必须先在GAUR平台上注册。',
         'q10b': '必须在大学图书馆手动注册。',
-        'q10c': '直接通过外部机构注册。'
+        'q10c': '直接通过外部机构注册。',
+        'about_us_title': '關於我們 — 畢業論文指南',
+        'about_us_heading': '關於我們',
+        'about_goal_title': '🎯 目標',
+        'about_goal_text': '本頁面嘅目的係提供關於畢業論文嘅資訊，來源自UPV/EHU，但無意取代呢啲來源，因為佢係作為一個學校練習而構建嘅。',
+        'about_warning_title': '⚠️ 注意',
+        'about_warning_text': '你可以喺呢個網站搵到同畢業論文相關嘅大部分內容。雖然呢度搵到嘅資訊質素良好，但唔係官方資訊。要獲取官方同最新嘅資訊，或者聯繫UPV/EHU，你應該訪問%s。',
+        'about_warning_link_text': 'UPV/EHU嘅官方畢業論文網站',
+        'about_authors_title': '👥 作者',
+        'about_authors_text': 'Iv\u00e1n Gonz\u00e1lez, Alex Cenera, Be\u00f1at Arruti, Eneko Santos.'
     }
 };
 
