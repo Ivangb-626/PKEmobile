@@ -231,27 +231,31 @@
           }
           a.setAttribute('href', newHref);
         });
-          const links = target.querySelectorAll('a');
-          links.forEach(a => {
+            const links = target.querySelectorAll('a');
+            links.forEach(a => {
               a.addEventListener('click', function(e){
-                  const isLogged = !!localStorage.getItem('auth_current_user');
-                  const allowWhenLogged = ['link2', 'link9'];
+                const isLogged = !!localStorage.getItem('auth_current_user');
+                const allowWhenLogged = ['link2', 'link9'];
+                const allowAlways = ['link6']; // About us should be reachable by anyone
 
-                  if (allowWhenLogged.includes(a.id)) {
-                      if (!isLogged) {
-                          e.preventDefault();
-                          showUnderConstruction();
-                      } else {
-                          try {
-                              if ((a.getAttribute('href') || '').startsWith('http')) a.setAttribute('target', '_blank');
-                          } catch (_) {}
-                      }
+                // If link is allowed always, let navigation proceed
+                if (allowAlways.includes(a.id)) return;
+
+                if (allowWhenLogged.includes(a.id)) {
+                  if (!isLogged) {
+                    e.preventDefault();
+                    showUnderConstruction();
                   } else {
-                      e.preventDefault();
-                      showUnderConstruction();
+                    try {
+                      if ((a.getAttribute('href') || '').startsWith('http')) a.setAttribute('target', '_blank');
+                    } catch (_) {}
                   }
+                } else {
+                  e.preventDefault();
+                  showUnderConstruction();
+                }
               });
-          });
+            });
 
       } catch (e) {
         console.warn('No se pudieron enlazar los eventos del footer:', e);
