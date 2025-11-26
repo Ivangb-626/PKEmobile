@@ -1,19 +1,62 @@
-<html>
+<!doctype html>
+<html lang="eu">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hasiera orria</title>
+    <title data-i18n="home_title">Hasiera orria</title>
     <link rel="stylesheet" href="Styles/General.css">
+    <script src="scripts/i18n.js"></script>
   </head>
   <body>
     <div id="header-root"></div>
 
-    <main class="container">
-      <h1 id="title">Hasiera orria</h1>
-      <p class="muted" id="subtitle">Página inicial</p>
+    <main class="welcome-container">
+      <h1 class="welcome-title" data-i18n="welcome_title welcome_guide"></h1>
+      
+      <div class="question-container">
+        <h2 class="question-title" data-i18n="previous_gral_title">Aurreko urteko GRAL-ak Ikusi nahi?</h2>
+        <p class="question-text" data-i18n="previous_gral_text">Hemen adibide esanguratsuak, gradu bakoitzeko:</p>
+        <a href="KODIGOA/gral_adibideak.html" class="cta-button" data-i18n="view_gral_button">Ikusi GRAL-ak</a>
+      </div>
+
+      <div class="question-container">
+        <h2 class="question-title" data-i18n="rules_questions_title">Araudiekin zalantzak?</h2>
+        <p class="question-text" data-i18n="rules_questions_text">Hona hemen araudia, laburki azalduta:</p>
+        <a href="KODIGOA/arautegia.html" class="cta-button" data-i18n="view_rules_button">Araudia</a>
+      </div>
+
+      <div class="question-container">
+        <h2 class="question-title" data-i18n="dates_title">Deialdien datak jakin nahi?</h2>
+        <p class="question-text" data-i18n="dates_text">Hemen deialdien egutegia</p>
+        <a href="KODIGOA/egutegia.html" class="cta-button" data-i18n="view_calendar_button">Egutegia</a>
+      </div>
+
+      <div class="question-container">
+        <h2 class="question-title" data-i18n="dates_title">Deialdien datak jakin nahi?</h2>
+        <p class="question-text" data-i18n="dates_text">Hemen deialdien egutegia</p>
+        <a href="KODIGOA/egutegia.html" class="cta-button" data-i18n="view_calendar_button">Egutegia</a>
+      </div>
+
+      <div class="question-container">
+        <h2 class="question-title" data-i18n="registration_issues_title">Izen ematearekin arazoak?</h2>
+        <p class="question-text" data-i18n="registration_issues_text">Hona hemen gida labur bat:</p>
+        <a href="KODIGOA/izen_ematea.html" class="cta-button" data-i18n="registration_guide_button">Izen Ematea</a>
+      </div>
+
+      <div class="question-container">
+        <h2 class="question-title" data-i18n="how_to_start_title">GRAL-ekin hasi nahi, baina, ez dakizu nola?</h2>
+        <p class="question-text" data-i18n="how_to_start_text">Hemen argituko dizugu labur:</p>
+        <a href="KODIGOA/nola_garatu_grala.html" class="cta-button" data-i18n="gral_development_button">GRAL garapena</a>
+      </div>
+
+      <div class="question-container">
+        <h2 class="question-title" data-i18n="test_knowledge_title">GRAL-aren inguruko ezagutza frogatu nahi?</h2>
+        <p class="question-text" data-i18n="test_knowledge_text">Froga dezagun honako galdetegian:</p>
+        <a href="KODIGOA/galdetegia.html" class="cta-button" data-i18n="take_quiz_button">Galdetegia</a>
+      </div>
     </main>
 
     <div id="footer-root"></div>
     <script src="KODIGOA/insertheaderfooter.js"></script>
   </body>
- </html>
+</html>
