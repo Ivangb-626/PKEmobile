@@ -2,8 +2,11 @@
 <html lang="eu">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title data-i18n="title">GRAL adibideak</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="../Styles/gral_adibideak.css">
     <link rel="stylesheet" href="../Styles/General.css">
     <script src="../scripts/i18n.js"></script>
@@ -11,7 +14,8 @@
 <body>
 
 <div id="header-root"></div>
-<!-- Contenido traído del primer HTML (sin estilos inline) -->
+<!-- Bootstrap Container -->
+<div class="container py-4">
 <section class="wrap">
     <header class="header">
         <h2 class="title" data-i18n="title">TFG hautagaiak • UPV/EHU</h2>
@@ -57,7 +61,11 @@
         <!-- Resultados -->
         <section class="results" id="results" aria-live="polite"></section>
     </section>
-</section>
+</div>
+</div>
+
+<!-- Bootstrap JS Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 
 

@@ -379,6 +379,291 @@ const translations = {
         'about_authors_title': '👥 Waandishi',
         'about_authors_text': 'Iv\u00e1n Gonz\u00e1lez, Alex Cenera, Be\u00f1at Arruti, Eneko Santos.'
     },
+    // TFG Examples Translations
+    'tfg_ii_2023_title': {
+        'eu': 'Suizidio-ideiagintzaren identifikazioa sare sozialetan',
+        'es': 'Identificación de ideación suicida en redes sociales',
+        'en': 'Identification of suicidal ideation in social networks',
+        'sw': 'Utambulishaji wa mawazo ya kujiua katika mitandao ya kijamii',
+        'eo': 'Identigo de memmortigaj ideoj en sociaj retoj',
+        'yue': '社交網絡中自殺意念識別'
+    },
+    'tfg_ii_2023_sum1': {
+        'eu': 'Reddit mezuen analisia eta transformer sailkatzaileak.',
+        'es': 'Análisis de mensajes de Reddit y clasificadores transformer.',
+        'en': 'Reddit message analysis and transformer classifiers.',
+        'sw': 'Uchambuzi wa ujumbe wa Reddit na wakagawaji wa transformer.',
+        'eo': 'Analizo de Reddit-mesaĝoj kaj transformaj klasifikiloj.',
+        'yue': 'Reddit 訊息分析同 transformer 分類器。'
+    },
+    'tfg_ii_2023_sum2': {
+        'eu': '%97,9 zehaztasuna; lehen pertsonako hizkera eta luzera ezaugarri.',
+        'es': '97,9% de precisión; características de lenguaje en primera persona y longitud.',
+        'en': '97.9% accuracy; first-person language and length features.',
+        'sw': 'Usahihi wa 97.9%; lugha ya mtu wa kwanza na sifa za urefu.',
+        'eo': '97,9% precizeco; unuapersona lingvo kaj longecaj trajtoj.',
+        'yue': '97.9% 準確率；第一人稱語言同長度特徵。'
+    },
+    'tfg_ii_2022_title': {
+        'eu': 'Minimeteo – Atmega328p estazio meteorologikoa',
+        'es': 'Minimeteo – Estación meteorológica Atmega328p',
+        'en': 'Minimeteo – Atmega328p weather station',
+        'sw': 'Minimeteo - Kituo cha hali ya hewa cha Atmega328p',
+        'eo': 'Minimeteo – Atmega328p veterstacio',
+        'yue': 'Minimeteo – Atmega328p 氣象站'
+    },
+    'tfg_ii_2022_sum1': {
+        'eu': 'DHT-11, anemometroa, ESP-8266; WiFi bidez bidalketa.',
+        'es': 'DHT-11, anemómetro, ESP-8266; envío por WiFi.',
+        'en': 'DHT-11, anemometer, ESP-8266; WiFi transmission.',
+        'sw': 'DHT-11, anemometa, ESP-8266; usambazaji wa WiFi.',
+        'eo': 'DHT-11, anemometro, ESP-8266; sendado tra WiFi.',
+        'yue': 'DHT-11、風速計、ESP-8266；WiFi 傳輸。'
+    },
+    'tfg_ii_2022_sum2': {
+        'eu': 'Erregistro mailako programazioa; hardware/firmware dokumentatua.',
+        'es': 'Programación a bajo nivel; hardware/firmware documentado.',
+        'en': 'Low-level programming; documented hardware/firmware.',
+        'sw': 'Programu ya ngazi ya chini; vifaa/firmware zilizorekodiwa.',
+        'eo': 'Malaltnivela programado; dokumentita aparataro/firmvaro.',
+        'yue': '低階編程；有記錄嘅硬件/韌體。'
+    },
+    'tfg_ii_2021_title': {
+        'eu': 'OSALAGUN – ezagutzaren kudeaketa eta kontsulta',
+        'es': 'OSALAGUN – Gestión y consulta del conocimiento',
+        'en': 'OSALAGUN – Knowledge management and consultation',
+        'sw': 'OSALAGUN - Usimamizi na ushauri wa maarifa',
+        'eo': 'OSALAGUN – Scio-mastrumado kaj konsultado',
+        'yue': 'OSALAGUN – 知識管理同諮詢'
+    },
+    'tfg_ii_2021_sum1': {
+        'eu': 'CMS + sistema adituak gomendio klinikoetarako.',
+        'es': 'CMS + sistemas expertos para recomendaciones clínicas.',
+        'en': 'CMS + expert systems for clinical recommendations.',
+        'sw': 'CMS + mifumo ya wataalam kwa mapendekezo ya kliniki.',
+        'eo': 'KMS + spertaj sistemoj por klinikaj rekomendoj.',
+        'yue': 'CMS + 臨床推薦專家系統。'
+    },
+    'tfg_ii_2021_sum2': {
+        'eu': 'Web-zerbitzu bidezko arkitektura eta proba klinikoak.',
+        'es': 'Arquitectura basada en servicios web y pruebas clínicas.',
+        'en': 'Web service-based architecture and clinical trials.',
+        'sw': 'Usanidi wa msingi wa huduma za wavuti na majaribio ya kliniki.',
+        'eo': 'TTT-servobazita arkitekturo kaj klinikaj provoj.',
+        'yue': '基於網絡服務嘅架構同臨床試驗。'
+    },
+    'tfg_ia_2024_title': {
+        'eu': 'PEFT teknikak T5-n',
+        'es': 'Técnicas PEFT en T5',
+        'en': 'PEFT techniques in T5',
+        'sw': 'Mbinu za PEFT katika T5',
+        'eo': 'PEFT-teknikoj en T5',
+        'yue': 'T5 中嘅 PEFT 技術'
+    },
+    'tfg_ia_2024_sum1': {
+        'eu': 'Prefix-Tuning, Adapters eta LoRA; konparaketa.',
+        'es': 'Prefix-Tuning, Adapters y LoRA; comparativa.',
+        'en': 'Prefix-Tuning, Adapters and LoRA; comparison.',
+        'sw': 'Prefix-Tuning, Adapters na LoRA; kulinganisha.',
+        'eo': 'Prefix-Tuning, Adaptiloj kaj LoRA; komparo.',
+        'yue': 'Prefix-Tuning、Adapters 同 LoRA；比較。'
+    },
+    'tfg_ia_2024_sum2': {
+        'eu': 'LoRAk errendimendua mantenduz baliabideak aurrezten ditu.',
+        'es': 'LoRA ahorra recursos manteniendo el rendimiento.',
+        'en': 'LoRA saves resources while maintaining performance.',
+        'sw': 'LoRA inaokoa rasilimali huku ikibaki na utendaji.',
+        'eo': 'LoRA ŝparas rimedojn dum konservante efikecon.',
+        'yue': 'LoRA 喺保持性能嘅同時節省資源。'
+    },
+    'tfg_ia_2020_title': {
+        'eu': 'Zerbitzu web analitika (Fac. Informatika)',
+        'es': 'Analítica de servicios web (Fac. Informática)',
+        'en': 'Web service analytics (Computer Science Faculty)',
+        'sw': 'Uchambuzi wa huduma za wavuti (Chuo cha Sayansi ya Kompyuta)',
+        'eo': 'TTT-serva analitiko (Fakultato de Komputiko)',
+        'yue': '網絡服務分析（計算機科學學院）'
+    },
+    'tfg_ia_2020_sum1': {
+        'eu': 'API/zerbitzuen diseinua eta datu-analitika.',
+        'es': 'Diseño de API/servicios y análisis de datos.',
+        'en': 'API/services design and data analysis.',
+        'sw': 'Uundaji wa API/huduma na uchambuzi wa data.',
+        'eo': 'API/servoj-dizajno kaj datum-analizado.',
+        'yue': 'API/服務設計同數據分析。'
+    },
+    'tfg_ia_2020_sum2': {
+        'eu': 'Monitorizazio eta kontsulta mekanismoak.',
+        'es': 'Mecanismos de monitorización y consulta.',
+        'en': 'Monitoring and query mechanisms.',
+        'sw': 'Mifumo ya ufuatiliaji na maswali.',
+        'eo': 'Monitorado kaj konsultaj mekanismoj.',
+        'yue': '監控同查詢機制。'
+    },
+    'tfg_ia_2017_title': {
+        'eu': 'SDN segurizazioa politiketan oinarrituta',
+        'es': 'Seguridad en SDN basada en políticas',
+        'en': 'Policy-based SDN security',
+        'sw': 'Usalama wa SDN unaotegemea sera',
+        'eo': 'Politik-bazita sekureco en SDN',
+        'yue': '基於策略嘅 SDN 安全'
+    },
+    'tfg_ia_2017_sum2': {
+        'eu': 'SDN sareetan segurtasun-politiken aplikazioa.',
+        'es': 'Aplicación de políticas de seguridad en redes SDN.',
+        'en': 'Application of security policies in SDN networks.',
+        'sw': 'Utumizi wa sera za usalama katika mitandao ya SDN.',
+        'eo': 'Apliko de sekurecaj politikoj en SDN-retoj.',
+        'yue': 'SDN 網絡中安全策略嘅應用。'
+    },
+    // TFG Ingeniería Biomédica (igis)
+    'tfg_igis_2023_title': {
+        'eu': 'Ingeniaritza Biomedikoko TFG 2023',
+        'es': 'TFG de Ingeniería Biomédica 2023',
+        'en': 'Biomedical Engineering FYP 2023',
+        'sw': 'Uhandisi wa Tiba MW 2023',
+        'eo': 'Biomedicina Inĝenieradio TFG 2023',
+        'yue': '生物醫學工程畢業論文 2023'
+    },
+    'tfg_igis_2023_sum1': {
+        'eu': 'Ingeniaritza Biomedikoko lehen adibidea 2023.',
+        'es': 'Primer ejemplo de Ingeniería Biomédica 2023.',
+        'en': 'First Biomedical Engineering example 2023.',
+        'sw': 'Mfano wa kwanza wa Uhandisi wa Tiba 2023.',
+        'eo': 'Unua ekzemplo de Biomedicina Inĝenieradio 2023.',
+        'yue': '生物醫學工程第一個例子 2023。'
+    },
+    'tfg_igis_2023_sum2': {
+        'eu': 'Bigarren zatia 2023ko Ingeniaritza Biomedikoko TFG honetarako.',
+        'es': 'Segunda parte para este TFG de Ingeniería Biomédica 2023.',
+        'en': 'Second part for this Biomedical Engineering FYP 2023.',
+        'sw': 'Sehemu ya pili kwa MW huu wa Uhandisi wa Tiba 2023.',
+        'eo': 'Dua parto por ĉi tiu Biomedicina Inĝenieradio TFG 2023.',
+        'yue': '2023年生物醫學工程畢業論文嘅第二部分。'
+    },
+    'tfg_igis_2021_1_title': {
+        'eu': 'Ingeniaritza Biomedikoko TFG 2021 (1)',
+        'es': 'TFG de Ingeniería Biomédica 2021 (1)',
+        'en': 'Biomedical Engineering FYP 2021 (1)',
+        'sw': 'Uhandisi wa Tiba MW 2021 (1)',
+        'eo': 'Biomedicina Inĝenieradio TFG 2021 (1)',
+        'yue': '生物醫學工程畢業論文 2021 (1)'
+    },
+    'tfg_igis_2021_1_sum1': {
+        'eu': 'Lehenengo 2021ko Ingeniaritza Biomedikoko TFGaren lehen zatia.',
+        'es': 'Primera parte del primer TFG de Ingeniería Biomédica 2021.',
+        'en': 'First part of the first Biomedical Engineering FYP 2021.',
+        'sw': 'Sehemu ya kwanza ya MW wa kwanza wa Uhandisi wa Tiba 2021.',
+        'eo': 'Unua parto de la unua Biomedicina Inĝenieradio TFG 2021.',
+        'yue': '2021年第一個生物醫學工程畢業論文嘅第一部分。'
+    },
+    'tfg_igis_2021_1_sum2': {
+        'eu': 'Lehenengo 2021ko Ingeniaritza Biomedikoko TFGaren bigarren zatia.',
+        'es': 'Segunda parte del primer TFG de Ingeniería Biomédica 2021.',
+        'en': 'Second part of the first Biomedical Engineering FYP 2021.',
+        'sw': 'Sehemu ya pili ya MW wa kwanza wa Uhandisi wa Tiba 2021.',
+        'eo': 'Dua parto de la unua Biomedicina Inĝenieradio TFG 2021.',
+        'yue': '2021年第一個生物醫學工程畢業論文嘅第二部分。'
+    },
+    'tfg_igis_2021_2_title': {
+        'eu': 'Ingeniaritza Biomedikoko TFG 2021 (2)',
+        'es': 'TFG de Ingeniería Biomédica 2021 (2)',
+        'en': 'Biomedical Engineering FYP 2021 (2)',
+        'sw': 'Uhandisi wa Tiba MW 2021 (2)',
+        'eo': 'Biomedicina Inĝenieradio TFG 2021 (2)',
+        'yue': '生物醫學工程畢業論文 2021 (2)',
+    },
+    'tfg_igis_2021_2_sum1': {
+        'eu': 'Bigarren 2021ko Ingeniaritza Biomedikoko TFGaren lehen zatia.',
+        'es': 'Primera parte del segundo TFG de Ingeniería Biomédica 2021.',
+        'en': 'First part of the second Biomedical Engineering FYP 2021.',
+        'sw': 'Sehemu ya kwanza ya MW wa pili wa Uhandisi wa Tiba 2021.',
+        'eo': 'Unua parto de la dua Biomedicina Inĝenieradio TFG 2021.',
+        'yue': '2021年第二個生物醫學工程畢業論文嘅第一部分。',
+    },
+    'tfg_igis_2021_2_sum2': {
+        'eu': 'Bigarren 2021ko Ingeniaritza Biomedikoko TFGaren bigarren zatia.',
+        'es': 'Segunda parte del segundo TFG de Ingeniería Biomédica 2021.',
+        'en': 'Second part of the second Biomedical Engineering FYP 2021.',
+        'sw': 'Sehemu ya pili ya MW wa pili wa Uhandisi wa Tiba 2021.',
+        'eo': 'Dua parto de la dua Biomedicina Inĝenieradio TFG 2021.',
+        'yue': '2021年第二個生物醫學工程畢業論文嘅第二部分。'
+    },
+
+    // TFG Medicina (med)
+    'tfg_med_2021_1_title': {
+        'eu': 'Medikuntzako TFG 2021 (1)',
+        'es': 'TFG de Medicina 2021 (1)',
+        'en': 'Medicine FYP 2021 (1)',
+        'sw': 'Tiba MW 2021 (1)',
+        'eo': 'Medicino TFG 2021 (1)',
+        'yue': '醫學畢業論文 2021 (1)'
+    },
+    'tfg_med_2021_1_sum1': {
+        'eu': 'Lehenengo 2021ko Medikuntzako TFGaren lehen zatia.',
+        'es': 'Primera parte del primer TFG de Medicina 2021.',
+        'en': 'First part of the first Medicine FYP 2021.',
+        'sw': 'Sehemu ya kwanza ya MW wa kwanza wa Tiba 2021.',
+        'eo': 'Unua parto de la unua Medicino TFG 2021.',
+        'yue': '2021年第一個醫學畢業論文嘅第一部分。'
+    },
+    'tfg_med_2021_1_sum2': {
+        'eu': 'Lehenengo 2021ko Medikuntzako TFGaren bigarren zatia.',
+        'es': 'Segunda parte del primer TFG de Medicina 2021.',
+        'en': 'Second part of the first Medicine FYP 2021.',
+        'sw': 'Sehemu ya pili ya MW wa kwanza wa Tiba 2021.',
+        'eo': 'Dua parto de la unua Medicino TFG 2021.',
+        'yue': '2021年第一個醫學畢業論文嘅第二部分。'
+    },
+    'tfg_med_2014_title': {
+        'eu': 'Medikuntzako TFG 2014',
+        'es': 'TFG de Medicina 2014',
+        'en': 'Medicine FYP 2014',
+        'sw': 'Tiba MW 2014',
+        'eo': 'Medicino TFG 2014',
+        'yue': '醫學畢業論文 2014'
+    },
+    'tfg_med_2014_sum1': {
+        'eu': '2014ko Medikuntzako TFGaren lehen zatia.',
+        'es': 'Primera parte del TFG de Medicina 2014.',
+        'en': 'First part of the Medicine FYP 2014.',
+        'sw': 'Sehemu ya kwanza ya Tiba MW 2014.',
+        'eo': 'Unua parto de la Medicino TFG 2014.',
+        'yue': '2014年醫學畢業論文嘅第一部分。'
+    },
+    'tfg_med_2014_sum2': {
+        'eu': '2014ko Medikuntzako TFGaren bigarren zatia.',
+        'es': 'Segunda parte del TFG de Medicina 2014.',
+        'en': 'Second part of the Medicine FYP 2014.',
+        'sw': 'Sehemu ya pili ya Tiba MW 2014.',
+        'eo': 'Dua parto de la Medicino TFG 2014.',
+        'yue': '2014年醫學畢業論文嘅第二部分。'
+    },
+    'tfg_med_2021_2_title': {
+        'eu': 'Medikuntzako TFG 2021 (2)',
+        'es': 'TFG de Medicina 2021 (2)',
+        'en': 'Medicine FYP 2021 (2)',
+        'sw': 'Tiba MW 2021 (2)',
+        'eo': 'Medicino TFG 2021 (2)',
+        'yue': '醫學畢業論文 2021 (2)'
+    },
+    'tfg_med_2021_2_sum1': {
+        'eu': 'Bigarren 2021ko Medikuntzako TFGaren lehen zatia.',
+        'es': 'Primera parte del segundo TFG de Medicina 2021.',
+        'en': 'First part of the second Medicine FYP 2021.',
+        'sw': 'Sehemu ya kwanza ya MW wa pili wa Tiba 2021.',
+        'eo': 'Unua parto de la dua Medicino TFG 2021.',
+        'yue': '2021年第二個醫學畢業論文嘅第一部分。'
+    },
+    'tfg_med_2021_2_sum2': {
+        'eu': 'Bigarren 2021ko Medikuntzako TFGaren bigarren zatia.',
+        'es': 'Segunda parte del segundo TFG de Medicina 2021.',
+        'en': 'Second part of the second Medicine FYP 2021.',
+        'sw': 'Sehemu ya pili ya MW wa pili wa Tiba 2021.',
+        'eo': 'Dua parto de la dua Medicino TFG 2021.',
+        'yue': '2021年第二個醫學畢業論文嘅第二部分。'
+    },
+
     'eo': {
         'gral_acronym': 'FD',
         'degree_picker': 'Elektu gradon',
@@ -568,8 +853,8 @@ const translations = {
         'about_warning_link_text': 'UPV/EHU嘅官方畢業論文網站',
         'about_authors_title': '👥 作者',
         'about_authors_text': 'Iv\u00e1n Gonz\u00e1lez, Alex Cenera, Be\u00f1at Arruti, Eneko Santos.'
-    }
-};
+    },
+}
 
 function changeLanguageGRALAdib(lang) {
     if (!translations[lang]) {
@@ -598,6 +883,25 @@ function changeLanguageGRALAdib(lang) {
     });
 
     localStorage.setItem('lang', lang);
+}
+
+// Función global para obtener traducciones
+function getTranslation(key) {
+    const lang = localStorage.getItem('lang') || 'eu';
+    
+    // Buscar primero en las traducciones de primer nivel (como 'view_gral_button')
+    if (translations[lang] && translations[lang][key]) {
+        return translations[lang][key];
+    }
+    
+    // Si no se encuentra, buscar en las traducciones anidadas (como 'tfg_ii_2023_title')
+    if (translations[key]) {
+        const t = translations[key];
+        return t[lang] || t['eu'] || key;
+    }
+    
+    console.warn(`Translation key not found: ${key}`);
+    return key; // Devuelve la clave si no se encuentra la traducción
 }
 
 document.addEventListener('change', () => {
