@@ -16,11 +16,10 @@
 <div id="header-root"></div>
 <!-- Bootstrap Container -->
 <div class="container py-4">
-<section class="wrap">
-    <header class="header">
-        <h2 class="title" data-i18n="title">TFG hautagaiak • UPV/EHU</h2>
-        <p class="subtitle" data-i18n="subtitle1">Aukeratu gradua eta azpian ikusiko dituzu TFG nabarmenduak (3 ale).</p>
-        <p class="subtitle" data-i18n="subtitle2">Gradu gehiago ala GRAL gehiago kontsultatzeko begiratu oinaldeko ADDI baliabidea</p>
+    <header class="text-center mb-4">
+        <h2 class="display-5 fw-bold mb-3" data-i18n="title">TFG hautagaiak • UPV/EHU</h2>
+        <p class="lead mb-2" data-i18n="subtitle1">Aukeratu gradua eta azpian ikusiko dituzu TFG nabarmenduak (3 ale).</p>
+        <p class="text-muted" data-i18n="subtitle2">Gradu gehiago ala GRAL gehiago kontsultatzeko begiratu oinaldeko ADDI baliabidea</p>
     </header>
 
     <section class="picker" aria-label="Gradu aukeraketa">
@@ -248,19 +247,32 @@
         }
 
         function placeList(){
-            if(!toggle.checked) return;
+            if(!toggle.checked) {
+                list.style.transform = 'scaleY(0)';
+                return;
+            }
             try{
-                const r = display.getBoundingClientRect(), gap = 8;
-                list.style.left  = (r.left + window.scrollX) + 'px';
-                list.style.top   = (r.bottom + window.scrollY + gap) + 'px';
+                const r = display.getBoundingClientRect();
+                const gap = 4; // Espacio reducido para mejor alineación
+                
+                // Posicionamiento fijo basado en la vista
+                list.style.position = 'fixed';
+                list.style.left = r.left + 'px';
+                list.style.top = (r.bottom + gap) + 'px';
                 list.style.width = r.width + 'px';
-                const bottom = window.innerHeight - (r.bottom + gap);
-                list.style.maxHeight = Math.max(200, Math.min(bottom - 16, window.innerHeight * 0.8)) + 'px';
                 list.style.transform = 'scaleY(1)';
+                
+                // Calcular altura máxima disponible
+                const viewportBottom = window.innerHeight;
+                const maxHeight = viewportBottom - r.bottom - gap * 2;
+                list.style.maxHeight = Math.max(200, Math.min(maxHeight, window.innerHeight * 0.6)) + 'px';
             }catch(_){}
         }
 
-        display.addEventListener('click', ()=>requestAnimationFrame(placeList));
+        display.addEventListener('click', (e) => {
+            e.stopPropagation();
+            requestAnimationFrame(placeList);
+        });
         ['scroll','resize','orientationchange'].forEach(evt=>{
             window.addEventListener(evt, placeList, {passive:true});
         });
@@ -275,11 +287,18 @@
             }, {capture:true});
         });
 
-        document.addEventListener('click', (e)=>{
-            if(!picker.contains(e.target)) { toggle.checked = false; list.style.transform = ''; }
+        document.addEventListener('click', (e) => {
+            if (!picker.contains(e.target)) { 
+                toggle.checked = false; 
+                list.style.display = 'none';
+            }
         });
-        document.addEventListener('keydown', (e)=>{
-            if(e.key === 'Escape'){ toggle.checked = false; list.style.transform = ''; }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') { 
+                toggle.checked = false; 
+                list.style.display = 'none';
+            }
         });
     })();
 </script>
