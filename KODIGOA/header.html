@@ -418,6 +418,8 @@
           langSelect.value = savedLang;
           applyLang(savedLang);
           themeToggle.textContent = body.classList.contains('dark') ? '🌞' : '🌓';
+          // Notify other parts of the page about current theme
+          try { window.dispatchEvent(new CustomEvent('theme:changed', { detail: { theme: body.classList.contains('dark') ? 'dark' : 'light' } })); } catch(e) {}
         } catch (e) {}
 
         themeToggle.addEventListener('click', function() {
@@ -425,6 +427,8 @@
           themeToggle.setAttribute('aria-pressed', String(isDark));
           themeToggle.textContent = isDark ? '🌞' : '🌓';
           try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch (e) {}
+          // Emit theme change event so pages can react
+          try { window.dispatchEvent(new CustomEvent('theme:changed', { detail: { theme: isDark ? 'dark' : 'light' } })); } catch(e) {}
         });
 
         function openMenu() {

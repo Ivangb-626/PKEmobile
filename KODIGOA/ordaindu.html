@@ -3,87 +3,319 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Ordainketa</title>
+    <title id="titleEl">Ordainketa</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../Styles/General.css">
 </head>
 <body>
+    <script>
+      (function(){
+        function applyThemeFromStorage(){
+          try{
+            const t = localStorage.getItem('theme');
+            if(t === 'dark') document.body.classList.add('dark');
+            else document.body.classList.remove('dark');
+          }catch(e){}
+        }
+        // aplicar inmediatamente
+        applyThemeFromStorage();
+        // reaccionar al evento emitido por el header cuando cambia el tema
+        window.addEventListener('theme:changed', function(e){
+          try{
+            const theme = e && e.detail && e.detail.theme;
+            if(theme === 'dark') document.body.classList.add('dark');
+            else document.body.classList.remove('dark');
+          }catch(e){}
+        });
+        // sincronizar cambios desde otras pestañas
+        window.addEventListener('storage', function(e){
+          if(e.key === 'theme') applyThemeFromStorage();
+        });
+      })();
+    </script>
 
-<div class="container">
-    <h1>Ordainketa datuak</h1>
+    <div class="container">
+    <h1 id="pageTitle">Ordainketa datuak</h1>
 
-    <p>Aukeratu ordainketa modua:</p>
+    <p id="intro">Aukeratu ordainketa modua:</p>
+
+    <p id="amountInfo" style="font-weight:600;"></p>
 
     <div class="options" id="paymentOptions">
-        <button class="btn btn-primary option-btn" data-pay="card">Txartela</button>
-        <button class="btn btn-primary option-btn" data-pay="paypal">PayPal</button>
-        <button class="btn btn-primary option-btn" data-pay="crypto">Kriptomonetak</button>
+        <button class="btn btn-primary option-btn" data-pay="card" id="optCard">Txartela</button>
+        <button class="btn btn-primary option-btn" data-pay="paypal" id="optPaypal">PayPal</button>
+        <button class="btn btn-primary option-btn" data-pay="crypto" id="optCrypto">Kriptomonetak</button>
     </div>
 
     <div id="cardForm" class="payment-form hidden">
-        <label>Izen-abizenak:</label>
-        <input type="text" placeholder="Adib: Jon Garcia">
+        <label for="cardName" id="lblCardName">Izen-abizenak:</label>
+        <input id="cardName" type="text" placeholder="Adib: Jon Garcia">
 
-        <label>Txartel zenbakia:</label>
-        <input type="text" placeholder="1234 5678 9123 4567">
+        <label for="cardNumber" id="lblCardNumber">Txartel zenbakia:</label>
+        <input id="cardNumber" type="text" placeholder="1234 5678 9123 4567">
 
         <div class="inline">
             <div>
-                <label>Iraungitze data:</label>
-                <input type="text" placeholder="MM/YY">
+                <label for="expDate" id="lblExp">Iraungitze data:</label>
+                <input id="expDate" type="text" placeholder="MM/YY">
             </div>
             <div>
-                <label>CVV:</label>
-                <input type="text" placeholder="123">
+                <label for="cardCVV" id="lblCvv">CVV:</label>
+                <input id="cardCVV" type="text" placeholder="123">
             </div>
         </div>
     </div>
 
     <div id="paypalForm" class="payment-form hidden">
-        <label>PayPal emaila:</label>
-        <input type="email" placeholder="zureemaila@example.com">
+        <label for="paypalEmail" id="lblPaypal">PayPal emaila:</label>
+        <input id="paypalEmail" type="email" placeholder="zureemaila@example.com">
     </div>
 
     <div id="cryptoForm" class="payment-form hidden">
-        <p>Aukeratu kriptomoneta:</p>
-        <select>
-            <option>Bitcoin (BTC)</option>
-            <option>Ethereum (ETH)</option>
-            <option>USDT</option>
+        <p id="cryptoChoose">Aukeratu kriptomoneta:</p>
+        <label for="cryptoSelect" class="visually-hidden">Aukeratu kriptomoneta</label>
+        <select id="cryptoSelect">
+            <option id="optBTC">Bitcoin (BTC)</option>
+            <option id="optETH">Ethereum (ETH)</option>
+            <option id="optUSDT">USDT</option>
         </select>
 
-        <label>Zure wallet helbidea:</label>
-        <input type="text" placeholder="0x... edo bc1...">
+        <label for="cryptoWallet" id="lblWallet">Zure wallet helbidea:</label>
+        <input id="cryptoWallet" type="text" placeholder="0x... edo bc1...">
     </div>
 
     <button id="finishBtn" class="btn btn-primary confirm">Ordainketa osatu</button>
 </div>
 
 <script>
-    const payButtons = document.querySelectorAll("#paymentOptions .option-btn");
+// Robust handlers + translations
+(function(){
+    // helper to read amount from query
+    function getAmountFromQuery(){
+        try{
+            const p = new URLSearchParams(window.location.search);
+            const v = p.get('amount');
+            if(!v) return null;
+            const num = parseFloat(String(v).replace(',', '.'));
+            return isNaN(num) ? null : num;
+        }catch(e){ return null; }
+    }
 
+    // initial amount display
+    function showAmountIfAny(){
+        const amt = getAmountFromQuery();
+        const el = document.getElementById('amountInfo');
+        if(!el) return;
+        if(amt !== null){
+            el.textContent = window.__ordainduAmountText ? window.__ordainduAmountText.replace('{amount}', amt) : ('Aukeratutako zenbatekoa: ' + amt + '€');
+        } else {
+            el.textContent = '';
+        }
+    }
+
+    // event delegation for payment options
+    const amountContainer = document.getElementById('paymentOptions');
     const forms = {
-        card: document.getElementById("cardForm"),
-        paypal: document.getElementById("paypalForm"),
-        crypto: document.getElementById("cryptoForm")
+        card: document.getElementById('cardForm'),
+        paypal: document.getElementById('paypalForm'),
+        crypto: document.getElementById('cryptoForm')
     };
 
-    payButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-            payButtons.forEach(b => b.classList.remove("selected"));
-            btn.classList.add("selected");
-
-            Object.values(forms).forEach(f => f.classList.add("hidden"));
-            forms[btn.dataset.pay].classList.remove("hidden");
+    if(amountContainer){
+        amountContainer.addEventListener('click', function(e){
+            const btn = e.target.closest('.option-btn');
+            if(!btn) return;
+            amountContainer.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));
+            btn.classList.add('selected');
+            Object.values(forms).forEach(f=>f && f.classList.add('hidden'));
+            const key = btn.dataset.pay;
+            if(key && forms[key]) forms[key].classList.remove('hidden');
         });
+    }
+
+    // finish button behaviour
+    const finishBtn = document.getElementById('finishBtn');
+    finishBtn && finishBtn.addEventListener('click', function(){
+        const successMsg = window.__ordainduSuccessMsg || 'Ordainketa prozesatu da! Eskerrik asko zure ekarpenagatik.';
+        alert(successMsg);
+        window.location.href = '../index.html';
     });
 
-    document.getElementById("finishBtn").addEventListener("click", () => {
-        alert("Ordainketa prozesatu da! Eskerrik asko zure ekarpenagatik.");
-        window.location.href = "../index.html";
-    });
+    // --- Translations ---
+    const dict = {
+        eu: {
+            pageTitle: 'Ordainketa',
+            intro: 'Aukeratu ordainketa modua:',
+            amountInfo: 'Aukeratutako zenbatekoa: {amount}€',
+            opt: { card: 'Txartela', paypal: 'PayPal', crypto: 'Kriptomonetak' },
+            card: { name: 'Izen-abizenak:', name_placeholder: 'Adib: Jon Garcia', number: 'Txartel zenbakia:', number_placeholder: '1234 5678 9123 4567', exp: 'Iraungitze data:', exp_placeholder: 'MM/YY', cvv: 'CVV:', cvv_placeholder: '123' },
+            paypal: { label: 'PayPal emaila:', placeholder: 'zureemaila@example.com' },
+            crypto: { choose: 'Aukeratu kriptomoneta:', optBTC: 'Bitcoin (BTC)', optETH: 'Ethereum (ETH)', optUSDT: 'USDT', wallet: 'Zure wallet helbidea:', wallet_placeholder: '0x... edo bc1...' },
+            finishBtn: 'Ordainketa osatu',
+            success: 'Ordainketa prozesatu da! Eskerrik asko zure ekarpenagatik.'
+        },
+        es: {
+            pageTitle: 'Pago',
+            intro: 'Elige método de pago:',
+            amountInfo: 'Cantidad elegida: {amount}€',
+            opt: { card: 'Tarjeta', paypal: 'PayPal', crypto: 'Criptomonedas' },
+            card: { name: 'Nombre y apellidos:', name_placeholder: 'Ej: Jon Garcia', number: 'Número de tarjeta:', number_placeholder: '1234 5678 9123 4567', exp: 'Fecha de caducidad:', exp_placeholder: 'MM/YY', cvv: 'CVV:', cvv_placeholder: '123' },
+            paypal: { label: 'Email PayPal:', placeholder: 'tucorreo@example.com' },
+            crypto: { choose: 'Elige criptomoneda:', optBTC: 'Bitcoin (BTC)', optETH: 'Ethereum (ETH)', optUSDT: 'USDT', wallet: 'Tu dirección wallet:', wallet_placeholder: '0x... o bc1...' },
+            finishBtn: 'Completar pago',
+            success: '¡Pago procesado! Gracias por tu aportación.'
+        },
+        en: {
+            pageTitle: 'Payment',
+            intro: 'Choose payment method:',
+            amountInfo: 'Selected amount: {amount}€',
+            opt: { card: 'Card', paypal: 'PayPal', crypto: 'Cryptocurrencies' },
+            card: { name: 'Full name:', name_placeholder: 'Eg: Jon Garcia', number: 'Card number:', number_placeholder: '1234 5678 9123 4567', exp: 'Expiry date:', exp_placeholder: 'MM/YY', cvv: 'CVV:', cvv_placeholder: '123' },
+            paypal: { label: 'PayPal email:', placeholder: 'your@email.com' },
+            crypto: { choose: 'Choose cryptocurrency:', optBTC: 'Bitcoin (BTC)', optETH: 'Ethereum (ETH)', optUSDT: 'USDT', wallet: 'Your wallet address:', wallet_placeholder: '0x... or bc1...' },
+            finishBtn: 'Complete payment',
+            success: 'Payment processed! Thank you for your contribution.'
+        },
+        sw: {
+            pageTitle: 'Malipo',
+            intro: 'Chagua njia ya malipo:',
+            amountInfo: 'Kiasi kilicho chaguliwa: {amount}€',
+            opt: { card: 'Kadi', paypal: 'PayPal', crypto: 'Sarafu za kripto' },
+            card: { name: 'Jina kamili:', name_placeholder: 'Mf: Jon Garcia', number: 'Nambari ya kadi:', number_placeholder: '1234 5678 9123 4567', exp: 'Tarehe ya mwisho:', exp_placeholder: 'MM/YY', cvv: 'CVV:', cvv_placeholder: '123' },
+            paypal: { label: 'Email ya PayPal:', placeholder: 'barua@example.com' },
+            crypto: { choose: 'Chagua kriptomoneta:', optBTC: 'Bitcoin (BTC)', optETH: 'Ethereum (ETH)', optUSDT: 'USDT', wallet: 'Anwani ya mkoba wako:', wallet_placeholder: '0x... au bc1...' },
+            finishBtn: 'Kamilisha malipo',
+            success: 'Malipo yamefanikiwa! Asante kwa mchango wako.'
+        },
+        eo: {
+            pageTitle: 'Pago',
+            intro: 'Elektu pagmanierojn:',
+            amountInfo: 'Elektita sumo: {amount}€',
+            opt: { card: 'Karto', paypal: 'PayPal', crypto: 'Kriptovalutoj' },
+            card: { name: 'Plena nomo:', name_placeholder: 'Eg: Jon Garcia', number: 'Kartnumero:', number_placeholder: '1234 5678 9123 4567', exp: 'Eksvalidiĝodato:', exp_placeholder: 'MM/YY', cvv: 'CVV:', cvv_placeholder: '123' },
+            paypal: { label: 'Retpoŝto PayPal:', placeholder: 'via@email.com' },
+            crypto: { choose: 'Elektu kriptovaluton:', optBTC: 'Bitcoin (BTC)', optETH: 'Ethereum (ETH)', optUSDT: 'USDT', wallet: 'Via wallet-adreso:', wallet_placeholder: '0x... aŭ bc1...' },
+            finishBtn: 'Kompletigi pagos',
+            success: 'Pago procesita! Dankon pro via kontribuo.'
+        },
+        yue: {
+            pageTitle: '付款',
+            intro: '選擇付款方式：',
+            amountInfo: '已選金額：{amount}€',
+            opt: { card: '卡', paypal: 'PayPal', crypto: '加密貨幣' },
+            card: { name: '姓名：', name_placeholder: '例如：Jon Garcia', number: '卡號：', number_placeholder: '1234 5678 9123 4567', exp: '到期日：', exp_placeholder: 'MM/YY', cvv: 'CVV：', cvv_placeholder: '123' },
+            paypal: { label: 'PayPal 電郵：', placeholder: '你的電郵@example.com' },
+            crypto: { choose: '選擇加密貨幣：', optBTC: 'Bitcoin (BTC)', optETH: 'Ethereum (ETH)', optUSDT: 'USDT', wallet: '你的錢包地址：', wallet_placeholder: '0x... 或 bc1...' },
+            finishBtn: '完成付款',
+            success: '付款已處理！感謝你的支持。'
+        },
+        ru: {
+            pageTitle: 'Оплата',
+            intro: 'Выберите способ оплаты:',
+            amountInfo: 'Выбранная сумма: {amount}€',
+            opt: { card: 'Карта', paypal: 'PayPal', crypto: 'Криптовалюты' },
+            card: { name: 'ФИО:', name_placeholder: 'Напр.: Jon Garcia', number: 'Номер карты:', number_placeholder: '1234 5678 9123 4567', exp: 'Дата истечения:', exp_placeholder: 'MM/YY', cvv: 'CVV:', cvv_placeholder: '123' },
+            paypal: { label: 'Email PayPal:', placeholder: 'ваш@почта.com' },
+            crypto: { choose: 'Выберите криптовалюту:', optBTC: 'Bitcoin (BTC)', optETH: 'Ethereum (ETH)', optUSDT: 'USDT', wallet: 'Адрес вашего кошелька:', wallet_placeholder: '0x... или bc1...' },
+            finishBtn: 'Завершить оплату',
+            success: 'Платеж обработан! Спасибо за ваш вклад.'
+        },
+        it: {
+            pageTitle: 'Pagamento',
+            intro: 'Scegli il metodo di pagamento:',
+            amountInfo: 'Importo selezionato: {amount}€',
+            opt: { card: 'Carta', paypal: 'PayPal', crypto: 'Criptovalute' },
+            card: { name: 'Nome e cognome:', name_placeholder: 'Es: Jon Garcia', number: 'Numero carta:', number_placeholder: '1234 5678 9123 4567', exp: 'Data scadenza:', exp_placeholder: 'MM/YY', cvv: 'CVV:', cvv_placeholder: '123' },
+            paypal: { label: 'Email PayPal:', placeholder: 'tuo@email.com' },
+            crypto: { choose: 'Scegli criptovaluta:', optBTC: 'Bitcoin (BTC)', optETH: 'Ethereum (ETH)', optUSDT: 'USDT', wallet: 'Il tuo indirizzo wallet:', wallet_placeholder: '0x... o bc1...' },
+            finishBtn: 'Completa pagamento',
+            success: 'Pagamento elaborato! Grazie per il tuo contributo.'
+        },
+        arc: {
+            pageTitle: 'ܦܠܛܐ',
+            intro: 'ܒܚܪ ܐܝܕܐ ܕܦܠܛܐ:',
+            amountInfo: 'ܡܕܥܬܐ ܕܒܚܪܬ: {amount}€',
+            opt: { card: 'ܟܪܕܐ', paypal: 'PayPal', crypto: 'ܟܪܝܛܘ' },
+            card: { name: 'ܫܡܐ ܘܫܡܬܐ:', name_placeholder: 'ܕܝܡܐ: Jon Garcia', number: 'ܡܣܦܪܐ ܕܟܪܕܐ:', number_placeholder: '1234 5678 9123 4567', exp: 'ܥܕܬܐ ܕܢܛܘܪܐ:', exp_placeholder: 'MM/YY', cvv: 'CVV:', cvv_placeholder: '123' },
+            paypal: { label: 'PayPal ܐܝܡܝܠ:', placeholder: 'your@email.com' },
+            crypto: { choose: 'ܒܚܪ ܟܪܝܛܘ:', optBTC: 'Bitcoin (BTC)', optETH: 'Ethereum (ETH)', optUSDT: 'USDT', wallet: 'ܐܕܪܣܐ ܕܪܝܠܬܐ:', wallet_placeholder: '0x... ܐܘ bc1...' },
+            finishBtn: 'ܠܟܠܝܢ ܦܠܛܐ',
+            success: 'ܦܠܛܐ ܐܪܒܝܢ! ܬܘܕܝܬܐ'
+        }
+    };
+
+    function getLang(){ return localStorage.getItem('lang') || 'eu'; }
+
+    function applyTranslations(){
+        const lang = getLang();
+        const map = dict[lang] || dict.eu;
+        // title
+        const titleEl = document.getElementById('titleEl'); if(titleEl && map.pageTitle) titleEl.textContent = map.pageTitle;
+        const pageTitle = document.getElementById('pageTitle'); if(pageTitle && map.pageTitle) pageTitle.textContent = map.pageTitle + ' datuak' || pageTitle.textContent;
+        const intro = document.getElementById('intro'); if(intro && map.intro) intro.textContent = map.intro;
+
+        // amount info template
+        window.__ordainduAmountText = map.amountInfo || window.__ordainduAmountText;
+        showAmountIfAny();
+
+        // payment options
+        const optCard = document.getElementById('optCard'); if(optCard && map.opt && map.opt.card) optCard.textContent = map.opt.card;
+        const optPaypal = document.getElementById('optPaypal'); if(optPaypal && map.opt && map.opt.paypal) optPaypal.textContent = map.opt.paypal;
+        const optCrypto = document.getElementById('optCrypto'); if(optCrypto && map.opt && map.opt.crypto) optCrypto.textContent = map.opt.crypto;
+
+        // card form
+        if(map.card){
+            const lblCardName = document.getElementById('lblCardName'); if(lblCardName) lblCardName.textContent = map.card.name;
+            const cardName = document.getElementById('cardName'); if(cardName) cardName.placeholder = map.card.name_placeholder || cardName.placeholder;
+            const lblCardNumber = document.getElementById('lblCardNumber'); if(lblCardNumber) lblCardNumber.textContent = map.card.number;
+            const cardNumber = document.getElementById('cardNumber'); if(cardNumber) cardNumber.placeholder = map.card.number_placeholder || cardNumber.placeholder;
+            const lblExp = document.getElementById('lblExp'); if(lblExp) lblExp.textContent = map.card.exp;
+            const expDate = document.getElementById('expDate'); if(expDate) expDate.placeholder = map.card.exp_placeholder || expDate.placeholder;
+            const lblCvv = document.getElementById('lblCvv'); if(lblCvv) lblCvv.textContent = map.card.cvv;
+            const cardCvv = document.getElementById('cardCVV'); if(cardCvv) cardCvv.placeholder = map.card.cvv_placeholder || cardCvv.placeholder;
+        }
+
+        // paypal
+        if(map.paypal){
+            const lblPaypal = document.getElementById('lblPaypal'); if(lblPaypal) lblPaypal.textContent = map.paypal.label;
+            const paypalEmail = document.getElementById('paypalEmail'); if(paypalEmail) paypalEmail.placeholder = map.paypal.placeholder || paypalEmail.placeholder;
+        }
+
+        // crypto
+        if(map.crypto){
+            const cryptoChoose = document.getElementById('cryptoChoose'); if(cryptoChoose) cryptoChoose.textContent = map.crypto.choose;
+            const optBTC = document.getElementById('optBTC'); if(optBTC) optBTC.textContent = map.crypto.optBTC;
+            const optETH = document.getElementById('optETH'); if(optETH) optETH.textContent = map.crypto.optETH;
+            const optUSDT = document.getElementById('optUSDT'); if(optUSDT) optUSDT.textContent = map.crypto.optUSDT;
+            const lblWallet = document.getElementById('lblWallet'); if(lblWallet) lblWallet.textContent = map.crypto.wallet;
+            const cryptoWallet = document.getElementById('cryptoWallet'); if(cryptoWallet) cryptoWallet.placeholder = map.crypto.wallet_placeholder || cryptoWallet.placeholder;
+        }
+
+        // finish button and success message
+        const finish = document.getElementById('finishBtn'); if(finish && map.finishBtn) finish.textContent = map.finishBtn;
+        window.__ordainduSuccessMsg = map.success || window.__ordainduSuccessMsg;
+    }
+
+    // Expose for other scripts
+    window.applyOrdainduTranslations = applyTranslations;
+
+    // react to external changes
+    window.addEventListener('storage', function(e){ if(e.key === 'lang') applyTranslations(); });
+    window.addEventListener('langChanged', applyTranslations);
+    window.addEventListener('lang:changed', applyTranslations);
+
+    let lastLang = getLang();
+    const pollInterval = setInterval(function(){ const current = getLang(); if(current !== lastLang){ lastLang = current; applyTranslations(); } }, 300);
+
+    // initial
+    document.addEventListener('DOMContentLoaded', function(){ showAmountIfAny(); applyTranslations(); });
+
+    // cleanup helper
+    window.__cleanupOrdainduLang = function(){ clearInterval(pollInterval); window.removeEventListener('langChanged', applyTranslations); window.removeEventListener('lang:changed', applyTranslations); window.removeEventListener('storage', applyTranslations); };
+
+})();
 </script>
 
 

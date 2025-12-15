@@ -12,7 +12,7 @@
 <body>
     <div id="header-root"></div>
 
-    <main class="donazioak" class="container my-4">
+    <main class="donazioak container my-4">
         <h1>Donazioak</h1>
 
         <p>
@@ -32,7 +32,8 @@
         </div>
 
         <div id="customAmountContainer" class="hidden">
-            <input min=0 type="number" id="customAmount" placeholder="Idatzi zenbatekoa (€)">
+            <label for="customAmount" class="visually-hidden">Zenbatekoa (€)</label>
+            <input min="0" type="number" id="customAmount" placeholder="Idatzi zenbatekoa (€)" aria-label="Zenbatekoa">
         </div>
 
         <hr>
@@ -41,27 +42,242 @@
 
 
         <script>
-            const amountButtons = document.querySelectorAll("#amountOptions .option-btn");
-            const customAmountContainer = document.getElementById("customAmountContainer");
+(function(){
+    // Robust event delegation for amount buttons and confirm action
+    const amountContainer = document.getElementById('amountOptions');
+    const customAmountContainer = document.getElementById('customAmountContainer');
+    const confirmBtn = document.getElementById('confirmBtn');
 
-            amountButtons.forEach(btn => {
-                btn.addEventListener("click", () => {
-                    amountButtons.forEach(b => b.classList.remove("selected"));
-                    btn.classList.add("selected");
+    if (amountContainer) {
+        amountContainer.addEventListener('click', function(e){
+            const btn = e.target.closest('.option-btn');
+            if(!btn) return;
+            // toggle selected class
+            amountContainer.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
 
-                    if (btn.dataset.value === "custom") {
-                        customAmountContainer.classList.remove("hidden");
-                    } else {
-                        customAmountContainer.classList.add("hidden");
-                    }
-                });
-            });
+            // show/hide custom input
+            if(btn.dataset && btn.dataset.value === 'custom'){
+                customAmountContainer && customAmountContainer.classList.remove('hidden');
+            } else {
+                customAmountContainer && customAmountContainer.classList.add('hidden');
+            }
+        });
+    }
 
+    if(confirmBtn){
+        confirmBtn.addEventListener('click', function(){
+            // determine selected amount
+            let amount = null;
+            const selected = amountContainer ? amountContainer.querySelector('.option-btn.selected') : null;
+            if(selected){
+                if(selected.dataset && selected.dataset.value === 'custom'){
+                    const input = document.getElementById('customAmount');
+                    if(input && input.value) amount = parseFloat(input.value.replace(',', '.'));
+                } else {
+                    // try to parse number from button text
+                    const txt = selected.textContent || '';
+                    const m = txt.match(/(\d+(?:[.,]\d+)?)/);
+                    if(m) amount = parseFloat(m[1].replace(',', '.'));
+                }
+            }
 
-            document.getElementById("confirmBtn").addEventListener("click", () => {
-                window.location.href = "ordaindu.html";
-            });
-        </script>
+            // navigate to payment page; append amount as query param if available
+            let url = 'ordaindu.html';
+            if(amount !== null && !isNaN(amount)) url += '?amount=' + encodeURIComponent(amount);
+            window.location.href = url;
+        });
+    }
+})();
+</script>
+
+    <script>
+    (function(){
+        const dict = {
+            eu: {
+                pageTitle: "Donazioak",
+                h1: "Donazioak",
+                p1: "Zure laguntza oso garrantzitsua da! Donazioekin, gure plataformaren garapena, hobekuntzak eta etorkizuneko zerbitzuak finantzatzeko aukera dugu.",
+                p2: "Egin nahi duzun ekarpena aukeratu, eta eskerrik asko gure proiektuari laguntzeagatik!",
+                option_5: "5€ Donatu",
+                option_10: "10€ Donatu",
+                option_20: "20€ Donatu",
+                option_custom: "Beste Kantitatea",
+                custom_placeholder: "Idatzi zenbatekoa (€)",
+                confirmBtn: "Berretsi eta jarraitu",
+                info_h3: "Informazio gehigarria",
+                info_p1: "Donazio guztiak plataformaren hobekuntzarako bideratuko dira.",
+                info_p2: "Zalantzarik baduzu, jarri gurekin harremanetan."
+            },
+            es: {
+                pageTitle: "Donaciones",
+                h1: "Donaciones",
+                p1: "¡Tu ayuda es muy importante! Con las donaciones podemos financiar el desarrollo, las mejoras y los servicios futuros de la plataforma.",
+                p2: "Elige la aportación que quieras realizar, ¡gracias por apoyar nuestro proyecto!",
+                option_5: "Donar 5€",
+                option_10: "Donar 10€",
+                option_20: "Donar 20€",
+                option_custom: "Otra cantidad",
+                custom_placeholder: "Escribe la cantidad (€)",
+                confirmBtn: "Confirmar y continuar",
+                info_h3: "Información adicional",
+                info_p1: "Todas las donaciones se destinarán a mejorar la plataforma.",
+                info_p2: "Si tienes dudas, contáctanos."
+            },
+            en: {
+                pageTitle: "Donations",
+                h1: "Donations",
+                p1: "Your support is very important! With donations we can fund the development, improvements and future services of the platform.",
+                p2: "Choose the contribution you'd like to make — thank you for supporting our project!",
+                option_5: "Donate €5",
+                option_10: "Donate €10",
+                option_20: "Donate €20",
+                option_custom: "Other amount",
+                custom_placeholder: "Enter amount (€)",
+                confirmBtn: "Confirm and continue",
+                info_h3: "Additional information",
+                info_p1: "All donations will be used to improve the platform.",
+                info_p2: "If you have questions, contact us."
+            },
+            sw: {
+                pageTitle: "Michango",
+                h1: "Michango",
+                p1: "Msaada wako ni muhimu sana! Kwa michango tunaweza kufadhili maendeleo na huduma za jukwaa.",
+                p2: "Chagua kiasi unachotaka kuchangia, asante kwa kusaidia mradi wetu!",
+                option_5: "Changia 5€",
+                option_10: "Changia 10€",
+                option_20: "Changia 20€",
+                option_custom: "Kiasi Kingine",
+                custom_placeholder: "Weka kiasi (€)",
+                confirmBtn: "Thibitisha na endelea",
+                info_h3: "Taarifa za ziada",
+                info_p1: "Michango yote itatumika kuboresha jukwaa.",
+                info_p2: "Kama una maswali, wasiliana nasi."
+            },
+            eo: {
+                pageTitle: "Donacoj",
+                h1: "Donacoj",
+                p1: "Via subteno estas tre grava! Per donacoj ni povas financi la disvolviĝon kaj plibonigojn de la platformo.",
+                p2: "Elektu la donacon, dankon pro subteni nian projekton!",
+                option_5: "Donaci 5€",
+                option_10: "Donaci 10€",
+                option_20: "Donaci 20€",
+                option_custom: "Alia sumo",
+                custom_placeholder: "Enmeti sumon (€)",
+                confirmBtn: "Konfirmi kaj daŭrigi",
+                info_h3: "Pliaj informoj",
+                info_p1: "Ĉiuj donacoj estos uzataj por plibonigi la platformon.",
+                info_p2: "Se vi havas demandojn, kontaktu nin."
+            },
+            yue: {
+                pageTitle: "捐款",
+                h1: "捐款",
+                p1: "你的支持非常重要！透過捐款，我們可以資助平台的開發、改進和未來服務。",
+                p2: "選擇你想捐贈的金額，感謝你支持我們的項目！",
+                option_5: "捐贈 €5",
+                option_10: "捐贈 €10",
+                option_20: "捐贈 €20",
+                option_custom: "其他金額",
+                custom_placeholder: "輸入金額 (€)",
+                confirmBtn: "確認並繼續",
+                info_h3: "其他資訊",
+                info_p1: "所有捐款將用於改善平台。",
+                info_p2: "如有疑問，請與我們聯絡。"
+            },
+            ru: {
+                pageTitle: "Пожертвования",
+                h1: "Пожертвования",
+                p1: "Ваша поддержка очень важна! Благодаря пожертвованиям мы можем финансировать разработку, улучшения и будущие сервисы платформы.",
+                p2: "Выберите сумму, которую хотите пожертвовать — спасибо за поддержку проекта!",
+                option_5: "Пожертвовать 5€",
+                option_10: "Пожертвовать 10€",
+                option_20: "Пожертвовать 20€",
+                option_custom: "Другая сумма",
+                custom_placeholder: "Введите сумму (€)",
+                confirmBtn: "Подтвердить и продолжить",
+                info_h3: "Дополнительная информация",
+                info_p1: "Все пожертвования будут использованы для улучшения платформы.",
+                info_p2: "Если у вас есть вопросы, свяжитесь с нами."
+            },
+            it: {
+                pageTitle: "Donazioni",
+                h1: "Donazioni",
+                p1: "Il tuo aiuto è molto importante! Con le donazioni possiamo finanziare lo sviluppo, i miglioramenti e i servizi futuri della piattaforma.",
+                p2: "Scegli l'importo che desideri donare — grazie per supportare il nostro progetto!",
+                option_5: "Dona 5€",
+                option_10: "Dona 10€",
+                option_20: "Dona 20€",
+                option_custom: "Altro importo",
+                custom_placeholder: "Inserisci importo (€)",
+                confirmBtn: "Conferma e continua",
+                info_h3: "Informazioni aggiuntive",
+                info_p1: "Tutte le donazioni saranno utilizzate per migliorare la piattaforma.",
+                info_p2: "Se hai domande, contattaci."
+            },
+            arc: {
+                pageTitle: "ܡܘܗܒ̈ܐ",
+                h1: "ܡܘܗܒ̈ܐ",
+                p1: "ܚܕܘܬܐ ܕܡܘܗܒ̈ܐ ܡܗܡܬܐ! ܒܡܘܗܒ̈ܐ ܢܚܘܕ ܠܛܘܪܐ ܕܢܦܩܝܬܐ ܘܠܒܪܘܬܐ ܕܡܕܒܪܬܐ.",
+                p2: "ܒܚܝܠܐ ܒܚܘܒܝܬܐ ܝܢܘܚܟܘܢ ܩܡܝܬܐ - ܫܘܟܪܢܐ ܥܠ ܬܪܘܡܬܟܘܢ!",
+                option_5: "ܬܬܪܡ 5€",
+                option_10: "ܬܬܪܡ 10€",
+                option_20: "ܬܬܪܡ 20€",
+                option_custom: "ܩܡܐ ܐܚܪܬܐ",
+                custom_placeholder: "ܬܠܟܘܢ ܩܡܐ (€)",
+                confirmBtn: "ܐܡܪ ܘܢܬܠܝܢ",
+                info_h3: "ܡܕܥܬܐ ܩܕܡܝܬܐ",
+                info_p1: "ܟܠ ܡܘܗܒ̈ܐ ܢܬܡܫܠܘܢ ܠܛܘܒܥܐ ܕܡܕܒܪܬܐ.",
+                info_p2: "ܐܢ ܝܬܐ ܫܐܠܐܐ، ܐܬܪܦܘܢ ܡܢܢܘܢ."
+            }
+        };
+
+        function getLang(){ return localStorage.getItem('lang') || 'eu'; }
+
+        function applyTranslations(){
+            const lang = getLang();
+            const map = dict[lang] || dict.eu;
+            if(map.pageTitle) document.title = map.pageTitle;
+            const main = document.querySelector('main.donazioak');
+            if(!main) return;
+            const h1 = main.querySelector('h1'); if(h1) h1.textContent = map.h1 || h1.textContent;
+            const ps = main.querySelectorAll('p');
+            if(ps[0]) ps[0].textContent = map.p1 || ps[0].textContent;
+            if(ps[1]) ps[1].textContent = map.p2 || ps[1].textContent;
+
+            // options buttons
+            const opts = main.querySelectorAll('#amountOptions .option-btn');
+            if(opts[0]) opts[0].textContent = map.option_5 || opts[0].textContent;
+            if(opts[1]) opts[1].textContent = map.option_10 || opts[1].textContent;
+            if(opts[2]) opts[2].textContent = map.option_20 || opts[2].textContent;
+            if(opts[3]) opts[3].textContent = map.option_custom || opts[3].textContent;
+
+            // custom placeholder
+            const custom = document.getElementById('customAmount');
+            if(custom && map.custom_placeholder) custom.placeholder = map.custom_placeholder;
+
+            // confirm button
+            const confirm = document.getElementById('confirmBtn');
+            if(confirm && map.confirmBtn) confirm.textContent = map.confirmBtn;
+
+            // info box
+            const infoH3 = main.querySelector('.donazioa-info-box h3');
+            const infoPs = main.querySelectorAll('.donazioa-info-box p');
+            if(infoH3 && map.info_h3) infoH3.textContent = map.info_h3;
+            if(infoPs[0] && map.info_p1) infoPs[0].textContent = map.info_p1;
+            if(infoPs[1] && map.info_p2) infoPs[1].textContent = map.info_p2;
+        }
+
+        window.applyDiruDonazioakTranslations = applyTranslations;
+        window.addEventListener('storage', function(e){ if(e.key === 'lang') applyTranslations(); });
+        window.addEventListener('langChanged', applyTranslations);
+        window.addEventListener('lang:changed', applyTranslations);
+
+        let lastLang = getLang();
+        const pollInterval = setInterval(function(){ const current = getLang(); if(current !== lastLang){ lastLang = current; applyTranslations(); } }, 300);
+        document.addEventListener('DOMContentLoaded', applyTranslations);
+        window.__cleanupDiruDonazioakLang = function(){ clearInterval(pollInterval); window.removeEventListener('langChanged', applyTranslations); window.removeEventListener('lang:changed', applyTranslations); window.removeEventListener('storage', applyTranslations); };
+    })();
+    </script>
 
         <div class="donazioa-info-box">
             <h3>Informazio gehigarria</h3>

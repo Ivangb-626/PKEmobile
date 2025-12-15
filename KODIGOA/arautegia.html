@@ -8,52 +8,175 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../Styles/General.css">
+    <style>
+      /* asegurar que los enlaces dentro de .oharra-box sean azules y visibles en ambos temas */
+      .question-container .oharra-box a {
+        color: var(--primary, #2563eb) !important;
+        text-decoration: underline !important;
+        text-decoration-thickness: auto !important;
+      }
+      .question-container .oharra-box a:visited {
+        color: var(--primary, #2563eb) !important;
+      }
+      .question-container .oharra-box a:hover,
+      .question-container .oharra-box a:focus {
+        opacity: 0.9;
+        text-decoration-thickness: 2px !important;
+      }
+      /* si hay tema oscuro, usar la misma variable (debe estar definida en CSS global) */
+      body.dark .question-container .oharra-box a {
+        color: var(--primary, #3b82f6) !important;
+      }
+    </style>
 </head>
 <body>
     <div id="header-root"></div>
 
     <div class="content container my-4">
         <div class="question-container">
-            <h2 data-i18n="h_main_title">Araudiaren kontsulta</h2>
-            <p data-i18n="p_intro"><strong>GrAL</strong> ikasleek graduko ikaskuntzan lortutako ezagutzak eta trebetasunak erakusteko egiten duten azken lana da, derrigorrezkoa EHUko gradu guzti</p>
+            <div class="accordion" id="arautegiaAccordion">
 
-            <h2 data-i18n="h_baldintzak">Baldintzak eta matrikula</h2>
-            <p data-i18n="p_baldintzak">GrAL matrikulatzeko, ikasleak ikasketa planelko kreditu guztiak gaindituta eduki behar ditu, GRALari dagozkionak izan ezik, eta ikastegiak ezarritakio baldintzak bete.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingIntro">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIntro" aria-expanded="true" aria-controls="collapseIntro" data-i18n="h_main_title">
+                        </button>
+                    </h2>
+                    <div id="collapseIntro" class="accordion-collapse collapse show" aria-labelledby="headingIntro" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_intro"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 data-i18n="h_zuzendaria">Zuzendaria eta tutoretza</h2>
-            <p data-i18n="p_zuzendaria">Lan bakoitzak irakasle bat zuzendari bezala izango du, ikasleari orientazioa emango diona eta lanaren jarraipena egingo duena.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingBaldintzak">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBaldintzak" aria-expanded="false" aria-controls="collapseBaldintzak" data-i18n="h_baldintzak">
+                        </button>
+                    </h2>
+                    <div id="collapseBaldintzak" class="accordion-collapse collapse" aria-labelledby="headingBaldintzak" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_baldintzak"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 data-i18n="h_formatua">Lanaren edukia eta formatua</h2>
-            <p data-i18n="p_formatua">Memoriak egitura akademiko argia izan behar du (izenburua, helburuak, metodologia, emaitzak, ondorioak, bibliografia), eta ikastegiak adierazitako formatuari jarraitu behar dio.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingZuzendaria">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseZuzendaria" aria-expanded="false" aria-controls="collapseZuzendaria" data-i18n="h_zuzendaria">
+                        </button>
+                    </h2>
+                    <div id="collapseZuzendaria" class="accordion-collapse collapse" aria-labelledby="headingZuzendaria" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_zuzendaria"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 data-i18n="h_jabetza">Jabetza Intelektuala</h2>
-            <p data-i18n="p_jabetza">Gradu Amaierako Lana jabetza intelektualaren legeak babesten du. Eskubide horien titularra, oro har, lana egin duen ikaslea da eta ez dira plagioak onartzen.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFormatua">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFormatua" aria-expanded="false" aria-controls="collapseFormatua" data-i18n="h_formatua">
+                        </button>
+                    </h2>
+                    <div id="collapseFormatua" class="accordion-collapse collapse" aria-labelledby="headingFormatua" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_formatua"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 data-i18n="h_kanpoko">Kanpoko erakundeekin lankidetzan</h2>
-            <p data-i18n="p_kanpoko1">GRALa unibertsitatetik kanpoko erakunde batekin egin daiteke, betiere lankidetza-hitzarmena sinatuta.</p>
-            <p data-i18n="p_kanpoko2">Hitzarmenak arautegiari jarraituz egingo dira; ereduak erabil daitezke eta ikastegiak sinatuko ditu.</p>
-            <p data-i18n="p_kanpoko3">Kanpoko erakundeetan eginez gero, konfidentzialtasun-mugak eta datuen anonimizazioa aurrez zehaztu eta bermatu behar dira.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingJabetza">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseJabetza" aria-expanded="false" aria-controls="collapseJabetza" data-i18n="h_jabetza">
+                        </button>
+                    </h2>
+                    <div id="collapseJabetza" class="accordion-collapse collapse" aria-labelledby="headingJabetza" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_jabetza"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 data-i18n="h_etikoak">Ondorio etikoak dituzten GRALak</h2>
-            <p data-i18n="p_etikoak1">Gizakiekin, animaliekin edo datu/laginekin lan egiten duten GRALetan, tutoreak ikaslea gidatuko du ondorio etikoak baloratzen eta UPV/EHUko Etika Batzordearen jarraibideak betetzen.</p>
-            <p data-i18n="p_etikoak2">Kasu horietan, ikasleak beharrezko dokumentuak aurkeztu beharko ditu eta tutoreak arreta bereziz gainbegiratuko du; Etika Zerbitzuak prozedurak etengabe hobetzen jarraituko du.</p>
-            <p data-i18n="p_etikoak3">Beste jarduera akademikoetatik datozen datuak erabiltzen direnean, anonimotasuna bermatu behar da eta iturria zehaztu, nahiz eta dokumentu gehigarririk ez aurkeztu; epaimahaiak ere ebaluatuko du jarraibide etikoak bete diren.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingKanpoko">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseKanpoko" aria-expanded="false" aria-controls="collapseKanpoko" data-i18n="h_kanpoko">
+                        </button>
+                    </h2>
+                    <div id="collapseKanpoko" class="accordion-collapse collapse" aria-labelledby="headingKanpoko" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_kanpoko1"></p>
+                            <p data-i18n="p_kanpoko2"></p>
+                            <p data-i18n="p_kanpoko3"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 data-i18n="h_deialdiak">Deialdiak eta defentsa</h2>
-            <p data-i18n="p_deialdiak">Urte akademikoan deialdi batzuk daude, ikasleak memoria aurkeztu eta defentsa publikoa egin behar du, epe eta baldintza zehatzetan. Aurrerako zeaztuko dugu zeintzuk diren epeak.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEtikoak">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEtikoak" aria-expanded="false" aria-controls="collapseEtikoak" data-i18n="h_etikoak">
+                        </button>
+                    </h2>
+                    <div id="collapseEtikoak" class="accordion-collapse collapse" aria-labelledby="headingEtikoak" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_etikoak1"></p>
+                            <p data-i18n="p_etikoak2"></p>
+                            <p data-i18n="p_etikoak3"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 data-i18n="h_ebaluazioa">Ebaluazioa</h2>
-            <p data-i18n="p_ebaluazioa1">Epaimahaiak kalifikazioa erabakiko du Gidaliburuaren irizpideetan oinarrituta: lanaren kalitatea, originaltasuna eta ikasleak defentsan erakutsitako gaitasuna kontuan hartuta. 0-10 eskalan, beharrezkoa bada txosten arrazoitua helaraziko zaio ikasleari eta zuzendariari.</p>
-            <p data-i18n="p_ebaluazioa2">9,0 edo gehiagoko nota duten ikasleek «ohorezko matrikula» jaso dezakete, gehienez ere defentsan kalifikaziorik onena lortu dutenen %5ak.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingDeialdiak">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDeialdiak" aria-expanded="false" aria-controls="collapseDeialdiak" data-i18n="h_deialdiak">
+                        </button>
+                    </h2>
+                    <div id="collapseDeialdiak" class="accordion-collapse collapse" aria-labelledby="headingDeialdiak" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_deialdiak"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 data-i18n="h_kalifikazioa">Kalifikazioa</h2>
-            <p data-i18n="p_kalifikazioa">Berrikuspenak lehen instantzian epaimahaiak egingo ditu, bigarrenean Erreklamazio Batzordeak, eta azkenik unibertsitateko organo administratiboari aurkez daiteke; nota urriaren 31 baino lehen jasota agertu behar da espedientean.</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEbaluazioa">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEbaluazioa" aria-expanded="false" aria-controls="collapseEbaluazioa" data-i18n="h_ebaluazioa">
+                        </button>
+                    </h2>
+                    <div id="collapseEbaluazioa" class="accordion-collapse collapse" aria-labelledby="headingEbaluazioa" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_ebaluazioa1"></p>
+                            <p data-i18n="p_ebaluazioa2"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <h2 data-i18n="h_best">Beste kasu berezi batzuk</h2>
-            <p data-i18n="p_best">Araudiak aurreikusten ditu egoera bereziak (ezgaitasunak, hizkuntza desberdinetan aurkeztea, salbuespen-prozedurak).</p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingKalifikazioa">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseKalifikazioa" aria-expanded="false" aria-controls="collapseKalifikazioa" data-i18n="h_kalifikazioa">
+                        </button>
+                    </h2>
+                    <div id="collapseKalifikazioa" class="accordion-collapse collapse" aria-labelledby="headingKalifikazioa" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_kalifikazioa"></p>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="oharra-box">
-                <p><strong data-i18n="oharra_title">Oharra:</strong> <span data-i18n="oharra_text">Informazio hau laburpena da. Araudi ofizial osoa kontsultatzeko:</span></p>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingBest">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBest" aria-expanded="false" aria-controls="collapseBest" data-i18n="h_best">
+                        </button>
+                    </h2>
+                    <div id="collapseBest" class="accordion-collapse collapse" aria-labelledby="headingBest" data-bs-parent="#arautegiaAccordion">
+                        <div class="accordion-body">
+                            <p data-i18n="p_best"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="oharra-box mt-3">
+                <p><strong data-i18n="oharra_title"></strong> <span data-i18n="oharra_text"></span></p>
 
                 <a href="https://egela.ehu.eus/pluginfile.php/11345248/mod_resource/content/1/Normativa_UPVEHU_eus.pdf" target="_blank" data-i18n="link1_text">EHUko GrAL araudia</a>
                 <br>
@@ -64,6 +187,35 @@
     <div id="footer-root"></div>
     <script src="insertheaderfooter.js"></script>
 
+    <!-- Sincronizar tema (modo oscuro/claro) -->
+    <script>
+      (function(){
+        function applyThemeFromStorage(){
+          try{
+            const t = localStorage.getItem('theme');
+            if(t === 'dark') document.body.classList.add('dark');
+            else document.body.classList.remove('dark');
+          }catch(e){}
+        }
+        // aplicar inmediatamente al parsear el script
+        applyThemeFromStorage();
+
+        // reaccionar al evento emitido por el header cuando cambia el tema
+        window.addEventListener('theme:changed', function(e){
+          try{
+            const theme = e && e.detail && e.detail.theme;
+            if(theme === 'dark') document.body.classList.add('dark');
+            else document.body.classList.remove('dark');
+          }catch(e){}
+        });
+
+        // sincronizar cambios desde otras pestañas
+        window.addEventListener('storage', function(e){
+          if(e.key === 'theme') applyThemeFromStorage();
+        });
+      })();
+    </script>
+
     <!-- Dictionary and language application script -->
     <script>
         (function(){
@@ -71,7 +223,7 @@
                 eu: {
                     pageTitle: "GRALaren Gida - Araudiaren kontsulta",
                     h_main_title: "Araudiaren kontsulta",
-                    p_intro: "<strong>GrAL</strong> ikasleek graduko ikaskuntzan lortutako ezagutzak eta trebetasunak erakusteko egiten duten azken lana da, derrigorrezkoa EHUko gradu guzti",
+                    p_intro: "<strong>GrAL</strong> ikasleek graduko ikaskuntzan lortutako ezagutzak eta trebetasunak erakusteko egiten duten azken lana da, derrigorrezkoa EHUko gradu guztietan.",
                     h_baldintzak: "Baldintzak eta matrikula",
                     p_baldintzak: "GrAL matrikulatzeko, ikasleak ikasketa planelko kreditu guztiak gaindituta eduki behar ditu, GRALari dagozkionak izan ezik, eta ikastegiak ezarritakio baldintzak bete.",
                     h_zuzendaria: "Zuzendaria eta tutoretza",
@@ -271,6 +423,108 @@
                     oharra_text: "此資訊為摘要。欲查閱正式完整規例：",
                     link1_text: "EHU GrAL 規例",
                     link2_text: "資訊學院 GrAL 規例"
+                },
+                ru: {
+                    pageTitle: "Руководство GRAL - Обзор регламента",
+                    h_main_title: "Обзор регламента",
+                    p_intro: "<strong>GrAL</strong> — это выпускная работа, на которой студент демонстрирует знания и навыки, полученные в ходе обучения; обязательна в степенях EHU.",
+                    h_baldintzak: "Требования и зачисление",
+                    p_baldintzak: "Для записи на GrAL студент должен пройти кредиты учебного плана, за исключением тех, что относятся к GrAL, и выполнить условия, установленные факультетом.",
+                    h_zuzendaria: "Руководитель и наставничество",
+                    p_zuzendaria: "Каждая работа будет иметь преподавателя-руководителя, который направляет студента и следит за ходом работы.",
+                    h_formatua: "Содержание и формат работы",
+                    p_formatua: "Отчет должен иметь четкую академическую структуру (название, цели, методология, результаты, выводы, библиография) и соответствовать формату, указанному факультетом.",
+                    h_jabetza: "Интеллектуальная собственность",
+                    p_jabetza: "Выпускная работа защищается законом об интеллектуальной собственности. Правообладателем обычно является студент-автор, плагиат не допускается.",
+                    h_kanpoko: "Сотрудничество с внешними организациями",
+                    p_kanpoko1: "GrAL может выполняться совместно с внешней организацией при наличии соглашения о сотрудничестве.",
+                    p_kanpoko2: "Соглашения будут соответствовать регламенту; могут использоваться образцы и подписываться факультетом.",
+                    p_kanpoko3: "Если работа выполняется во внешних организациях, необходимо заранее согласовать и обеспечить меры по конфиденциальности и анонимизации данных.",
+                    h_etikoak: "Проекты с этическими последствиями",
+                    p_etikoak1: "Для проектов, связанных с людьми, животными или образцами/данными, руководитель направит студента по оценке этических последствий и соблюдению рекомендаций Этического комитета UPV/EHU.",
+                    p_etikoak2: "В таких случаях студент должен предоставить необходимые документы, а руководитель будет осуществлять надзор; Служба этики будет продолжать улучшать процедуры.",
+                    p_etikoak3: "При использовании данных из других академических мероприятий необходимо обеспечить анонимность и указать источник; комиссия оценит соблюдение этики.",
+                    h_deialdiak: "Сроки и защита",
+                    p_deialdiak: "В течение учебного года предусмотрены сроки для подачи отчета и публичной защиты, в установленные сроки и условиях. Даты будут объявлены.",
+                    h_ebaluazioa: "Оценивание",
+                    p_ebaluazioa1: "Комиссия определит оценку на основе критериев руководства: качество работы, оригинальность и способность студента при защите. По шкале 0-10 при необходимости предоставляется мотивированный отчет студенту и руководителю.",
+                    p_ebaluazioa2: "Студенты с оценкой выше 9.0 могут получить почетную оценку (не более 5% лучших защищенных работ).",
+                    h_kalifikazioa: "Присвоение оценки",
+                    p_kalifikazioa: "Пересмотры проводятся комиссией в первой инстанции, Комитетом по жалобам во второй, и в конце могут быть представлены в административный орган университета; оценка должна быть отражена в ведомости до 31 октября.",
+                    h_best: "Другие особые случаи",
+                    p_best: "Регламент предусматривает особые ситуации (инвалидность, представление на разных языках, исключительные процедуры).",
+                    oharra_title: "Примечание:",
+                    oharra_text: "Эта информация является кратким изложением. Для ознакомления с полным официальным регламентом:",
+                    link1_text: "Регламент GrAL EHU",
+                    link2_text: "Регламент GrAL Факультета информатики"
+                },
+                it: {
+                    pageTitle: "Guida GRAL - Panoramica del regolamento",
+                    h_main_title: "Panoramica del regolamento",
+                    p_intro: "<strong>GrAL</strong> è il lavoro finale in cui lo studente dimostra le conoscenze e le competenze acquisite durante il corso di laurea; è obbligatorio nei corsi EHU.",
+                    h_baldintzak: "Requisiti e immatricolazione",
+                    p_baldintzak: "Per iscriversi al GrAL lo studente deve aver superato i crediti del piano di studi, ad eccezione di quelli relativi al GrAL, e rispettare le condizioni stabilite dalla facoltà.",
+                    h_zuzendaria: "Relatore e tutoraggio",
+                    p_zuzendaria: "Ogni lavoro avrà un docente relatore che indirizzerà lo studente e seguirà lo svolgimento del lavoro.",
+                    h_formatua: "Contenuto e formato del lavoro",
+                    p_formatua: "La relazione deve avere una struttura accademica chiara (titolo, obiettivi, metodologia, risultati, conclusioni, bibliografia) e seguire il formato indicato dalla facoltà.",
+                    h_jabetza: "Proprietà intellettuale",
+                    p_jabetza: "Il lavoro di fine corso è protetto dalla normativa sulla proprietà intellettuale. Il titolare dei diritti è di solito lo studente autore e il plagio non è ammesso.",
+                    h_kanpoko: "Collaborazione con enti esterni",
+                    p_kanpoko1: "Il GrAL può essere svolto con un ente esterno, purché sia firmato un accordo di collaborazione.",
+                    p_kanpoko2: "Gli accordi si adegueranno al regolamento; possono essere utilizzati modelli e saranno firmati dalla facoltà.",
+                    p_kanpoko3: "Se svolto in enti esterni, devono essere concordati e garantiti limiti di riservatezza e anonimizzazione dei dati.",
+                    h_etikoak: "Progetti con implicazioni etiche",
+                    p_etikoak1: "Per progetti con persone, animali o campioni/dati, il relatore guiderà lo studente nella valutazione delle implicazioni etiche e nel rispetto delle linee guida del Comitato Etico UPV/EHU.",
+                    p_etikoak2: "In tali casi lo studente dovrà presentare la documentazione necessaria e il relatore supervisionerà attentamente; il Servizio Etico continuerà a migliorare le procedure.",
+                    p_etikoak3: "Quando si utilizzano dati provenienti da altre attività accademiche, deve essere garantito l'anonimato e specificata la fonte; la commissione valuterà la conformità etica.",
+                    h_deialdiak: "Convocazioni e difesa",
+                    p_deialdiak: "Durante l'anno accademico ci sono convocazioni per presentare la relazione e svolgere la difesa pubblica, entro scadenze e condizioni specifiche. Le date saranno comunicate.",
+                    h_ebaluazioa: "Valutazione",
+                    p_ebaluazioa1: "La commissione deciderà il voto secondo i criteri del manuale: qualità, originalità e capacità dimostrate nella difesa. Su una scala da 0 a 10, se necessario sarà fornita una relazione motivata allo studente e al relatore.",
+                    p_ebaluazioa2: "Gli studenti con voto superiore a 9.0 possono ricevere la lode (fino al 5% dei migliori).",
+                    h_kalifikazioa: "Attribuzione del voto",
+                    p_kalifikazioa: "I riesami sono effettuati in prima istanza dalla commissione, in seconda dalla Commissione Reclami, e infine possono essere presentati all'organo amministrativo dell'università; il voto deve risultare nel fascicolo prima del 31 ottobre.",
+                    h_best: "Altri casi speciali",
+                    p_best: "Il regolamento prevede situazioni speciali (disabilità, presentazione in lingue diverse, procedure di deroga).",
+                    oharra_title: "Nota:",
+                    oharra_text: "Queste informazioni sono un riassunto. Per consultare il regolamento ufficiale completo:",
+                    link1_text: "Regolamento GrAL EHU",
+                    link2_text: "Regolamento GrAL Facoltà di Informatica"
+                },
+                arc: {
+                    pageTitle: "ܠܘܚܐ ܕܓܪܐܠ - ܡܪܚܒܐ ܕܩܝܡܐ",
+                    h_main_title: "ܡܪܚܒܐ ܕܩܝܡܐ",
+                    p_intro: "<strong>GrAL</strong> ܗܘ ܥܒܕܬܐ ܕܣܘܦܐ ܕܐܬܪܘܬܐ ܕܡܢ ܗܕܐ ܡܠܡܕܐ ܕܛܠܡܝܕ ܡܬܚܙܝܢ ܝܕܥܬ̈ܐ ܘܟܘܫܪ̈ܢܘܬ̈ܐ; ܗܝ ܐܝܟܪܬܐ ܒܠܛܘܪܐ ܕܐܝܗܘܐ.",
+                    h_baldintzak: "ܬܩܢ̈ܝܬܐ ܘܫܘܡܠܝܘܬܐ",
+                    p_baldintzak: "ܕܡܵܢ ܠܗܘܠܐ ܕܬܫܡܠ ܒܓܪܐܠ, ܬܠܡܝܕܐ ܨܒܝܢ ܕܫܠܡ ܟܠ ܟܪܕܝܬ̈ܐ ܕܡܘܬܪܬܐ, ܒܠܐ ܡܚܫܐ ܠܗܘܝܢ ܕܡܠܬܐ ܠܓܪܐܠ, ܘܢܦܩܗ ܠܡܕܒܪܬܐ ܕܡܝܕܢܐ.",
+                    h_zuzendaria: "ܡܕܒܪܐ ܘܬܘܪܝܬܐ",
+                    p_zuzendaria: "ܟܠ ܥܒܕܬܐ ܬܗܘܝ ܒܝܕ ܡܠܦܢܐ ܕܡܕܒܪ ܕܝܬ݂ܬܐ ܠܪܗܝܒܘܬܐ ܘܠܡܪܝܬܐ ܕܥܒܕܬܐ.",
+                    h_formatua: "ܡܝܬܥܝܬܐ ܘܦܘܪܡܐ",
+                    p_formatua: "ܬܙܘܢܝܬܐ ܕܕܘܟܪܐ ܬܗܘܝ ܒܣܝܘܕܐ ܕܡܕܒܪܬܐ (ܫܡܐ, ܡܛܠ̈ܐ, ܡܛܕܪܘܬܐ, ܬܦܥ̈ܠ̈ܘܬܐ, ܡܣܟܢ̈ܘܬܐ) ܘܬܬܩܝܢ ܠܦܘܪܡܐ ܕܡܕܒܪܬܐ.",
+                    h_jabetza: "ܓܒܪܐ ܕܒܝܬܐ ܕܝܢܝܬܐ",
+                    p_jabetza: "ܥܒܕܬܐ ܕܣܘܦܐ ܡܬܬܪܡܙܬ ܒܩܢܘܢ̈ܐ ܕܓܒܪܐ ܕܒܝܬܐ. ܓܒܪܐ ܕܚܘܩܩܐ ܥܕܬܐ ܗܘ ܠܬܠܡܝܕܐ ܕܐܝܬܗܝ, ܘܠܐ ܢܩܒܠ ܚܘܕܘܬܐ.",
+                    h_kanpoko: "ܫܪܘܟܘܬܐ ܥܡ ܣܘܦ̈ܝܬܐ",
+                    p_kanpoko1: "GrAL ܡܚܠܐ ܢܢܥܠ ܥܡ ܣܘܦܝܬܐ ܒܪܚܡܬܐ ܕܬܘܬܪܘܬܐ.",
+                    p_kanpoko2: "ܗܝܟܠܝܬܐ ܬܬܩܝܡ ܐܝܟ ܕܟܬܒ̈ܢܐ; ܡܫܬܡܫܝܢ ܢܬܫܡܫܘܢ ܘܡܕܒܪܬܐ ܬܣܩܠܘܢܗܘܢ.",
+                    p_kanpoko3: "ܐܢ ܬܬܥܒܕ ܒܣܘܦ̈ܝܬܐ ܕܒܪܐ, ܬܘܪܝܬܐ ܕܣܝܪܘܬܐ ܘܛܒܥܘܬܐ ܕܡܝܕܥܬܐ ܬܬܣܘܪ ܘܬܗܕܪ.",
+                    h_etikoak: "ܡܦܩܕ̈ܬܐ ܐܬܝܩܬܐ",
+                    p_etikoak1: "ܠܥܒܕܬܐ ܥܡ ܐܢܫܐ, ܚܝܘܬ̈ܐ ܐܘ ܨܘܪ̈ܬܐ/ܡܝܕܥܬܐ, ܗܘܐ ܡܕܒܪ ܡܢ ܡܢܬܪܐ ܕܝܪܗܝܒ ܠܬܠܡܝܕ ܒܣܘܪܬܐ ܕܡܦܩܕܐ ܘܥܣܪܝܘܬܐ ܕܩܘܡܝܬܐ.",
+                    p_etikoak2: "ܒܗܠܐ ܡܦܩܕܐ ܬܬܒܪ ܐܝܬܬܐ ܕܛܒܥܝܬܐ ܘܡܕܒܪ ܬܬܪܝܨܐ; ܡܕܒܪܐ ܬܬܪܗܝܒ ܠܢܛܪܘܬܐ.",
+                    p_etikoak3: "ܟܕ ܡܬܠܩܝܢ ܡܝܕܥܬܐ ܡܢ ܦܥܠܝܘܬ̈ܐ ܐܚܪ̈ܝܢܐ, ܬܬܒܐܪ ܐܢܘܢܝܬܐ ܘܬܘܩܥ ܫܘܪܐ.",
+                    h_deialdiak: "ܩܕܡ̈ܐ ܘܬܪܥܘܬܐ",
+                    p_deialdiak: "ܒܫܢܬܐ ܕܠܡܕܒܪܬܐ ܗܝܬܐ ܡܘܓܝ̈ܪ̈ܐ ܕܠܡܛܠ ܬܫܡܠ ܘܠܥܕܪܐ ܚܘܒܝܬܐ.",
+                    h_ebaluazioa: "ܒܚܝܢܐ",
+                    p_ebaluazioa1: "ܗܘܠܐ ܩܘܢܝܢܐ ܬܙܠܝܠ ܠܩܘܪܣܐ ܒܝܢ 0-10; ܐܢ ܨܘܪܬܐ ܬܐܒܪ ܬܬܪܘܬ ܕܢܩܝܠܐ.  ",
+                    p_ebaluazioa2: "ܛܠܡܝܕ̈ܐ ܥܠܐ 9.0 ܝܢܟܘܢ ܕܝܢܐ ܬܬܢܛܝ ܡܘܕܩܐ (ܥܠܐ 5% ܕܛܒܥ̈ܐ).",
+                    h_kalifikazioa: "ܢܛܝܘܬܐ",
+                    p_kalifikazioa: "ܩܘܢܝܢܐ ܬܬܫܪܘܪ ܒܚܘܕܐ ܘܠܟܦܪܐ ܬܬܨܠܝ ܐܠܘܪܓܢܐ, ܘܢܛܝܘܬܐ ܬܬܩܪܐ ܠܬܟܣܝܬܐ 31 ܬܟܘܒܪ.",
+                    h_best: "ܟܘܪܣܐ ܐܚܪ̈ܝܐ",
+                    p_best: "ܩܝܡܐ ܬܘܐܦܣ ܠܚܺܝܠ̈ܐ ܕܡܝܬܘܠܝܬܐ ܘܐܘܪܓܢܝܐ.",
+                    oharra_title: "ܚܕܪܐ:",
+                    oharra_text: "ܗܕܐ ܡܕܥܬܐ ܡܕܟܐ ܗܝ. ܠܡܪܝܐ ܦܠܛܐ ܫܠܡܐ ܐܚܪܝܬܐ ܣܘܟܼܪܐ.",
+                    link1_text: "ܩܝܡܐ GrAL EHU",
+                    link2_text: "ܩܝܡܐ GrAL ܕܦܠܘܟܬܐ"
                 }
             };
 
