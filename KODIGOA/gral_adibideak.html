@@ -73,6 +73,20 @@
 
 
         const DATA = {
+            math: [
+                {year:'2023', title:'Ekuazio diferentzial partzialen ebazpen numerikoa elementu finituen metodoa erabiliz',
+                    sum:['Ekuazio diferentzial partzialen ebazpena elementu finituen metodoa erabiliz.',
+                        'Python eta FEniCS erabiliz inplementatutako ebazpena.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/68335/TESIS_URIARTE_BARANDA_CARLOS.pdf'},
+                {year:'2022', title:'Teoria ergodikoaren aplikazioak sistemetan kaotikoetan',
+                    sum:['Sistema dinamiko kaotikoen azterketa matematikoa.',
+                        'Birkariaren teoremaren aplikazio praktikoak.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/47767/UCPDF202741.pdf'},
+                {year:'2023', title:'Grafuen teoria eta bere aplikazioak sare sozialetan',
+                    sum:['Sare sozialen analisia grafoen bidez.',
+                        'Komunitateen detekzioa eta eraginkortasuna.'],
+                    url:'https://addi.ehu.es/bitstream/handle/10810/73245/UribarriBasterretxea_TFG.pdf'}
+            ],
             ii: [
                 {year:'2023', title:'Suizidio-ideiagintzaren identifikazioa sare sozialetan',
                     sum:['Reddit mezuen analisia eta transformer sailkatzaileak.',
@@ -215,27 +229,51 @@
             ]
         };
 
-        function renderDegree(code, labelText){
+        function renderDegree(code, labelText) {
             const items = DATA[code] || [];
-            labelTxt.textContent = labelText || 'Aukeratu gradua';
+            
+            // Save the current degree in the window object
+            window.currentDegree = { code, labelText };
+            
+            // Update the label with translation
+            const lang = localStorage.getItem('lang') || 'eu';
+            const t = translations[lang] || translations['eu'];
+            const displayText = t[`degree_${code}`] || labelText || t['degree_picker'] || 'Aukeratu gradua';
+            labelTxt.innerHTML = `<div data-i18n="degree_${code}">${displayText}</div>`;
+            
             let html = '<div class="grid">';
-            items.forEach(it=>{
+            
+            items.forEach((it, index) => {
+                const tfgKey = `${code}_tfg${index + 1}`;
+                
+                // Build the HTML for this TFG with data-i18n attributes
                 html += `
             <div class="cell">
               <article class="folio">
                 <div class="kicker">${it.year}</div>
-                <h3 class="ttl">${it.title}</h3>
-                <div class="sum">
-                  ${(it.sum||[]).map(p=>`<p>${p}</p>`).join('')}
+                <h3 class="ttl" data-i18n="${tfgKey}_title">${it.title}</h3>
+                <div class="sum">`;
+                
+                // Add each summary line with data-i18n attribute
+                (it.sum || []).forEach((sum, i) => {
+                    html += `<p data-i18n="${tfgKey}_sum${i + 1}">${sum}</p>`;
+                });
+                
+                html += `
                 </div>
                 <div class="actions">
-                  <a class="btn" href="${it.url}" target="_blank" rel="noopener">Ikusi ADDI</a>
+                  <a class="btn" href="${it.url}" target="_blank" rel="noopener" data-i18n="view_addi">Ikusi ADDI</a>
                 </div>
               </article>
             </div>`;
             });
+
             html += '</div>';
             results.innerHTML = html;
+
+            // Trigger translation for the new elements
+            const savedLang = localStorage.getItem('lang') || 'eu';
+            window.changeLanguageGRALAdib(savedLang);
         }
 
         function placeList(){
