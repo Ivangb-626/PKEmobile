@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gralgida.netlify.app/sitemap.xml
